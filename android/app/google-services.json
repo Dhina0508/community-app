@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054433881766",
+    "project_id": "ecyc-f285e",
+    "storage_bucket": "ecyc-f285e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054433881766:android:cb0bfaecabb3c164f68e67",
+        "android_client_info": {
+          "package_name": "com.example.ecyc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054433881766-qh8ds2dg90sg247qjf1d1remd2usvvrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOaFmlGCEXH82XwauHQhLKfp7S0ZKpVOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054433881766-qh8ds2dg90sg247qjf1d1remd2usvvrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
