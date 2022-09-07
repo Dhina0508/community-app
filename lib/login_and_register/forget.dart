@@ -25,20 +25,20 @@ class _ForgotPageState extends State<ForgotPage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginPage()));
               },
-              icon: Icon(
-                Icons.arrow_circle_left_rounded,
-                size: 42,
-                color: Color.fromRGBO(205, 189, 223, 1),
-              )),
+              icon: Icon(Icons.arrow_back, size: 30, color: Colors.black)),
         ),
-        body: Stack(children: [
-          // Image.asset(
-          //   'images/rain.jpg',
-          //   fit: BoxFit.cover,
-          //   width: double.infinity,
-          //   height: double.infinity,
-          // ),
-          SingleChildScrollView(
+        body: Ink(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 236, 5, 5),
+              Color.fromARGB(234, 216, 114, 216),
+              Color.fromARGB(236, 91, 19, 159),
+              Color.fromARGB(235, 51, 11, 120),
+            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+          ),
+          child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(top: 100),
               child: Column(
@@ -47,24 +47,23 @@ class _ForgotPageState extends State<ForgotPage> {
                   Text(
                     'Login Account',
                     style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(205, 189, 223, 1),
-                    ),
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
                     'Hello,Welcome back to our app!',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(color: Colors.black38, fontSize: 16),
                   ),
                   SizedBox(
                     height: 50 * 4,
                   ),
                   Text(
                     'Enter Mobile Number:',
-                    style: TextStyle(color: Colors.white, fontSize: 12 * 2),
+                    style: TextStyle(color: Colors.black, fontSize: 12 * 2),
                   ),
                   SizedBox(
                     height: 15,
@@ -84,7 +83,7 @@ class _ForgotPageState extends State<ForgotPage> {
                             padding: EdgeInsets.all(4),
                             child: Text(
                               '+91',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                             ),
                           ),
                           // prefix: Text(''),
@@ -117,18 +116,12 @@ class _ForgotPageState extends State<ForgotPage> {
                       },
                       child: Ink(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Color.fromARGB(255, 203, 177, 227)),
-                        child: Container(
-                          height: 50,
-                          width: 300,
-                          child: Center(
-                            child: Text(
-                              'Request OTP',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
+                            // borderRadius: BorderRadius.circular(30),
+                            //  color: Color.fromARGB(255, 203, 177, 227)
                             ),
-                          ),
+                        child: Text(
+                          'Request OTP',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                     ),
@@ -137,6 +130,6 @@ class _ForgotPageState extends State<ForgotPage> {
               ),
             ),
           ),
-        ]));
+        ));
   }
 }

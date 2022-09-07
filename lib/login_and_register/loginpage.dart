@@ -1,4 +1,3 @@
-import 'package:ecyc/dimensions/dimensions.dart';
 import 'package:ecyc/login_and_register/forget.dart';
 import 'package:ecyc/login_and_register/regiterpage.dart';
 import 'package:flutter/material.dart';
@@ -24,14 +23,18 @@ class _LoginPageState extends State<LoginPage> {
     // print(
     //   "the current width is" + MediaQuery.of(context).size.width.toString());
     return Scaffold(
-        body: Stack(children: [
-      Image.asset(
-        'images/road.jpeg',
-        width: double.infinity,
-        height: double.infinity,
-        fit: BoxFit.cover,
+        body: Ink(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 236, 5, 5),
+          Color.fromARGB(234, 216, 114, 216),
+          Color.fromARGB(236, 91, 19, 159),
+          Color.fromARGB(235, 51, 11, 120),
+        ], begin: Alignment.topRight, end: Alignment.bottomLeft),
       ),
-      SingleChildScrollView(
+      child: SingleChildScrollView(
         child: SafeArea(
           child: Center(
             child: Column(
@@ -42,26 +45,32 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Container(
-                    //     height: 50,
-                    //     width: 50,
-                    //     child: Image.asset(
-                    //       'images/logo.png',
-                    //     )),
                     SizedBox(
                       width: 5,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(bottom: 3),
-                      decoration: BoxDecoration(
-                          color: Colors.purple,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Text(
-                        'ECYC',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
+                    Ink(
+                      child: Container(
+                        padding: EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(221, 241, 32, 32),
+                                Color.fromARGB(234, 219, 33, 219),
+                                Color.fromARGB(210, 52, 18, 175),
+                                Color.fromARGB(210, 52, 18, 175),
+                              ],
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft),
+                        ),
+                        child: Text(
+                          'ECYC',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Cinzel',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                        ),
                       ),
                     ),
                   ],
@@ -78,7 +87,9 @@ class _LoginPageState extends State<LoginPage> {
                         fillColor: Colors.grey.shade100,
                         filled: true,
                         hintText: 'Enter Login Id',
-                        hintStyle: TextStyle(color: Colors.black),
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        ),
                         prefixIcon: Icon(
                           Icons.person,
                           color: Colors.black,
@@ -180,6 +191,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-    ]));
+    ));
   }
 }
