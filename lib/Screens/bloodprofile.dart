@@ -79,7 +79,7 @@ class _bloodprofState extends State<bloodprof> {
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FlatButton(
+              child: ElevatedButton(
                 onPressed: () => [],
                 child: Text(
                   'Add To Cart',
@@ -88,8 +88,8 @@ class _bloodprofState extends State<bloodprof> {
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
-                minWidth: MediaQuery.of(context).size.width,
-                color: Colors.deepOrange,
+                // minWidth: MediaQuery.of(context).size.width,
+                // color: Colors.deepOrange,
               ),
             )
           ],

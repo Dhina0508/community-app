@@ -1,12 +1,30 @@
+import 'package:ecyc/firebase_helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  Service service = Service();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () async {
+                service.signOut(context);
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                pref.remove("email");
+              },
+              icon: Icon(Icons.logout))
+        ],
         centerTitle: true,
         backgroundColor: Colors.teal,
         title: Text(
@@ -15,7 +33,7 @@ class Home extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text('This this home Screen',
+        child: Text('This is home Screen',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
       ),
       drawer: Drawer(
