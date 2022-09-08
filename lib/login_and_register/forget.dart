@@ -1,4 +1,4 @@
-import 'package:ecyc/dimensions/dimensions.dart';
+import 'package:ecyc/helper/dimensions.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/otp_page.dart';
 import 'package:flutter/material.dart';

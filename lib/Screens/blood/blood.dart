@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/blood/bloodprofile.dart';
+import 'package:ecyc/Screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,29 +15,49 @@ class _profileState extends State<blood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Home()));
+            },
+            icon: Icon(Icons.arrow_back)),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text('Blood Request List'),
         actions: [
           IconButton(
               onPressed: () => [Navigator.of(context).pushNamed('bloodreg')],
               icon: Icon(Icons.add))
         ],
-        backgroundColor: Colors.deepOrange,
       ),
-      body: SafeArea(
-          child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection("Blood_Req_List")
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, i) {
-                      QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      return ListTile(
+      body: Ink(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 236, 5, 5),
+            Color.fromARGB(234, 216, 114, 216),
+            Color.fromARGB(236, 91, 19, 159),
+            Color.fromARGB(235, 51, 11, 120),
+          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+        ),
+        child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection("Blood_Req_List")
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, i) {
+                    QueryDocumentSnapshot x = snapshot.data!.docs[i];
+                    return Card(
+                      elevation: 5,
+                      child: ListTile(
                         leading: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -45,11 +66,6 @@ class _profileState extends State<blood> {
                               size: 45,
                               color: Colors.red,
                             ),
-                            Text(
-                              x['Blood_Group'],
-                              style: TextStyle(
-                                  fontSize: 21, fontWeight: FontWeight.bold),
-                            )
                           ],
                         ),
                         title: Text(
@@ -65,9 +81,11 @@ class _profileState extends State<blood> {
                                   builder: (context) =>
                                       bloodprof(value: snapshot.data!.docs[i])))
                         ],
-                      );
-                    });
-              })),
+                      ),
+                    );
+                  });
+            }),
+      ),
     );
   }
 }

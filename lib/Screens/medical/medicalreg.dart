@@ -50,11 +50,11 @@ class _registerState extends State<medicalreg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.redAccent[200],
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          automaticallyImplyLeading: false,
+          // automaticallyImplyLeading: false,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,109 +68,141 @@ class _registerState extends State<medicalreg> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: Container(
-            alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(
-                    'Submit to post request',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.redAccent[200],
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _NameController,
-                      decoration: InputDecoration(
-                          labelText: 'Full name',
-                          prefixIcon: Icon(
-                            Icons.account_box_rounded,
+        body: Ink(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 236, 5, 5),
+              Color.fromARGB(234, 216, 114, 216),
+              Color.fromARGB(236, 91, 19, 159),
+              Color.fromARGB(235, 51, 11, 120),
+            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Container(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Submit to post request',
+                        style: TextStyle(
+                            fontSize: 30,
                             color: Colors.redAccent[200],
-                            size: 40,
-                          ),
-                          hintText: 'someone'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _hospitalController,
-                      decoration: InputDecoration(
-                          labelText: 'Hospital Name',
-                          prefixIcon: Icon(
-                            Icons.local_hospital_rounded,
-                            color: Colors.redAccent[200],
-                            size: 35,
-                          ),
-                          hintText: 'Eg.Apollo'),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30.0, right: 8, left: 8),
-                    child: TextFormField(
-                      controller: _PhoneNoController,
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        prefixIcon: Icon(
-                          Icons.phone_android_rounded,
-                          color: Colors.redAccent[200],
-                          size: 40,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _NameController,
+                          decoration: InputDecoration(
+                              labelText: 'Full name',
+                              prefixIcon: Icon(
+                                Icons.account_box_rounded,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              hintText: 'someone'),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _AddressController,
-                      decoration: InputDecoration(
-                          labelText: 'Address',
-                          prefixIcon: Icon(
-                            Icons.house_rounded,
-                            color: Colors.redAccent[200],
-                            size: 40,
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _hospitalController,
+                          decoration: InputDecoration(
+                              labelText: 'Hospital Name',
+                              prefixIcon: Icon(
+                                Icons.local_hospital_rounded,
+                                color: Colors.redAccent[200],
+                                size: 35,
+                              ),
+                              hintText: 'Eg.Apollo'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 30.0, right: 8, left: 8),
+                        child: TextFormField(
+                          controller: _PhoneNoController,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            labelText: 'Phone Number',
+                            prefixIcon: Icon(
+                              Icons.phone_android_rounded,
+                              color: Colors.redAccent[200],
+                              size: 40,
+                            ),
                           ),
-                          hintText: 'Your address'),
-                    ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _AddressController,
+                          decoration: InputDecoration(
+                              labelText: 'Address',
+                              prefixIcon: Icon(
+                                Icons.house_rounded,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              hintText: 'Your address'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _DescriptionController,
+                          decoration: InputDecoration(
+                              labelText: 'Description',
+                              prefixIcon: Icon(
+                                Icons.note_add_sharp,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              hintText: 'About the patient'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30.0, left: 8),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if (_NameController.text != '' &&
+                                  _PhoneNoController.text != '' &&
+                                  _AddressController.text != '' &&
+                                  _DescriptionController != '' &&
+                                  _hospitalController.text != '') {
+                                SendUserDataToDB();
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content:
+                                      Text("Error : Details cannot be empty"),
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.red,
+                                ));
+                              }
+                            },
+                            child: Text('   Submit   ')),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _DescriptionController,
-                      decoration: InputDecoration(
-                          labelText: 'Description',
-                          prefixIcon: Icon(
-                            Icons.note_add_sharp,
-                            color: Colors.redAccent[200],
-                            size: 40,
-                          ),
-                          hintText: 'About the patient'),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(right: 8, top: 30.0, left: 8),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          SendUserDataToDB();
-                        },
-                        child: Text('   Submit   ')),
-                  ),
-                ],
+                ),
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.white,
+                ),
               ),
-            ),
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-              color: Colors.white,
             ),
           ),
         ));

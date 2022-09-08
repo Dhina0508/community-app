@@ -7,14 +7,9 @@ import 'package:ecyc/Screens/food/food.dart';
 import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
 import 'package:ecyc/Screens/home.dart';
-<<<<<<< HEAD
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
-import 'package:ecyc/dimensions/dimensions.dart';
-=======
-import 'package:ecyc/Screens/medical.dart';
-import 'package:ecyc/Screens/medicalreg.dart';
->>>>>>> fa20fe1bf0539e229135db156ef2b25dfd15a564
+
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

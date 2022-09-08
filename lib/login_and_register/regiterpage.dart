@@ -1,4 +1,4 @@
-import 'package:ecyc/dimensions/dimensions.dart';
+import 'package:ecyc/helper/dimensions.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';

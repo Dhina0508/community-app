@@ -67,147 +67,162 @@ class _HomeState extends State<Home> {
         ),
       ),
       drawer: Drawer(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Text(
-                'Contents',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.home,
-                      color: Colors.brown,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Home',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
+        child: Ink(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 221, 117, 117),
+              Color.fromARGB(234, 209, 125, 209),
+              Color.fromARGB(235, 125, 73, 174),
+              Color.fromARGB(235, 78, 57, 113),
+            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+          ),
+          child: SafeArea(
+            child: Column(
+              children: [
+                Text(
+                  'Contents',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.home,
+                        color: Colors.brown,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Home',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  onTap: () => [
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()))
                   ],
                 ),
-                onTap: () => [],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.bloodtype_rounded,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Blood',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
-                  ],
+                SizedBox(
+                  height: 15,
                 ),
-                onTap: () => [Navigator.of(context).pushNamed('blood')],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.local_hospital_rounded,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Medicals',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
-                  ],
+                ListTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.bloodtype_rounded,
+                        color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Blood Donation',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  onTap: () => [Navigator.of(context).pushNamed('blood')],
                 ),
-                onTap: () => [Navigator.of(context).pushNamed('medical')],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.menu_book_rounded,
-                      color: Colors.brown,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Education',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
-                  ],
+                SizedBox(
+                  height: 15,
                 ),
-                onTap: () => [Navigator.of(context).pushNamed('education')],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.food_bank_rounded,
-                      color: Colors.amber,
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Food',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
-                  ],
+                ListTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.local_hospital_rounded,
+                        color: Colors.red,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Health ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  onTap: () => [Navigator.of(context).pushNamed('medical')],
                 ),
-                onTap: () => [Navigator.of(context).pushNamed('food')],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      color: Colors.brown,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Settings',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                    ),
-                  ],
+                SizedBox(
+                  height: 15,
                 ),
-                onTap: () => [],
-              ),
-            ],
+                ListTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.menu_book_rounded,
+                        color: Colors.brown,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Education',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  onTap: () => [Navigator.of(context).pushNamed('education')],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.food_bank_rounded,
+                        color: Colors.amber,
+                        size: 30,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Food',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  onTap: () => [Navigator.of(context).pushNamed('food')],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        Icons.settings,
+                        color: Colors.brown,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'My Profile',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  onTap: () => [],
+                ),
+              ],
+            ),
           ),
         ),
       ),

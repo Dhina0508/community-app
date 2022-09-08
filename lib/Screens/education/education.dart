@@ -16,7 +16,9 @@ class _profileState extends State<education> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        elevation: 0,
         title: Text('Education Request List'),
         actions: [
           IconButton(
@@ -24,56 +26,58 @@ class _profileState extends State<education> {
                   [Navigator.of(context).pushNamed('educationreg')],
               icon: Icon(Icons.add))
         ],
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.transparent,
       ),
-      body: SafeArea(
-          child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection("Education_Req_List")
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, i) {
-                      QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      return ListTile(
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
+      body: Ink(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 236, 5, 5),
+            Color.fromARGB(234, 216, 114, 216),
+            Color.fromARGB(236, 91, 19, 159),
+            Color.fromARGB(235, 51, 11, 120),
+          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+        ),
+        child: SafeArea(
+            child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection("Education_Req_List")
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, i) {
+                        QueryDocumentSnapshot x = snapshot.data!.docs[i];
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
                               Icons.school_rounded,
                               size: 35,
                               color: Colors.red,
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              x['Institution_name'],
+                            title: Text(
+                              "Name : " + x['Name'],
                               style: TextStyle(
-                                  fontSize: 21, fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                        title: Text(
-                          "Name of the student: " + x['Name'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                        onTap: () => [
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => educationalprof(
-                                      value: snapshot.data!.docs[i])))
-                        ],
-                      );
-                    });
-              })),
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => educationalprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      });
+                })),
+      ),
     );
   }
 }

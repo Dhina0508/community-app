@@ -54,11 +54,10 @@ class _registerState extends State<foodreg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.redAccent[200],
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          automaticallyImplyLeading: false,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,109 +71,156 @@ class _registerState extends State<foodreg> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: Container(
-            alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(
-                    'Submit to post request',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.redAccent[200],
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _TrustController,
-                      decoration: InputDecoration(
-                          labelText: 'Trust name',
-                          prefixIcon: Icon(
-                            Icons.account_box_rounded,
+        body: Ink(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color.fromARGB(255, 236, 5, 5),
+              Color.fromARGB(234, 216, 114, 216),
+              Color.fromARGB(236, 91, 19, 159),
+              Color.fromARGB(235, 51, 11, 120),
+            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 35),
+              child: Container(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Submit to Post Request',
+                        style: TextStyle(
+                            fontSize: 30,
                             color: Colors.redAccent[200],
-                            size: 40,
-                          ),
-                          hintText: 'Trust Name'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _PhoneNoController,
-                      decoration: InputDecoration(
-                          labelText: 'Phone No',
-                          prefixIcon: Icon(
-                            Icons.phone,
-                            color: Colors.red,
-                            size: 40,
-                          ),
-                          hintText: '1234567890'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _CategoryController,
-                      decoration: InputDecoration(
-                          labelText: 'Category',
-                          prefixIcon: Icon(
-                            Icons.food_bank_rounded,
-                            color: Colors.amber,
-                            size: 40,
-                          ),
-                          hintText: 'Veg or Non-Veg'),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30.0, right: 8, left: 8),
-                    child: TextFormField(
-                      controller: _MealController,
-                      decoration: InputDecoration(
-                        labelText: 'Meal',
-                        prefixIcon: Icon(
-                          Icons.fastfood_rounded,
-                          color: Colors.amber,
-                          size: 40,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _TrustController,
+                          decoration: InputDecoration(
+                              labelText: 'Trust name',
+                              prefixIcon: Icon(
+                                Icons.account_box_rounded,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              hintText: 'Trust Name'),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30.0, right: 8, left: 8),
-                    child: TextFormField(
-                      controller: _DiscriptionController,
-                      decoration: InputDecoration(
-                        labelText: 'About the event',
-                        prefixIcon: Icon(
-                          Icons.people_alt_rounded,
-                          color: Colors.red,
-                          size: 40,
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _PhoneNoController,
+                          decoration: InputDecoration(
+                              labelText: 'Phone No',
+                              prefixIcon: Icon(
+                                Icons.phone,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: '1234567890'),
                         ),
                       ),
-                    ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _CategoryController,
+                          decoration: InputDecoration(
+                              labelText: 'Category',
+                              prefixIcon: Icon(
+                                Icons.food_bank_rounded,
+                                color: Colors.redAccent,
+                                size: 40,
+                              ),
+                              hintText: 'Veg or Non-Veg'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 30.0, right: 8, left: 8),
+                        child: TextFormField(
+                          controller: _MealController,
+                          decoration: InputDecoration(
+                            labelText: 'Food Type',
+                            prefixIcon: Icon(
+                              Icons.fastfood_rounded,
+                              color: Colors.redAccent,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 30.0, right: 8, left: 8),
+                        child: TextFormField(
+                          controller: _PeopleController,
+                          decoration: InputDecoration(
+                            labelText: 'Number of People',
+                            hintText: 'Eg: 120 or 200',
+                            prefixIcon: Icon(
+                              Icons.people,
+                              color: Colors.redAccent,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 30.0, right: 8, left: 8),
+                        child: TextFormField(
+                          controller: _DiscriptionController,
+                          decoration: InputDecoration(
+                            labelText: 'About the event',
+                            prefixIcon: Icon(
+                              Icons.description_outlined,
+                              color: Colors.red,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30.0, left: 8),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if (_TrustController.text != '' &&
+                                  _PhoneNoController.text != '' &&
+                                  _CategoryController.text != '' &&
+                                  _DiscriptionController.text != '' &&
+                                  _MealController.text != '') {
+                                SendUserDataToDB();
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content:
+                                      Text("Error : Details cannot be empty"),
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.red,
+                                ));
+                              }
+                            },
+                            child: Text('   Submit   ')),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(right: 8, top: 30.0, left: 8),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          SendUserDataToDB();
-                        },
-                        child: Text('   Submit   ')),
-                  ),
-                ],
+                ),
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.white,
+                ),
               ),
-            ),
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-              color: Colors.white,
             ),
           ),
         ));
