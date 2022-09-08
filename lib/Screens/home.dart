@@ -15,7 +15,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        elevation: 0,
         actions: [
           IconButton(
               onPressed: () async {
@@ -26,15 +28,43 @@ class _HomeState extends State<Home> {
               icon: Icon(Icons.logout))
         ],
         centerTitle: true,
-        backgroundColor: Colors.teal,
-        title: Text(
-          "EcYc",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        backgroundColor: Colors.transparent,
+        title: Container(
+          padding: EdgeInsets.all(7),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(colors: [
+              Color.fromARGB(221, 241, 32, 32),
+              Color.fromARGB(234, 219, 33, 219),
+              Color.fromARGB(210, 52, 18, 175),
+              Color.fromARGB(210, 52, 18, 175),
+            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+          ),
+          child: Text(
+            'ECYC',
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Cinzel',
+                fontWeight: FontWeight.bold,
+                fontSize: 30),
+          ),
         ),
       ),
-      body: Center(
-        child: Text('This is home Screen',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+      body: Ink(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 236, 5, 5),
+            Color.fromARGB(234, 216, 114, 216),
+            Color.fromARGB(236, 91, 19, 159),
+            Color.fromARGB(235, 51, 11, 120),
+          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+        ),
+        child: Center(
+          child: Text('This is home Screen',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+        ),
       ),
       drawer: Drawer(
         child: SafeArea(
@@ -42,14 +72,32 @@ class _HomeState extends State<Home> {
             children: [
               Text(
                 'Contents',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+              ),
+              SizedBox(
+                height: 40,
               ),
               ListTile(
-                title: Text(
-                  'home',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                title: Row(
+                  children: [
+                    Icon(
+                      Icons.home,
+                      color: Colors.brown,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Home',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
+                  ],
                 ),
                 onTap: () => [],
+              ),
+              SizedBox(
+                height: 15,
               ),
               ListTile(
                 title: Row(
@@ -64,11 +112,14 @@ class _HomeState extends State<Home> {
                     Text(
                       'Blood',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ],
                 ),
                 onTap: () => [Navigator.of(context).pushNamed('blood')],
+              ),
+              SizedBox(
+                height: 15,
               ),
               ListTile(
                 title: Row(
@@ -83,11 +134,14 @@ class _HomeState extends State<Home> {
                     Text(
                       'Medicals',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ],
                 ),
                 onTap: () => [Navigator.of(context).pushNamed('medical')],
+              ),
+              SizedBox(
+                height: 15,
               ),
               ListTile(
                 title: Row(
@@ -102,11 +156,14 @@ class _HomeState extends State<Home> {
                     Text(
                       'Education',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ],
                 ),
                 onTap: () => [Navigator.of(context).pushNamed('education')],
+              ),
+              SizedBox(
+                height: 15,
               ),
               ListTile(
                 title: Row(
@@ -120,13 +177,35 @@ class _HomeState extends State<Home> {
                       width: 10,
                     ),
                     Text(
-                      'food',
+                      'Food',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     ),
                   ],
                 ),
                 onTap: () => [Navigator.of(context).pushNamed('food')],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              ListTile(
+                title: Row(
+                  children: [
+                    Icon(
+                      Icons.settings,
+                      color: Colors.brown,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Settings',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                    ),
+                  ],
+                ),
+                onTap: () => [],
               ),
             ],
           ),

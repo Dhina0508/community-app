@@ -7,15 +7,19 @@ import 'package:ecyc/Screens/food/food.dart';
 import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
 import 'package:ecyc/Screens/home.dart';
+<<<<<<< HEAD
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
 import 'package:ecyc/dimensions/dimensions.dart';
+=======
+import 'package:ecyc/Screens/medical.dart';
+import 'package:ecyc/Screens/medicalreg.dart';
+>>>>>>> fa20fe1bf0539e229135db156ef2b25dfd15a564
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 main() async {
@@ -63,21 +67,48 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(28, 11, 67, 0.9),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Padding(
-            //   padding: EdgeInsets.only(left: Dimension.width20),
-            //   child: Image.asset(
-            //     'images/frontpage.jpg',
-            //   ),
-            // ),
-            SizedBox(
-              height: 45,
+        body: Ink(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 236, 5, 5),
+          Color.fromARGB(234, 216, 114, 216),
+          Color.fromARGB(236, 91, 19, 159),
+          Color.fromARGB(235, 51, 11, 120),
+        ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            child: Text(
+              'ECYC',
+              style: TextStyle(
+                  fontFamily: 'Cinzel',
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
-            CircularProgressIndicator()
-          ],
-        ));
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            "First People Community App",
+            style: TextStyle(
+                fontSize: 25,
+                color: Color.fromARGB(255, 199, 191, 191),
+                fontFamily: 'JosefinSans'),
+          ),
+          SizedBox(
+            height: 60,
+          ),
+          CircularProgressIndicator(
+            color: Colors.white,
+          )
+        ],
+      ),
+    ));
   }
 }
