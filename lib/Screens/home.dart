@@ -219,7 +219,7 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
-                  onTap: () => [],
+                  onTap: () => [Navigator.of(context).pushNamed('profile')],
                 ),
               ],
             ),

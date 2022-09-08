@@ -1,3 +1,4 @@
+import 'package:ecyc/Screens/MyProfile.dart';
 import 'package:ecyc/Screens/blood/blood.dart';
 import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:ecyc/Screens/blood/bloodreg.dart';
@@ -11,6 +12,7 @@ import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
 
 import 'package:ecyc/login_and_register/loginpage.dart';
+import 'package:ecyc/login_and_register/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,11 +36,12 @@ main() async {
       'education': (context) => education(),
       'food': (context) => food(),
       'bloodreg': (context) => bloodreg(),
-      'bloodprof': (context) => bloodprof(),
       'medicalreg': (context) => medicalreg(),
       'educationreg': (context) => educationreg(),
       'foodreg': (context) => foodreg(),
-      'foodprof': (context) => foodprof()
+      'register': (context) => register(),
+      'login': (context) => MyHomePage(),
+      'profile': (context) => MyProfile()
     },
   ));
 }

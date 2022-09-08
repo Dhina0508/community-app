@@ -1,5 +1,5 @@
 import 'package:ecyc/login_and_register/forget.dart';
-import 'package:ecyc/login_and_register/regiterpage.dart';
+import 'package:ecyc/login_and_register/SignUp.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -176,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => RegisterPage()));
+                                        builder: (context) => SignUp()));
                               },
                               child: Text(
                                 "Don't have an Account?   ",
