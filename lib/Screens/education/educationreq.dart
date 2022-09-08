@@ -22,6 +22,8 @@ class _registerState extends State<educationreg> {
 
   TextEditingController _AddressController = TextEditingController();
 
+  TextEditingController _DiscriptionController = TextEditingController();
+
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
@@ -34,6 +36,7 @@ class _registerState extends State<educationreg> {
       "Institution_name": _InstitutionController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
+      "description": _DiscriptionController.text
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
@@ -153,6 +156,20 @@ class _registerState extends State<educationreg> {
                             size: 40,
                           ),
                           hintText: 'Your address'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _DiscriptionController,
+                      decoration: InputDecoration(
+                          labelText: 'Description',
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: Colors.redAccent[200],
+                            size: 40,
+                          ),
+                          hintText: 'Student Description'),
                     ),
                   ),
                   Padding(

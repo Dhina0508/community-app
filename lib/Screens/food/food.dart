@@ -1,24 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/Screens/bloodprofile.dart';
+import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class medical extends StatefulWidget {
-  const medical({Key? key}) : super(key: key);
+import '../blood/bloodprofile.dart';
+
+class food extends StatefulWidget {
+  const food({Key? key}) : super(key: key);
 
   @override
-  State<medical> createState() => _profileState();
+  State<food> createState() => _profileState();
 }
 
-class _profileState extends State<medical> {
+class _profileState extends State<food> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medical Request List'),
+        title: Text('Food Request List'),
         actions: [
           IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('medicalreg')],
+              onPressed: () => [Navigator.of(context).pushNamed('foodreg')],
               icon: Icon(Icons.add))
         ],
         backgroundColor: Colors.deepOrange,
@@ -26,7 +28,7 @@ class _profileState extends State<medical> {
       body: SafeArea(
           child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
-                  .collection("medical_Req_List")
+                  .collection("Food_Req_List")
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -41,19 +43,19 @@ class _profileState extends State<medical> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(
-                              Icons.local_hospital_rounded,
-                              size: 40,
-                              color: Colors.red,
+                              Icons.food_bank_rounded,
+                              size: 45,
+                              color: Colors.amber,
                             ),
                             Text(
-                              x['Hospital_Name'],
+                              x['Meal'],
                               style: TextStyle(
                                   fontSize: 21, fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
                         title: Text(
-                          "Patient Name: " + x['Name'],
+                          "Trust Name: " + x['Trust Name'],
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
@@ -63,7 +65,7 @@ class _profileState extends State<medical> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      bloodprof(value: snapshot.data!.docs[i])))
+                                      foodprof(value: snapshot.data!.docs[i])))
                         ],
                       );
                     });

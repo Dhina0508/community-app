@@ -1,25 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/Screens/bloodprofile.dart';
+import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class education extends StatefulWidget {
-  const education({Key? key}) : super(key: key);
+class blood extends StatefulWidget {
+  const blood({Key? key}) : super(key: key);
 
   @override
-  State<education> createState() => _profileState();
+  State<blood> createState() => _profileState();
 }
 
-class _profileState extends State<education> {
+class _profileState extends State<blood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Education Request List'),
+        title: Text('Blood Request List'),
         actions: [
           IconButton(
-              onPressed: () =>
-                  [Navigator.of(context).pushNamed('educationreg')],
+              onPressed: () => [Navigator.of(context).pushNamed('bloodreg')],
               icon: Icon(Icons.add))
         ],
         backgroundColor: Colors.deepOrange,
@@ -27,7 +26,7 @@ class _profileState extends State<education> {
       body: SafeArea(
           child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
-                  .collection("Education_Req_List")
+                  .collection("Blood_Req_List")
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -42,22 +41,19 @@ class _profileState extends State<education> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(
-                              Icons.school_rounded,
-                              size: 35,
+                              Icons.bloodtype_rounded,
+                              size: 45,
                               color: Colors.red,
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
                             Text(
-                              x['Institution_name'],
+                              x['Blood_Group'],
                               style: TextStyle(
                                   fontSize: 21, fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
                         title: Text(
-                          "Name of the student: " + x['Name'],
+                          "Name: " + x['Name'],
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),

@@ -6,10 +6,10 @@ class medicalprof extends StatefulWidget {
   medicalprof({this.value});
 
   @override
-  State<medicalprof> createState() => _bloodprofState();
+  State<medicalprof> createState() => _medicalprofState();
 }
 
-class _bloodprofState extends State<medicalprof> {
+class _medicalprofState extends State<medicalprof> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +24,6 @@ class _bloodprofState extends State<medicalprof> {
             ),
             Row(
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: Container(
-                //       height: 200,
-                //       width: 200,
-                //       child: Image.network(widget.value['person_image'])),
-                // ),
                 Text(
                   "Name of the person :" + widget.value['Name'],
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -46,11 +39,11 @@ class _bloodprofState extends State<medicalprof> {
                   width: 15,
                 ),
                 Text(
-                  'Blood Needed : ',
+                  'Hospital Name : ',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  widget.value['Blood_Group'],
+                  widget.value['Hospital_Name'],
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -68,7 +61,7 @@ class _bloodprofState extends State<medicalprof> {
             Padding(
               padding: const EdgeInsets.only(left: 25.0, right: 25.0),
               child: Text(
-                widget.value['discription'],
+                widget.value['Description'],
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
               ),
             ),
@@ -81,7 +74,7 @@ class _bloodprofState extends State<medicalprof> {
                   child: ElevatedButton(
                     onPressed: () async {
                       await FirebaseFirestore.instance
-                          .collection("Blood_Req_List")
+                          .collection("medical_Req_List")
                           .doc()
                           .delete();
 

@@ -22,6 +22,8 @@ class _registerState extends State<foodreg> {
 
   TextEditingController _PhoneNoController = TextEditingController();
 
+  TextEditingController _DiscriptionController = TextEditingController();
+
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
@@ -34,6 +36,7 @@ class _registerState extends State<foodreg> {
       "Pepole_List": _PeopleController.text,
       "Category_name": _CategoryController.text,
       "PhoneNumber": _PhoneNoController.text,
+      "Discription": _DiscriptionController.text,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
@@ -135,6 +138,21 @@ class _registerState extends State<foodreg> {
                         prefixIcon: Icon(
                           Icons.fastfood_rounded,
                           color: Colors.amber,
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 30.0, right: 8, left: 8),
+                    child: TextFormField(
+                      controller: _DiscriptionController,
+                      decoration: InputDecoration(
+                        labelText: 'About the event',
+                        prefixIcon: Icon(
+                          Icons.people_alt_rounded,
+                          color: Colors.red,
                           size: 40,
                         ),
                       ),
