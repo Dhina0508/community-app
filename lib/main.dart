@@ -2,7 +2,10 @@ import 'package:ecyc/Screens/blood.dart';
 import 'package:ecyc/Screens/bloodprofile.dart';
 import 'package:ecyc/Screens/bloodreg.dart';
 import 'package:ecyc/Screens/education.dart';
+import 'package:ecyc/Screens/educationreq.dart';
 import 'package:ecyc/Screens/food.dart';
+import 'package:ecyc/Screens/foodprof.dart';
+import 'package:ecyc/Screens/foodreg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical.dart';
 import 'package:ecyc/Screens/medicalreg.dart';
@@ -33,7 +36,10 @@ main() async {
       'food': (context) => food(),
       'bloodreg': (context) => bloodreg(),
       'bloodprof': (context) => bloodprof(),
-      'medicalreg': (context) => medicalreg()
+      'medicalreg': (context) => medicalreg(),
+      'educationreg': (context) => educationreg(),
+      'foodreg': (context) => foodreg(),
+      'foodprof': (context) => foodprof()
     },
   ));
 }

@@ -4,36 +4,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class bloodreg extends StatefulWidget {
-  bloodreg({Key? key}) : super(key: key);
+class foodreg extends StatefulWidget {
+  foodreg({Key? key}) : super(key: key);
 
   @override
-  State<bloodreg> createState() => _registerState();
+  State<foodreg> createState() => _registerState();
 }
 
-class _registerState extends State<bloodreg> {
-  TextEditingController _NameController = TextEditingController();
+class _registerState extends State<foodreg> {
+  TextEditingController _TrustController = TextEditingController();
 
-  TextEditingController _bloodController = TextEditingController();
+  TextEditingController _PeopleController = TextEditingController();
+
+  TextEditingController _CategoryController = TextEditingController();
+
+  TextEditingController _MealController = TextEditingController();
 
   TextEditingController _PhoneNoController = TextEditingController();
-
-  TextEditingController _AddressController = TextEditingController();
-
-  TextEditingController _DiscriptionController = TextEditingController();
 
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
     CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Blood_Req_List");
+        FirebaseFirestore.instance.collection("Food_Req_List");
     return _CollectionReference.doc().set({
-      "Name": _NameController.text,
-      "Blood_Group": _bloodController.text,
+      "Trust Name": _TrustController.text,
+      "Meal": _MealController.text,
+      "Pepole_List": _PeopleController.text,
+      "Category_name": _CategoryController.text,
       "PhoneNumber": _PhoneNoController.text,
-      "Address": _AddressController.text,
-      "discription": _DiscriptionController.text,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
@@ -86,73 +86,58 @@ class _registerState extends State<bloodreg> {
                   Padding(
                     padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
                     child: TextFormField(
-                      controller: _NameController,
+                      controller: _TrustController,
                       decoration: InputDecoration(
-                          labelText: 'Full name',
+                          labelText: 'Trust name',
                           prefixIcon: Icon(
                             Icons.account_box_rounded,
                             color: Colors.redAccent[200],
                             size: 40,
                           ),
-                          hintText: 'someone'),
+                          hintText: 'Trust Name'),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
                     child: TextFormField(
-                      controller: _bloodController,
+                      controller: _PhoneNoController,
                       decoration: InputDecoration(
-                          labelText: 'Blood Group',
+                          labelText: 'Phone No',
                           prefixIcon: Icon(
-                            Icons.bloodtype_rounded,
-                            color: Colors.redAccent[200],
+                            Icons.phone,
+                            color: Colors.red,
                             size: 40,
                           ),
-                          hintText: 'user@email.com'),
+                          hintText: '1234567890'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _CategoryController,
+                      decoration: InputDecoration(
+                          labelText: 'Category',
+                          prefixIcon: Icon(
+                            Icons.food_bank_rounded,
+                            color: Colors.amber,
+                            size: 40,
+                          ),
+                          hintText: 'Veg or Non-Veg'),
                     ),
                   ),
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 30.0, right: 8, left: 8),
                     child: TextFormField(
-                      controller: _PhoneNoController,
-                      keyboardType: TextInputType.phone,
+                      controller: _MealController,
                       decoration: InputDecoration(
-                        labelText: 'Phone Number',
+                        labelText: 'Meal',
                         prefixIcon: Icon(
-                          Icons.phone_android_rounded,
-                          color: Colors.redAccent[200],
+                          Icons.fastfood_rounded,
+                          color: Colors.amber,
                           size: 40,
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _AddressController,
-                      decoration: InputDecoration(
-                          labelText: 'Address',
-                          prefixIcon: Icon(
-                            Icons.house_rounded,
-                            color: Colors.redAccent[200],
-                            size: 40,
-                          ),
-                          hintText: 'Your address'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _DiscriptionController,
-                      decoration: InputDecoration(
-                          labelText: 'About patient',
-                          prefixIcon: Icon(
-                            Icons.bed_rounded,
-                            color: Colors.redAccent[200],
-                            size: 40,
-                          ),
-                          hintText: 'About patient'),
                     ),
                   ),
                   Padding(

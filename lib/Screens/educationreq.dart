@@ -4,36 +4,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class bloodreg extends StatefulWidget {
-  bloodreg({Key? key}) : super(key: key);
+class educationreg extends StatefulWidget {
+  educationreg({Key? key}) : super(key: key);
 
   @override
-  State<bloodreg> createState() => _registerState();
+  State<educationreg> createState() => _registerState();
 }
 
-class _registerState extends State<bloodreg> {
+class _registerState extends State<educationreg> {
   TextEditingController _NameController = TextEditingController();
 
-  TextEditingController _bloodController = TextEditingController();
+  TextEditingController _EducationController = TextEditingController();
+
+  TextEditingController _InstitutionController = TextEditingController();
 
   TextEditingController _PhoneNoController = TextEditingController();
 
   TextEditingController _AddressController = TextEditingController();
-
-  TextEditingController _DiscriptionController = TextEditingController();
 
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
     CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Blood_Req_List");
+        FirebaseFirestore.instance.collection("Education_Req_List");
     return _CollectionReference.doc().set({
       "Name": _NameController.text,
-      "Blood_Group": _bloodController.text,
+      "Education_List": _EducationController.text,
+      "Institution_name": _InstitutionController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
-      "discription": _DiscriptionController.text,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
@@ -100,15 +100,29 @@ class _registerState extends State<bloodreg> {
                   Padding(
                     padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
                     child: TextFormField(
-                      controller: _bloodController,
+                      controller: _InstitutionController,
                       decoration: InputDecoration(
-                          labelText: 'Blood Group',
+                          labelText: 'Institution Name',
                           prefixIcon: Icon(
-                            Icons.bloodtype_rounded,
-                            color: Colors.redAccent[200],
+                            Icons.school_rounded,
+                            color: Colors.red,
                             size: 40,
                           ),
-                          hintText: 'user@email.com'),
+                          hintText: 'Collage Or School Name'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _EducationController,
+                      decoration: InputDecoration(
+                          labelText: 'Education type',
+                          prefixIcon: Icon(
+                            Icons.menu_book_rounded,
+                            color: Colors.brown,
+                            size: 40,
+                          ),
+                          hintText: 'Eg.Ug,Pg'),
                     ),
                   ),
                   Padding(
@@ -139,20 +153,6 @@ class _registerState extends State<bloodreg> {
                             size: 40,
                           ),
                           hintText: 'Your address'),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
-                    child: TextFormField(
-                      controller: _DiscriptionController,
-                      decoration: InputDecoration(
-                          labelText: 'About patient',
-                          prefixIcon: Icon(
-                            Icons.bed_rounded,
-                            color: Colors.redAccent[200],
-                            size: 40,
-                          ),
-                          hintText: 'About patient'),
                     ),
                   ),
                   Padding(

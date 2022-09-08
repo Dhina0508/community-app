@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class bloodprof extends StatefulWidget {
+class medicalprof extends StatefulWidget {
   var value;
-  bloodprof({this.value});
+  medicalprof({this.value});
 
   @override
-  State<bloodprof> createState() => _bloodprofState();
+  State<medicalprof> createState() => _bloodprofState();
 }
 
-class _bloodprofState extends State<bloodprof> {
+class _bloodprofState extends State<medicalprof> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
