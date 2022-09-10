@@ -77,8 +77,8 @@ class _registerState extends State<educationreg> {
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
               Color.fromARGB(255, 236, 5, 5),
-              Color.fromARGB(234, 216, 114, 216),
-              Color.fromARGB(236, 91, 19, 159),
+              Color.fromARGB(234, 131, 56, 188),
+              Color.fromARGB(235, 90, 31, 146),
               Color.fromARGB(235, 51, 11, 120),
             ], begin: Alignment.topRight, end: Alignment.bottomLeft),
           ),
@@ -94,7 +94,7 @@ class _registerState extends State<educationreg> {
                         height: 15,
                       ),
                       Text(
-                        'Submit to post request',
+                        'Submit to Post Request',
                         style: TextStyle(
                             fontSize: 30,
                             color: Colors.redAccent[200],
@@ -142,7 +142,7 @@ class _registerState extends State<educationreg> {
                                 color: Colors.redAccent,
                                 size: 40,
                               ),
-                              hintText: 'Eg.Ug,Pg'),
+                              hintText: 'Eg.UG,PG,..'),
                         ),
                       ),
                       Padding(

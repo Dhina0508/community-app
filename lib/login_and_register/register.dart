@@ -79,8 +79,8 @@ class _registerState extends State<register> {
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
               Color.fromARGB(255, 236, 5, 5),
-              Color.fromARGB(234, 216, 114, 216),
-              Color.fromARGB(236, 91, 19, 159),
+              Color.fromARGB(234, 131, 56, 188),
+              Color.fromARGB(235, 90, 31, 146),
               Color.fromARGB(235, 51, 11, 120),
             ], begin: Alignment.topRight, end: Alignment.bottomLeft),
           ),

@@ -17,7 +17,7 @@ class _bloodprofState extends State<bloodprof> {
         title: Text(
           "Requested By: " + widget.value['Name'],
           style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
               fontFamily: 'Cinzel'),
         ),
@@ -46,6 +46,7 @@ class _bloodprofState extends State<bloodprof> {
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
+                        fontFamily: 'JosefinSans',
                         color: Colors.brown),
                   ),
                 ],
@@ -64,6 +65,7 @@ class _bloodprofState extends State<bloodprof> {
                     'Contact : ',
                     style: TextStyle(
                         fontSize: 25,
+                        fontFamily: 'JosefinSans',
                         fontWeight: FontWeight.w500,
                         color: Colors.brown),
                   ),
@@ -85,6 +87,7 @@ class _bloodprofState extends State<bloodprof> {
                     'Blood Needed : ',
                     style: TextStyle(
                         fontSize: 25,
+                        fontFamily: 'JosefinSans',
                         fontWeight: FontWeight.w500,
                         color: Colors.brown),
                   ),
@@ -106,6 +109,7 @@ class _bloodprofState extends State<bloodprof> {
                     'Address: ',
                     style: TextStyle(
                         fontSize: 25,
+                        fontFamily: 'JosefinSans',
                         fontWeight: FontWeight.w500,
                         color: Colors.brown),
                   ),
@@ -114,7 +118,7 @@ class _bloodprofState extends State<bloodprof> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 15),
                 child: Text(
-                  widget.value['Address'] + '.',
+                  widget.value['Address'],
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -130,6 +134,7 @@ class _bloodprofState extends State<bloodprof> {
                     'About the person: ',
                     style: TextStyle(
                         fontSize: 25,
+                        fontFamily: 'JosefinSans',
                         fontWeight: FontWeight.w500,
                         color: Colors.brown),
                   ),

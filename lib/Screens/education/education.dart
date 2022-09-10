@@ -16,9 +16,7 @@ class _profileState extends State<education> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        elevation: 0,
         title: Text('Education Request List'),
         actions: [
           IconButton(
@@ -26,20 +24,16 @@ class _profileState extends State<education> {
                   [Navigator.of(context).pushNamed('educationreg')],
               icon: Icon(Icons.add))
         ],
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.red,
       ),
-      body: Ink(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 236, 5, 5),
-            Color.fromARGB(234, 216, 114, 216),
-            Color.fromARGB(236, 91, 19, 159),
-            Color.fromARGB(235, 51, 11, 120),
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-        ),
-        child: SafeArea(
+      body: Stack(children: [
+        Center(
+            child: Image.asset(
+          'images/book.png',
+          color: Colors.white.withOpacity(0.2),
+          colorBlendMode: BlendMode.modulate,
+        )),
+        SafeArea(
             child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection("Education_Req_List")
@@ -77,7 +71,7 @@ class _profileState extends State<education> {
                         );
                       });
                 })),
-      ),
+      ]),
     );
   }
 }

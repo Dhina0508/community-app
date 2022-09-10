@@ -16,29 +16,26 @@ class _profileState extends State<food> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        elevation: 0,
-        title: Text('Food Request List'),
+        title: Text(
+          'Food Request List',
+          style: TextStyle(color: Colors.black),
+        ),
         actions: [
           IconButton(
               onPressed: () => [Navigator.of(context).pushNamed('foodreg')],
               icon: Icon(Icons.add))
         ],
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.amber,
       ),
-      body: Ink(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 236, 5, 5),
-            Color.fromARGB(234, 216, 114, 216),
-            Color.fromARGB(236, 91, 19, 159),
-            Color.fromARGB(235, 51, 11, 120),
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-        ),
-        child: SafeArea(
+      body: Stack(children: [
+        Center(
+            child: Image.asset(
+          'images/plate.png',
+          color: Colors.white.withOpacity(0.3),
+          colorBlendMode: BlendMode.modulate,
+        )),
+        SafeArea(
             child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection("Food_Req_List")
@@ -76,7 +73,7 @@ class _profileState extends State<food> {
                         );
                       });
                 })),
-      ),
+      ]),
     );
   }
 }

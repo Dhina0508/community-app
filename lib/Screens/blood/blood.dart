@@ -26,7 +26,7 @@ class _profileState extends State<blood> {
         backgroundColor: Colors.redAccent,
         title: Text(
           'Blood Request List',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
         actions: [
           IconButton(
