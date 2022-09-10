@@ -10,6 +10,7 @@ import 'package:ecyc/Screens/food/foodreg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
+import 'package:ecyc/Screens/upadateUser.dart';
 
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/register.dart';
@@ -41,7 +42,9 @@ main() async {
       'foodreg': (context) => foodreg(),
       'register': (context) => register(),
       'login': (context) => MyHomePage(),
-      'profile': (context) => MyProfile()
+      'profile': (context) => MyProfile(),
+      'update': (context) => update(),
+      'home': (context) => Home()
     },
   ));
 }

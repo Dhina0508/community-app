@@ -3,15 +3,16 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class register extends StatefulWidget {
-  register({Key? key}) : super(key: key);
+class update extends StatefulWidget {
+  update({Key? key}) : super(key: key);
 
   @override
-  State<register> createState() => _registerState();
+  State<update> createState() => _updateState();
 }
 
-class _registerState extends State<register> {
+class _updateState extends State<update> {
   TextEditingController _NameController = TextEditingController();
 
   TextEditingController _EmailController = TextEditingController();
@@ -30,7 +31,7 @@ class _registerState extends State<register> {
 
     CollectionReference _CollectionReference =
         FirebaseFirestore.instance.collection("User_Bio_Data");
-    return _CollectionReference.doc(currentuser!.email).set({
+    return _CollectionReference.doc(currentuser!.email).update({
       "Name": _NameController.text,
       "Email": _EmailController.text,
       "PhoneNumber": _PhoneNoController.text,
@@ -42,7 +43,7 @@ class _registerState extends State<register> {
         content: Text("Details Of The User Has Been Added"),
         behavior: SnackBarBehavior.floating,
       ));
-      Navigator.of(context).popAndPushNamed('login');
+      Navigator.of(context).popAndPushNamed('home');
     }).catchError((onError) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("ERROR ${onError.toString()}"),
@@ -65,7 +66,7 @@ class _registerState extends State<register> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Bio of the user',
+                'Upadate bio of the user',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -92,7 +93,7 @@ class _registerState extends State<register> {
                 child: Column(
                   children: [
                     Text(
-                      'Submit to continue',
+                      'Update Details',
                       style: TextStyle(
                           fontSize: 30,
                           color: Colors.redAccent[200],
