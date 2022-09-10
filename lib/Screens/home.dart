@@ -69,9 +69,14 @@ class _HomeState extends State<Home> {
           child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text(
-              'My Profile',
-              style: TextStyle(fontSize: 25),
+            accountName: GestureDetector(
+              child: Text(
+                'My Profile',
+                style: TextStyle(fontSize: 25),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed('profile');
+              },
             ),
             accountEmail: Text(''),
             currentAccountPicture: CircleAvatar(
