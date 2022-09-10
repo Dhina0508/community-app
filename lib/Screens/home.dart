@@ -15,6 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 184, 145, 192),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -25,7 +26,10 @@ class _HomeState extends State<Home> {
                 SharedPreferences pref = await SharedPreferences.getInstance();
                 pref.remove("email");
               },
-              icon: Icon(Icons.logout))
+              icon: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ))
         ],
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -50,182 +54,95 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      body: Ink(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 236, 5, 5),
-            Color.fromARGB(234, 216, 114, 216),
-            Color.fromARGB(236, 91, 19, 159),
-            Color.fromARGB(235, 51, 11, 120),
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-        ),
-        child: Center(
-          child: Text('This is home Screen',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
-        ),
+      body: Stack(
+        children: [
+          Image.asset(
+            'images/hand1.png',
+            color: Colors.white.withOpacity(0.7),
+            colorBlendMode: BlendMode.modulate,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+          ),
+        ],
       ),
       drawer: Drawer(
-        child: Ink(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 221, 117, 117),
-              Color.fromARGB(234, 209, 125, 209),
-              Color.fromARGB(235, 125, 73, 174),
-              Color.fromARGB(235, 78, 57, 113),
-            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-          ),
-          child: SafeArea(
-            child: Column(
-              children: [
-                Text(
-                  'Contents',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.home,
-                        color: Colors.brown,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Home',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                  onTap: () => [
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()))
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.bloodtype_rounded,
-                        color: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Blood Donation',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                  onTap: () => [Navigator.of(context).pushNamed('blood')],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.local_hospital_rounded,
-                        color: Colors.red,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Health ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                  onTap: () => [Navigator.of(context).pushNamed('medical')],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.menu_book_rounded,
-                        color: Colors.brown,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Education',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                  onTap: () => [Navigator.of(context).pushNamed('education')],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.food_bank_rounded,
-                        color: Colors.amber,
-                        size: 30,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Food',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                  onTap: () => [Navigator.of(context).pushNamed('food')],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Icon(
-                        Icons.settings,
-                        color: Colors.brown,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'My Profile',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                  onTap: () => [Navigator.of(context).pushNamed('profile')],
-                ),
-              ],
+          child: ListView(
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            accountName: Text(
+              'My Profile',
+              style: TextStyle(fontSize: 25),
+            ),
+            accountEmail: Text(''),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage('images/profile.png'),
             ),
           ),
-        ),
-      ),
+          ListTile(
+            title: Text('Home'),
+            leading: Icon(
+              Icons.home,
+              color: Colors.brown,
+            ),
+            onTap: () => [Navigator.of(context).pop()],
+          ),
+          ListTile(
+            title: Text('Blood Donation'),
+            leading: Icon(
+              Icons.bloodtype,
+              color: Colors.red,
+            ),
+            onTap: () => [Navigator.of(context).pushNamed('blood')],
+          ),
+          ListTile(
+            title: Text('Health'),
+            leading: Icon(
+              Icons.local_hospital,
+              color: Colors.red,
+            ),
+            onTap: () => [Navigator.of(context).pushNamed('medical')],
+          ),
+          ListTile(
+            title: Text('Education'),
+            leading: Icon(
+              Icons.menu_book,
+              color: Colors.black,
+            ),
+            onTap: () => [Navigator.of(context).pushNamed('education')],
+          ),
+          ListTile(
+            title: Text('Food'),
+            leading: Icon(
+              Icons.food_bank,
+              color: Colors.amber,
+            ),
+            onTap: () => [Navigator.of(context).pushNamed('food')],
+          ),
+          ListTile(
+            title: Text('Clothes'),
+            leading: Image.asset(
+              'images/tshirt.png',
+              height: 25,
+              width: 25,
+            ),
+            onTap: () => [Navigator.of(context).pushNamed('clothes')],
+          ),
+          Divider(
+            height: 18,
+            color: Colors.black45,
+          ),
+          ListTile(
+            title: Text('Invite Friends'),
+            leading: Icon(Icons.person_add),
+            onTap: () => [],
+          ),
+          ListTile(
+            title: Text('Ecyc Features'),
+            leading: Icon(Icons.help_outline_sharp),
+            onTap: () => [],
+          ),
+        ],
+      )),
     );
   }
 }

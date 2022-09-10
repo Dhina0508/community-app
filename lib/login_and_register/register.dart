@@ -59,7 +59,7 @@ class _registerState extends State<register> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Bio of the user',
+                'Bio of the User',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -93,7 +93,7 @@ class _registerState extends State<register> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'we will not share this with anyone',
+                      'We will not share this with anyone',
                       style: TextStyle(fontSize: 16.0, color: Colors.grey),
                     ),
                     Padding(
@@ -108,7 +108,7 @@ class _registerState extends State<register> {
                               color: Colors.redAccent[200],
                               size: 40,
                             ),
-                            hintText: 'someone'),
+                            hintText: 'Enter your Name'),
                       ),
                     ),
                     Padding(

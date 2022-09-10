@@ -23,27 +23,25 @@ class _profileState extends State<blood> {
                   context, MaterialPageRoute(builder: (context) => Home()));
             },
             icon: Icon(Icons.arrow_back)),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text('Blood Request List'),
+        backgroundColor: Colors.redAccent,
+        title: Text(
+          'Blood Request List',
+          style: TextStyle(color: Colors.black),
+        ),
         actions: [
           IconButton(
               onPressed: () => [Navigator.of(context).pushNamed('bloodreg')],
               icon: Icon(Icons.add))
         ],
       ),
-      body: Ink(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 236, 5, 5),
-            Color.fromARGB(234, 216, 114, 216),
-            Color.fromARGB(236, 91, 19, 159),
-            Color.fromARGB(235, 51, 11, 120),
-          ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-        ),
-        child: StreamBuilder<QuerySnapshot>(
+      body: Stack(children: [
+        Center(
+            child: Image.asset(
+          'images/blood.png',
+          color: Colors.white.withOpacity(0.3),
+          colorBlendMode: BlendMode.modulate,
+        )),
+        StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection("Blood_Req_List")
                 .snapshots(),
@@ -85,7 +83,7 @@ class _profileState extends State<blood> {
                     );
                   });
             }),
-      ),
+      ]),
     );
   }
 }

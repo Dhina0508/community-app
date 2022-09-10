@@ -84,9 +84,10 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Colors.black),
                     controller: emailcontroller,
                     decoration: InputDecoration(
+                        label: Text('Enter Login Id'),
+                        hintText: 'something@gmail.com',
                         fillColor: Colors.grey.shade100,
                         filled: true,
-                        hintText: 'Enter Login Id',
                         hintStyle: TextStyle(
                           color: Colors.black,
                         ),

@@ -2,6 +2,8 @@ import 'package:ecyc/Screens/MyProfile.dart';
 import 'package:ecyc/Screens/blood/blood.dart';
 import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:ecyc/Screens/blood/bloodreg.dart';
+import 'package:ecyc/Screens/clothes/clothes.dart';
+import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/education/education.dart';
 import 'package:ecyc/Screens/education/educationreq.dart';
 import 'package:ecyc/Screens/food/food.dart';
@@ -35,9 +37,11 @@ main() async {
       'medical': (context) => medical(),
       'education': (context) => education(),
       'food': (context) => food(),
+      'clothes': (context) => clothes(),
       'bloodreg': (context) => bloodreg(),
       'medicalreg': (context) => medicalreg(),
       'educationreg': (context) => educationreg(),
+      'clothesreg': (context) => clothesreg(),
       'foodreg': (context) => foodreg(),
       'register': (context) => register(),
       'login': (context) => MyHomePage(),
