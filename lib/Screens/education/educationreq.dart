@@ -51,6 +51,20 @@ class _registerState extends State<educationreg> {
     });
   }
 
+  CommonDb() {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db");
+    return _CollectionReference.doc().set({
+      "Value1": _NameController.text,
+      "Value2": _PhoneNoController.text,
+      "Value3": _EducationController.text,
+      "Time": DateTime.now(),
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -202,6 +216,7 @@ class _registerState extends State<educationreg> {
                                   _DiscriptionController.text != '' &&
                                   _InstitutionController.text != '') {
                                 SendUserDataToDB();
+                                CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

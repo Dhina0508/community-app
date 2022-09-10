@@ -51,6 +51,20 @@ class _registerState extends State<foodreg> {
     });
   }
 
+  CommonDb() {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db");
+    return _CollectionReference.doc().set({
+      "Value1": _TrustController.text,
+      "Value2": _PhoneNoController.text,
+      "Value3": _MealController.text,
+      "Time": DateTime.now(),
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,6 +213,7 @@ class _registerState extends State<foodreg> {
                                   _DiscriptionController.text != '' &&
                                   _MealController.text != '') {
                                 SendUserDataToDB();
+                                CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

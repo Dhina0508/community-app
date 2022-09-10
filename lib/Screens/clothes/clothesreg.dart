@@ -73,6 +73,20 @@ class _registerState extends State<clothesreg> {
     });
   }
 
+  CommonDb() {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db");
+    return _CollectionReference.doc().set({
+      "Value1": _NameController.text,
+      "Value2": _PhoneNoController.text,
+      "Value3": _ClothController.text,
+      "Time": DateTime.now(),
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -297,7 +311,8 @@ class _clothesprofState extends State<clothesprof> {
           child: SafeArea(
             child: Column(
               children: [
-                Expanded(
+                SingleChildScrollView(
+                  physics: ScrollPhysics(),
                   child: SizedBox(
                     height: 35,
                   ),
