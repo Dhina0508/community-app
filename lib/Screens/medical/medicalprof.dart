@@ -165,11 +165,14 @@ class _medicalprofState extends State<medicalprof> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
+                        onPressed: () {
+                          String id = widget.value['id'];
+                          print(id);
+                          final docUser = FirebaseFirestore.instance
                               .collection("medical_Req_List")
-                              .doc()
-                              .delete();
+                              .doc(id.toString());
+                          docUser.delete();
+                          Navigator.of(context).pop();
 
                           Navigator.of(context).pop();
                         },

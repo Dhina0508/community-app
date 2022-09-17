@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:ecyc/Screens/clothes/clothesreg.dart';
+import 'package:ecyc/Screens/clothes/clothprof.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
