@@ -44,7 +44,8 @@ class _profileState extends State<Missing> {
         )),
         StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection("Missing_Req_List")
+                .collection("Common_Db")
+                .orderBy('Time')
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
@@ -54,33 +55,40 @@ class _profileState extends State<Missing> {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, i) {
                     QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                    return Card(
-                      elevation: 5,
-                      child: ListTile(
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.network(
-                              x['img'],
-                              fit: BoxFit.cover,
-                            ),
+                    if (x['about'] == "missing") {
+                      return Card(
+                        elevation: 5,
+                        child: ListTile(
+                          leading: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.network(
+                                x['img'],
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                          title: Text(
+                            "Name: " + x['Name'],
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                          onTap: () => [
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Missingprof(
+                                        value: snapshot.data!.docs[i])))
                           ],
                         ),
-                        title: Text(
-                          "Name: " + x['Name'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                        onTap: () => [
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Missingprof(
-                                      value: snapshot.data!.docs[i])))
-                        ],
-                      ),
-                    );
+                      );
+                    } else {
+                      return Center(
+                        child: Text('No Request Yet!!'),
+                      );
+                    }
+                    return Container();
                   });
             }),
       ]),

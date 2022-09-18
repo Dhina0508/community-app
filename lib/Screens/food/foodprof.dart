@@ -163,12 +163,13 @@ class _bloodprofState extends State<foodprof> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                        onPressed: () async {
-                          await FirebaseFirestore.instance
-                              .collection("Food_Req_List")
-                              .doc()
-                              .delete();
-
+                        onPressed: () {
+                          String id = widget.value['id'];
+                          print(id);
+                          final docUser = FirebaseFirestore.instance
+                              .collection("Common_Db")
+                              .doc(id.toString());
+                          docUser.delete();
                           Navigator.of(context).pop();
                         },
                         child: Row(

@@ -158,7 +158,7 @@ class _bloodprofState extends State<bloodprof> {
                         String id = widget.value['id'];
                         print(id);
                         final docUser = FirebaseFirestore.instance
-                            .collection("Blood_Req_List")
+                            .collection("Common_Db")
                             .doc(id.toString());
                         docUser.delete();
                         Navigator.of(context).pop();

@@ -43,7 +43,8 @@ class _profileState extends State<blood> {
         )),
         StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection("Blood_Req_List")
+                .collection("Common_Db")
+                .orderBy('Time')
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
@@ -53,34 +54,41 @@ class _profileState extends State<blood> {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, i) {
                     QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                    return Card(
-                      elevation: 5,
-                      child: ListTile(
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.bloodtype_rounded,
-                              size: 45,
-                              color: Colors.red,
-                            ),
+                    if (x['about'] == "blood") {
+                      return Card(
+                        elevation: 5,
+                        child: ListTile(
+                          leading: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.bloodtype_rounded,
+                                size: 45,
+                                color: Colors.red,
+                              ),
+                            ],
+                          ),
+                          title: Text(
+                            "Name: " + x['Name'],
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                          onTap: () => [
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => bloodprof(
+                                        value: snapshot.data!.docs[i])))
                           ],
                         ),
-                        title: Text(
-                          "Name: " + x['Name'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                        onTap: () => [
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      bloodprof(value: snapshot.data!.docs[i])))
-                        ],
-                      ),
-                    );
+                      );
+                    } else {
+                      return Center(
+                        child: Text('No Request Yet!!'),
+                      );
+                    }
+                    return Container();
                   });
             }),
       ]),
