@@ -28,9 +28,10 @@ class _registerState extends State<foodreg> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Food_Req_List");
-    return _CollectionReference.doc().set({
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Food_Req_List").doc();
+    return _CollectionReference.set({
+      "id": _CollectionReference.id,
       "Trust Name": _TrustController.text,
       "Meal": _MealController.text,
       "Pepole_List": _PeopleController.text,

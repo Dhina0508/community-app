@@ -25,9 +25,10 @@ class _registerState extends State<medicalreg> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("medical_Req_List");
-    return _CollectionReference.doc().set({
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("medical_Req_List").doc();
+    return _CollectionReference.set({
+      "id": _CollectionReference.id,
       "Name": _NameController.text,
       "Hospital_Name": _hospitalController.text,
       "PhoneNumber": _PhoneNoController.text,

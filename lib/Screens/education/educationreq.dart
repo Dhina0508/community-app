@@ -28,9 +28,10 @@ class _registerState extends State<educationreg> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Education_Req_List");
-    return _CollectionReference.doc().set({
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Education_Req_List").doc();
+    return _CollectionReference.set({
+      "id": _CollectionReference.id,
       "Name": _NameController.text,
       "Education_List": _EducationController.text,
       "Institution_name": _InstitutionController.text,
