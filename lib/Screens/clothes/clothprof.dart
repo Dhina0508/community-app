@@ -196,8 +196,6 @@ class _clothesprofState extends State<clothesprof> {
                                 .doc(id.toString());
                             docUser.delete();
                             Navigator.of(context).pop();
-
-                            Navigator.of(context).pop();
                           },
                           child: Row(
                             children: [

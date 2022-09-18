@@ -74,17 +74,27 @@ class _registerState extends State<clothesreg> {
     });
   }
 
-  CommonDb() {
+  CommonDb() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
+    String name = DateTime.now().millisecondsSinceEpoch.toString();
+    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
 
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Common_Db");
-    return _CollectionReference.doc().set({
-      "Value1": _NameController.text,
-      "Value2": _PhoneNoController.text,
-      "Value3": _ClothController.text,
-      "Time": DateTime.now(),
+    UploadTask task = imageFile.putFile(file!);
+    TaskSnapshot snapshot = await task;
+    url = await snapshot.ref.getDownloadURL();
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db").doc();
+    return _CollectionReference.set({
+      "id": _CollectionReference.id,
+      "Name": _NameController.text,
+      "Type_of_dress": _ClothController.text,
+      "PhoneNumber": _PhoneNoController.text,
+      "Address": _AddressController.text,
+      "No_of_Clothes": _Num_of_clothController.text,
+      "Description": _DescriptionController.text,
+      "about": "cloth",
+      "img": url
     });
   }
 
@@ -255,6 +265,7 @@ class _registerState extends State<clothesreg> {
                                   _Num_of_clothController.text != '' &&
                                   _ClothController.text != '') {
                                 SendUserDataToDB();
+                                CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

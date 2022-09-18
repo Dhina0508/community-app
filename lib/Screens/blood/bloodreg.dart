@@ -55,12 +55,16 @@ class _registerState extends State<bloodreg> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Common_Db");
-    return _CollectionReference.doc().set({
-      "Value1": _NameController.text,
-      "Value2": _PhoneNoController.text,
-      "Value3": _bloodController.text,
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db").doc();
+    return _CollectionReference.set({
+      "about": "blood",
+      "id": _CollectionReference.id,
+      "Name": _NameController.text,
+      "Blood_Group": _bloodController.text,
+      "PhoneNumber": _PhoneNoController.text,
+      "Address": _AddressController.text,
+      "discription": _DiscriptionController.text,
       "Time": DateTime.now(),
     });
   }

@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/clothes/clothprof.dart';
+import 'package:ecyc/Screens/education/educationprof.dart';
+import 'package:ecyc/Screens/food/foodprof.dart';
+import 'package:ecyc/Screens/medical/medicalprof.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,6 +73,7 @@ class _HomeState extends State<Home> {
           StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection("Common_Db")
+                  .orderBy('Time')
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
@@ -78,28 +83,113 @@ class _HomeState extends State<Home> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, i) {
                       QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      return Card(
-                        elevation: 5,
-                        child: ListTile(
-                            trailing: Text("Needs: " + x['Value3']),
+                      if (x['about'] == "Medical") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.local_hospital_rounded,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+                            title: Text(
+                              "Patient Name: " + x['Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => medicalprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "blood") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
                             leading: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(
-                                  Icons.back_hand_rounded,
+                                  Icons.bloodtype_rounded,
                                   size: 45,
                                   color: Colors.red,
                                 ),
                               ],
                             ),
                             title: Text(
-                              "Name: " + x['Value1'],
+                              "Name: " + x['Name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            subtitle: Text("Ph.No: " + x['Value2']),
-                            onTap: () => []),
-                      );
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => bloodprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "food") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.food_bank_rounded,
+                              size: 45,
+                              color: Colors.amber,
+                            ),
+                            title: Text(
+                              "Trust Name: " + x['Trust Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => foodprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "education") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.school_rounded,
+                              size: 35,
+                              color: Colors.red,
+                            ),
+                            title: Text(
+                              "Name : " + x['Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => educationalprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "cloth") {
+                        Center(
+                          child: Text('pls'),
+                        );
+                      }
+                      return Container();
                     });
               }),
         ],
