@@ -4,6 +4,7 @@ import 'package:ecyc/Screens/missing_person/missing.dart';
 import 'package:ecyc/Screens/education/educationprof.dart';
 import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:ecyc/Screens/medical/medicalprof.dart';
+import 'package:ecyc/Screens/missing_person/missingprof.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -200,7 +201,7 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                             title: Text(
-                              "Name : " + x['Name'],
+                              "Name: " + x['Name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -210,6 +211,34 @@ class _HomeState extends State<Home> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => clothesprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "missing") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Image.network(
+                                  x['img'],
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                            title: Text(
+                              "Name: " + x['Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Missingprof(
                                           value: snapshot.data!.docs[i])))
                             ],
                           ),

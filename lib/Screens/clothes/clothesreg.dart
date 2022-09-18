@@ -83,6 +83,7 @@ class _registerState extends State<clothesreg> {
     UploadTask task = imageFile.putFile(file!);
     TaskSnapshot snapshot = await task;
     url = await snapshot.ref.getDownloadURL();
+
     final _CollectionReference =
         FirebaseFirestore.instance.collection("Common_Db").doc();
     return _CollectionReference.set({
@@ -94,7 +95,8 @@ class _registerState extends State<clothesreg> {
       "Address": _AddressController.text,
       "No_of_Clothes": _Num_of_clothController.text,
       "Description": _DescriptionController.text,
-      "img": url
+      "img": url,
+      "Time": DateTime.now(),
     });
   }
 

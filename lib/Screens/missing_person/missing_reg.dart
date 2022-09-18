@@ -17,6 +17,7 @@ class Missingreg extends StatefulWidget {
 }
 
 class _registerState extends State<Missingreg> {
+  String? link;
   ImagePicker image = ImagePicker();
   File? file;
 
@@ -52,9 +53,10 @@ class _registerState extends State<Missingreg> {
     UploadTask task = imageFile.putFile(file!);
     TaskSnapshot snapshot = await task;
     url = await snapshot.ref.getDownloadURL();
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Missing_Req_List");
-    return _CollectionReference.doc().set({
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Missing_Req_List").doc();
+    return _CollectionReference.set({
+      "id": _CollectionReference.id,
       "Name": _NameController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
@@ -78,6 +80,36 @@ class _registerState extends State<Missingreg> {
         content: Text("ERROR ${onError.toString()}"),
         behavior: SnackBarBehavior.floating,
       ));
+    });
+  }
+
+  CommonDb() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    String name = DateTime.now().millisecondsSinceEpoch.toString();
+    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
+
+    UploadTask task = imageFile.putFile(file!);
+    TaskSnapshot snapshot = await task;
+    url = await snapshot.ref.getDownloadURL();
+
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db").doc();
+    return _CollectionReference.set({
+      "about": "missing",
+      "Name": _NameController.text,
+      "PhoneNumber": _PhoneNoController.text,
+      "Address": _AddressController.text,
+      "Description": _DescriptionController.text,
+      "Age": _AgeController.text,
+      "Colour": _ColourController.text,
+      "Height": _Heightcontroller.text,
+      "Identity": _IdentityController.text,
+      "Missing Date": _MissingdateController.text,
+      "Missing Area": _MissingareaController.text,
+      "Your Name": _YourNameController.text,
+      "Time": DateTime.now(),
+      "img": url
     });
   }
 
@@ -328,6 +360,7 @@ class _registerState extends State<Missingreg> {
                                   _MissingareaController != '' &&
                                   _MissingdateController != '') {
                                 SendUserDataToDB();
+                                CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
