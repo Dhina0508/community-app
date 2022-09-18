@@ -32,6 +32,7 @@ class _registerState extends State<foodreg> {
         FirebaseFirestore.instance.collection("Food_Req_List").doc();
     return _CollectionReference.set({
       "id": _CollectionReference.id,
+      "about": 'food',
       "Trust Name": _TrustController.text,
       "Meal": _MealController.text,
       "Pepole_List": _PeopleController.text,
@@ -56,12 +57,17 @@ class _registerState extends State<foodreg> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
 
-    CollectionReference _CollectionReference =
-        FirebaseFirestore.instance.collection("Common_Db");
-    return _CollectionReference.doc().set({
-      "Value1": _TrustController.text,
-      "Value2": _PhoneNoController.text,
-      "Value3": _MealController.text,
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db").doc();
+    return _CollectionReference.set({
+      "id": _CollectionReference.id,
+      "about": 'food',
+      "Trust Name": _TrustController.text,
+      "Meal": _MealController.text,
+      "Pepole_List": _PeopleController.text,
+      "Category_name": _CategoryController.text,
+      "PhoneNumber": _PhoneNoController.text,
+      "Discription": _DiscriptionController.text,
       "Time": DateTime.now(),
     });
   }

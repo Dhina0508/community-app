@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/home.dart';
-import 'package:ecyc/Screens/missing_person/missing_prof.dart';
+import 'package:ecyc/Screens/missing_person/missing_reg.dart';
+import 'package:ecyc/Screens/missing_person/missingprof.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -37,8 +38,8 @@ class _profileState extends State<Missing> {
       body: Stack(children: [
         Center(
             child: Image.asset(
-          'images/cloth.png',
-          color: Colors.white.withOpacity(0.3),
+          'images/missing.png',
+          color: Colors.white.withOpacity(0.1),
           colorBlendMode: BlendMode.modulate,
         )),
         StreamBuilder<QuerySnapshot>(
@@ -59,10 +60,9 @@ class _profileState extends State<Missing> {
                         leading: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Image.asset(
-                              'images/tshirt.png',
-                              width: 25,
-                              height: 25,
+                            Image.network(
+                              x['img'],
+                              fit: BoxFit.cover,
                             ),
                           ],
                         ),

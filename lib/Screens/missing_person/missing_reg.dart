@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 
-class clothesreg extends StatefulWidget {
-  clothesreg({Key? key}) : super(key: key);
+class Missingreg extends StatefulWidget {
+  Missingreg({Key? key}) : super(key: key);
 
   @override
-  State<clothesreg> createState() => _registerState();
+  State<Missingreg> createState() => _registerState();
 }
 
-class _registerState extends State<clothesreg> {
+class _registerState extends State<Missingreg> {
   ImagePicker image = ImagePicker();
   File? file;
 
@@ -29,16 +29,19 @@ class _registerState extends State<clothesreg> {
   }
 
   TextEditingController _NameController = TextEditingController();
-
-  TextEditingController _ClothController = TextEditingController();
+  TextEditingController _YourNameController = TextEditingController();
 
   TextEditingController _PhoneNoController = TextEditingController();
 
   TextEditingController _AddressController = TextEditingController();
 
-  TextEditingController _Num_of_clothController = TextEditingController();
-
   TextEditingController _DescriptionController = TextEditingController();
+  TextEditingController _AgeController = TextEditingController();
+  TextEditingController _Heightcontroller = TextEditingController();
+  TextEditingController _ColourController = TextEditingController();
+  TextEditingController _IdentityController = TextEditingController();
+  TextEditingController _MissingdateController = TextEditingController();
+  TextEditingController _MissingareaController = TextEditingController();
 
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -49,16 +52,20 @@ class _registerState extends State<clothesreg> {
     UploadTask task = imageFile.putFile(file!);
     TaskSnapshot snapshot = await task;
     url = await snapshot.ref.getDownloadURL();
-    final _CollectionReference =
-        FirebaseFirestore.instance.collection("Clothes_Req_List").doc();
-    return _CollectionReference.set({
-      "id": _CollectionReference.id,
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("Missing_Req_List");
+    return _CollectionReference.doc().set({
       "Name": _NameController.text,
-      "Type_of_dress": _ClothController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
-      "No_of_Clothes": _Num_of_clothController.text,
       "Description": _DescriptionController.text,
+      "Age": _AgeController.text,
+      "Colour": _ColourController.text,
+      "Height": _Heightcontroller.text,
+      "Identity": _IdentityController.text,
+      "Missing Date": _MissingdateController.text,
+      "Missing Area": _MissingareaController.text,
+      "Your Name": _YourNameController.text,
       "img": url
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -74,30 +81,6 @@ class _registerState extends State<clothesreg> {
     });
   }
 
-  CommonDb() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var currentuser = _auth.currentUser;
-    String name = DateTime.now().millisecondsSinceEpoch.toString();
-    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
-
-    UploadTask task = imageFile.putFile(file!);
-    TaskSnapshot snapshot = await task;
-    url = await snapshot.ref.getDownloadURL();
-    final _CollectionReference =
-        FirebaseFirestore.instance.collection("Common_Db").doc();
-    return _CollectionReference.set({
-      "about": "cloth",
-      "id": _CollectionReference.id,
-      "Name": _NameController.text,
-      "Type_of_dress": _ClothController.text,
-      "PhoneNumber": _PhoneNoController.text,
-      "Address": _AddressController.text,
-      "No_of_Clothes": _Num_of_clothController.text,
-      "Description": _DescriptionController.text,
-      "img": url
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +89,7 @@ class _registerState extends State<clothesreg> {
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('clothes');
+                Navigator.of(context).pop();
               },
               icon: Icon(Icons.arrow_back)),
           backgroundColor: Colors.transparent,
@@ -158,7 +141,7 @@ class _registerState extends State<clothesreg> {
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           backgroundImage: file == null
-                              ? AssetImage("images/profile1.png")
+                              ? AssetImage("images/missing_prof.png")
                               : FileImage(File(file!.path)) as ImageProvider,
                           radius: 50,
                         ),
@@ -173,7 +156,7 @@ class _registerState extends State<clothesreg> {
                               labelText: 'Full name',
                               prefixIcon: Icon(
                                 Icons.account_box_rounded,
-                                color: Color.fromARGB(255, 41, 155, 173),
+                                color: Colors.red,
                                 size: 40,
                               ),
                               hintText: 'Enter Name'),
@@ -183,30 +166,91 @@ class _registerState extends State<clothesreg> {
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
-                          controller: _ClothController,
+                          controller: _AgeController,
                           decoration: InputDecoration(
-                              labelText: 'Type of Dress',
-                              prefixIcon: Image.asset(
-                                'images/tshirt.png',
-                                width: 15,
-                                height: 15,
+                              labelText: 'Age',
+                              prefixIcon: Icon(
+                                Icons.face_retouching_natural,
+                                color: Colors.red,
+                                size: 40,
                               ),
-                              hintText: 'Eg: T-Shirt,Shirt,Pant,..'),
+                              hintText: 'Eg: 24'),
                         ),
                       ),
                       Padding(
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
-                          controller: _Num_of_clothController,
+                          controller: _Heightcontroller,
                           decoration: InputDecoration(
-                              labelText: 'Number of Dresses',
+                              labelText: 'Height',
                               prefixIcon: Icon(
-                                Icons.collections,
-                                color: Color.fromARGB(255, 41, 155, 173),
+                                Icons.height,
+                                color: Colors.red,
                                 size: 40,
                               ),
-                              hintText: 'Eg: 10 Shirt, 40 T-Shirt,...'),
+                              hintText: "Eg: 5 Feet 2 Inches"),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _ColourController,
+                          decoration: InputDecoration(
+                              labelText: 'Colour',
+                              prefixIcon: Icon(
+                                Icons.color_lens,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Eg: black or white or brown,..'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _IdentityController,
+                          decoration: InputDecoration(
+                              labelText: 'Identity',
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText:
+                                  'Eg: A small scare on the forehead or Wear Spex'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _MissingdateController,
+                          decoration: InputDecoration(
+                              labelText: 'Missed Date',
+                              prefixIcon: Icon(
+                                Icons.date_range_outlined,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Eg: 12/05/2025'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _MissingareaController,
+                          decoration: InputDecoration(
+                              labelText: 'Missed Area',
+                              prefixIcon: Icon(
+                                Icons.home_work,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Eg: sennurkuppam in karaiyanchavadi'),
                         ),
                       ),
                       Padding(
@@ -218,10 +262,41 @@ class _registerState extends State<clothesreg> {
                               labelText: 'Description',
                               prefixIcon: Icon(
                                 Icons.note_alt,
-                                color: Color.fromARGB(255, 41, 155, 173),
+                                color: Colors.red,
                                 size: 40,
                               ),
-                              hintText: 'Details about Donating Dress'),
+                              hintText:
+                                  ' Extra Details about the Missing person'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _AddressController,
+                          decoration: InputDecoration(
+                              labelText: 'Your Address',
+                              prefixIcon: Icon(
+                                Icons.home,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: ' Eg: T Nagar'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _YourNameController,
+                          decoration: InputDecoration(
+                              labelText: 'Your Name',
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Name of the Requesting Person'),
                         ),
                       ),
                       Padding(
@@ -231,28 +306,13 @@ class _registerState extends State<clothesreg> {
                           controller: _PhoneNoController,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            labelText: 'Phone Number',
+                            labelText: ' Your Contact Number',
                             prefixIcon: Icon(
                               Icons.phone_android_rounded,
-                              color: Color.fromARGB(255, 41, 155, 173),
+                              color: Colors.red,
                               size: 40,
                             ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
-                          controller: _AddressController,
-                          decoration: InputDecoration(
-                              labelText: 'Address',
-                              prefixIcon: Icon(
-                                Icons.house_rounded,
-                                color: Color.fromARGB(255, 41, 155, 173),
-                                size: 40,
-                              ),
-                              hintText: 'Your address'),
                         ),
                       ),
                       Padding(
@@ -262,11 +322,12 @@ class _registerState extends State<clothesreg> {
                             onPressed: () {
                               if (_NameController.text != '' &&
                                   _PhoneNoController.text != '' &&
-                                  _AddressController.text != '' &&
-                                  _Num_of_clothController.text != '' &&
-                                  _ClothController.text != '') {
+                                  _IdentityController.text != '' &&
+                                  _AddressController != '' &&
+                                  _AgeController != '' &&
+                                  _MissingareaController != '' &&
+                                  _MissingdateController != '') {
                                 SendUserDataToDB();
-                                CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

@@ -1,21 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class clothesprof extends StatefulWidget {
+class Missingprof extends StatefulWidget {
   var value;
-  clothesprof({this.value});
+  Missingprof({this.value});
 
   @override
-  State<clothesprof> createState() => _clothesprofState();
+  State<Missingprof> createState() => _MissingprofState();
 }
 
-class _clothesprofState extends State<clothesprof> {
+class _MissingprofState extends State<Missingprof> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Donated By: " + widget.value['Name'],
+            "Requested by : " + widget.value['Your Name'],
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -26,8 +27,8 @@ class _clothesprofState extends State<clothesprof> {
         body: Stack(children: [
           Center(
               child: Image.asset(
-            'images/cloth.png',
-            color: Colors.white.withOpacity(0.1),
+            'images/missing.png',
+            color: Colors.white.withOpacity(0.08),
             colorBlendMode: BlendMode.modulate,
           )),
           LayoutBuilder(builder:
@@ -39,22 +40,22 @@ class _clothesprofState extends State<clothesprof> {
                     ),
                     child: IntrinsicHeight(
                       child: Padding(
-                        padding: const EdgeInsets.all(2.0),
+                        padding: const EdgeInsets.all(2),
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 35,
+                              height: 20,
                             ),
                             Container(
                               height: 150,
                               width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
                               child: Image.network(
                                 widget.value['img'],
                                 fit: BoxFit.cover,
                               ),
+                            ),
+                            SizedBox(
+                              height: 25,
                             ),
                             Row(
                               children: [
@@ -83,7 +84,7 @@ class _clothesprofState extends State<clothesprof> {
                                   width: 15,
                                 ),
                                 Text(
-                                  'Type of Dress : ',
+                                  'Age : ',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w500,
@@ -93,7 +94,7 @@ class _clothesprofState extends State<clothesprof> {
                               ],
                             ),
                             Text(
-                              widget.value['Type_of_dress'],
+                              widget.value['Age'],
                               style: TextStyle(
                                   fontSize: 25, fontWeight: FontWeight.bold),
                             ),
@@ -106,7 +107,7 @@ class _clothesprofState extends State<clothesprof> {
                                   width: 15,
                                 ),
                                 Text(
-                                  'Number of Dresses Available : ',
+                                  'Height : ',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w500,
@@ -118,7 +119,7 @@ class _clothesprofState extends State<clothesprof> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.value['No_of_Clothes'],
+                                widget.value['Height'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -132,7 +133,110 @@ class _clothesprofState extends State<clothesprof> {
                                   width: 15,
                                 ),
                                 Text(
-                                  'Information About Dress : ',
+                                  'Skin Colour : ',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'JosefinSans',
+                                      color: Colors.brown),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                widget.value['Colour'],
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Identity Marks : ',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'JosefinSans',
+                                      color: Colors.brown),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              widget.value['Identity'],
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Missed Date : ',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'JosefinSans',
+                                      color: Colors.brown),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 8.0, left: 15),
+                              child: Text(
+                                widget.value['Missing Date'],
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Missed Area : ',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'JosefinSans',
+                                      color: Colors.brown),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 8.0, left: 15),
+                              child: Text(
+                                widget.value['Missing Area'],
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Description : ',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w500,
@@ -158,7 +262,7 @@ class _clothesprofState extends State<clothesprof> {
                                   width: 15,
                                 ),
                                 Text(
-                                  'Contact : ',
+                                  'Contact Address : ',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w500,
@@ -167,10 +271,13 @@ class _clothesprofState extends State<clothesprof> {
                                 ),
                               ],
                             ),
-                            Text(
-                              widget.value['PhoneNumber'],
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                widget.value['Address'],
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
                             ),
                             SizedBox(
                               height: 20,
@@ -181,7 +288,7 @@ class _clothesprofState extends State<clothesprof> {
                                   width: 15,
                                 ),
                                 Text(
-                                  'Address : ',
+                                  'Contact Number : ',
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w500,
@@ -191,10 +298,9 @@ class _clothesprofState extends State<clothesprof> {
                               ],
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, left: 15),
+                              padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.value['Address'] + '.',
+                                widget.value['PhoneNumber'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -208,7 +314,7 @@ class _clothesprofState extends State<clothesprof> {
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       await FirebaseFirestore.instance
-                                          .collection("Clothes_Req_List")
+                                          .collection("Missing_Req_List")
                                           .doc()
                                           .delete();
 

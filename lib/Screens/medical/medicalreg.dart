@@ -48,6 +48,24 @@ class _registerState extends State<medicalreg> {
     });
   }
 
+  CommonDb() {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("Common_Db");
+    return _CollectionReference.doc().set({
+      "about": "Medical",
+      "id": _CollectionReference.id,
+      "Name": _NameController.text,
+      "Hospital_Name": _hospitalController.text,
+      "PhoneNumber": _PhoneNoController.text,
+      "Address": _AddressController.text,
+      "Description": _DescriptionController.text,
+      "Time": DateTime.now(),
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,6 +200,7 @@ class _registerState extends State<medicalreg> {
                                   _DescriptionController != '' &&
                                   _hospitalController.text != '') {
                                 SendUserDataToDB();
+                                CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
