@@ -1,31 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/Screens/clothes/clothesprof.dart';
+import 'package:ecyc/Screens/blood/bloodprofile.dart';
+import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/home.dart';
+import 'package:ecyc/Screens/missing_person/missing_prof.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class clothes extends StatefulWidget {
-  const clothes({Key? key}) : super(key: key);
+class Missing extends StatefulWidget {
+  const Missing({Key? key}) : super(key: key);
 
   @override
-  State<clothes> createState() => _profileState();
+  State<Missing> createState() => _profileState();
 }
 
-class _profileState extends State<clothes> {
+class _profileState extends State<Missing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+              Navigator.of(context).pop();
             },
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.blueAccent,
-        title: Text('Clothes Donated List'),
+        title: Text('Missing Person List'),
         actions: [
           IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('clothesreg')],
+              onPressed: () => [
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Missingreg()))
+                  ],
               icon: Icon(Icons.add))
         ],
       ),
@@ -38,7 +43,7 @@ class _profileState extends State<clothes> {
         )),
         StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
-                .collection("Clothes_Req_List")
+                .collection("Missing_Req_List")
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
@@ -71,7 +76,7 @@ class _profileState extends State<clothes> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => clothesprof(
+                                  builder: (context) => Missingprof(
                                       value: snapshot.data!.docs[i])))
                         ],
                       ),

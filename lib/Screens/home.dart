@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/missing_person/missing.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'blood/bloodprofile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -63,6 +67,42 @@ class _HomeState extends State<Home> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
           ),
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection("Common_Db")
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, i) {
+                      QueryDocumentSnapshot x = snapshot.data!.docs[i];
+                      return Card(
+                        elevation: 5,
+                        child: ListTile(
+                            trailing: Text("Needs: " + x['Value3']),
+                            leading: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.back_hand_rounded,
+                                  size: 45,
+                                  color: Colors.red,
+                                ),
+                              ],
+                            ),
+                            title: Text(
+                              "Name: " + x['Value1'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['Value2']),
+                            onTap: () => []),
+                      );
+                    });
+              }),
         ],
       ),
       drawer: Drawer(
@@ -131,6 +171,17 @@ class _HomeState extends State<Home> {
               width: 25,
             ),
             onTap: () => [Navigator.of(context).pushNamed('clothes')],
+          ),
+          ListTile(
+            title: Text('Missing Person'),
+            leading: Icon(
+              Icons.person,
+              color: Colors.brown,
+            ),
+            onTap: () => [
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Missing()))
+            ],
           ),
           Divider(
             height: 18,

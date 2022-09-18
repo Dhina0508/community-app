@@ -144,7 +144,7 @@ class _registerState extends State<register> {
                               color: Colors.redAccent[200],
                               size: 40,
                             ),
-                            hintText: 'B+ve'),
+                            hintText: 'Eg: B+ve'),
                       ),
                     ),
                     Padding(
@@ -159,7 +159,7 @@ class _registerState extends State<register> {
                               color: Colors.redAccent[200],
                               size: 40,
                             ),
-                            hintText: 'Business'),
+                            hintText: 'Eg: Business'),
                       ),
                     ),
                     Padding(
