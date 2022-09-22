@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 184, 145, 192),
+      backgroundColor: Color.fromARGB(255, 163, 185, 210),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -193,10 +193,9 @@ class _HomeState extends State<Home> {
                             leading: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Image.asset(
-                                  'images/tshirt.png',
-                                  width: 25,
-                                  height: 25,
+                                Image.network(
+                                  x['img'],
+                                  fit: BoxFit.cover,
                                 ),
                               ],
                             ),

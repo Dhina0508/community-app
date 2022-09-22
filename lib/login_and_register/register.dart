@@ -42,7 +42,7 @@ class _registerState extends State<register> {
         content: Text("Details Of The User Has Been Added"),
         behavior: SnackBarBehavior.floating,
       ));
-      Navigator.of(context).popAndPushNamed('login');
+      Navigator.of(context).popAndPushNamed('home');
     }).catchError((onError) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("ERROR ${onError.toString()}"),

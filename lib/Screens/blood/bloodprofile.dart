@@ -27,7 +27,7 @@ class _bloodprofState extends State<bloodprof> {
         Center(
             child: Image.asset(
           'images/blood.png',
-          color: Colors.white.withOpacity(0.3),
+          color: Colors.white.withOpacity(0.2),
           colorBlendMode: BlendMode.modulate,
         )),
         SafeArea(
