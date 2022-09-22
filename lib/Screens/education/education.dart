@@ -34,18 +34,21 @@ class _profileState extends State<education> {
           colorBlendMode: BlendMode.modulate,
         )),
         SafeArea(
-            child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection("Education_Req_List")
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  return ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, i) {
-                        QueryDocumentSnapshot x = snapshot.data!.docs[i];
+          child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection("Common_Db")
+                  .orderBy('Time')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, i) {
+                      QueryDocumentSnapshot x = snapshot.data!.docs[i];
+
+                      if (x['about'] == "education") {
                         return Card(
                           elevation: 5,
                           child: ListTile(
@@ -69,8 +72,15 @@ class _profileState extends State<education> {
                             ],
                           ),
                         );
-                      });
-                })),
+                      } else {
+                        return Center(
+                          child: Text('No Request Yet!!'),
+                        );
+                      }
+                      return Container();
+                    });
+              }),
+        )
       ]),
     );
   }

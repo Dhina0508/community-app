@@ -206,12 +206,13 @@ class _clothesprofState extends State<clothesprof> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
-                                    onPressed: () async {
-                                      await FirebaseFirestore.instance
-                                          .collection("Clothes_Req_List")
-                                          .doc()
-                                          .delete();
-
+                                    onPressed: () {
+                                      String id = widget.value['id'];
+                                      print(id);
+                                      final docUser = FirebaseFirestore.instance
+                                          .collection("Common_Db")
+                                          .doc(id.toString());
+                                      docUser.delete();
                                       Navigator.of(context).pop();
                                     },
                                     child: Row(

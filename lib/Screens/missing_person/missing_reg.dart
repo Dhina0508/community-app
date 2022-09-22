@@ -44,44 +44,44 @@ class _registerState extends State<Missingreg> {
   TextEditingController _MissingdateController = TextEditingController();
   TextEditingController _MissingareaController = TextEditingController();
 
-  SendUserDataToDB() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var currentuser = _auth.currentUser;
-    String name = DateTime.now().millisecondsSinceEpoch.toString();
-    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
+  // SendUserDataToDB() async {
+  //   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //   var currentuser = _auth.currentUser;
+  //   String name = DateTime.now().millisecondsSinceEpoch.toString();
+  //   var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
 
-    UploadTask task = imageFile.putFile(file!);
-    TaskSnapshot snapshot = await task;
-    url = await snapshot.ref.getDownloadURL();
-    final _CollectionReference =
-        FirebaseFirestore.instance.collection("Missing_Req_List").doc();
-    return _CollectionReference.set({
-      "id": _CollectionReference.id,
-      "Name": _NameController.text,
-      "PhoneNumber": _PhoneNoController.text,
-      "Address": _AddressController.text,
-      "Description": _DescriptionController.text,
-      "Age": _AgeController.text,
-      "Colour": _ColourController.text,
-      "Height": _Heightcontroller.text,
-      "Identity": _IdentityController.text,
-      "Missing Date": _MissingdateController.text,
-      "Missing Area": _MissingareaController.text,
-      "Your Name": _YourNameController.text,
-      "img": url
-    }).then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Details Of The User Has Been Added"),
-        behavior: SnackBarBehavior.floating,
-      ));
-      Navigator.of(context).pop();
-    }).catchError((onError) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("ERROR ${onError.toString()}"),
-        behavior: SnackBarBehavior.floating,
-      ));
-    });
-  }
+  //   UploadTask task = imageFile.putFile(file!);
+  //   TaskSnapshot snapshot = await task;
+  //   url = await snapshot.ref.getDownloadURL();
+  //   final _CollectionReference =
+  //       FirebaseFirestore.instance.collection("Missing_Req_List").doc();
+  //   return _CollectionReference.set({
+  //     "id": _CollectionReference.id,
+  //     "Name": _NameController.text,
+  //     "PhoneNumber": _PhoneNoController.text,
+  //     "Address": _AddressController.text,
+  //     "Description": _DescriptionController.text,
+  //     "Age": _AgeController.text,
+  //     "Colour": _ColourController.text,
+  //     "Height": _Heightcontroller.text,
+  //     "Identity": _IdentityController.text,
+  //     "Missing Date": _MissingdateController.text,
+  //     "Missing Area": _MissingareaController.text,
+  //     "Your Name": _YourNameController.text,
+  //     "img": url
+  //   }).then((value) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Details Of The User Has Been Added"),
+  //       behavior: SnackBarBehavior.floating,
+  //     ));
+  //     Navigator.of(context).pop();
+  //   }).catchError((onError) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("ERROR ${onError.toString()}"),
+  //       behavior: SnackBarBehavior.floating,
+  //     ));
+  //   });
+  // }
 
   CommonDb() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -96,6 +96,7 @@ class _registerState extends State<Missingreg> {
     final _CollectionReference =
         FirebaseFirestore.instance.collection("Common_Db").doc();
     return _CollectionReference.set({
+      "id": _CollectionReference.id,
       "about": "missing",
       "Name": _NameController.text,
       "PhoneNumber": _PhoneNoController.text,
@@ -110,6 +111,17 @@ class _registerState extends State<Missingreg> {
       "Your Name": _YourNameController.text,
       "Time": DateTime.now(),
       "img": url
+    }).then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Details Of The User Has Been Added"),
+        behavior: SnackBarBehavior.floating,
+      ));
+      Navigator.of(context).pop();
+    }).catchError((onError) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("ERROR ${onError.toString()}"),
+        behavior: SnackBarBehavior.floating,
+      ));
     });
   }
 
@@ -359,7 +371,7 @@ class _registerState extends State<Missingreg> {
                                   _AgeController != '' &&
                                   _MissingareaController != '' &&
                                   _MissingdateController != '') {
-                                SendUserDataToDB();
+                                //  SendUserDataToDB();
                                 CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)

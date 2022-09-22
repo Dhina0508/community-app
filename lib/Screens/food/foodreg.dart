@@ -24,34 +24,34 @@ class _registerState extends State<foodreg> {
 
   TextEditingController _DiscriptionController = TextEditingController();
 
-  SendUserDataToDB() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var currentuser = _auth.currentUser;
+  // SendUserDataToDB() async {
+  //   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //   var currentuser = _auth.currentUser;
 
-    final _CollectionReference =
-        FirebaseFirestore.instance.collection("Food_Req_List").doc();
-    return _CollectionReference.set({
-      "id": _CollectionReference.id,
-      "about": 'food',
-      "Trust Name": _TrustController.text,
-      "Meal": _MealController.text,
-      "Pepole_List": _PeopleController.text,
-      "Category_name": _CategoryController.text,
-      "PhoneNumber": _PhoneNoController.text,
-      "Discription": _DiscriptionController.text,
-    }).then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Details Of The User Has Been Added"),
-        behavior: SnackBarBehavior.floating,
-      ));
-      Navigator.of(context).pop();
-    }).catchError((onError) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("ERROR ${onError.toString()}"),
-        behavior: SnackBarBehavior.floating,
-      ));
-    });
-  }
+  //   final _CollectionReference =
+  //       FirebaseFirestore.instance.collection("Food_Req_List").doc();
+  //   return _CollectionReference.set({
+  //     "id": _CollectionReference.id,
+  //     "about": 'food',
+  //     "Trust Name": _TrustController.text,
+  //     "Meal": _MealController.text,
+  //     "Pepole_List": _PeopleController.text,
+  //     "Category_name": _CategoryController.text,
+  //     "PhoneNumber": _PhoneNoController.text,
+  //     "Discription": _DiscriptionController.text,
+  //   }).then((value) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Details Of The User Has Been Added"),
+  //       behavior: SnackBarBehavior.floating,
+  //     ));
+  //     Navigator.of(context).pop();
+  //   }).catchError((onError) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("ERROR ${onError.toString()}"),
+  //       behavior: SnackBarBehavior.floating,
+  //     ));
+  //   });
+  // }
 
   CommonDb() {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -69,6 +69,17 @@ class _registerState extends State<foodreg> {
       "PhoneNumber": _PhoneNoController.text,
       "Discription": _DiscriptionController.text,
       "Time": DateTime.now(),
+    }).then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Details Of The User Has Been Added"),
+        behavior: SnackBarBehavior.floating,
+      ));
+      Navigator.of(context).pop();
+    }).catchError((onError) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("ERROR ${onError.toString()}"),
+        behavior: SnackBarBehavior.floating,
+      ));
     });
   }
 
@@ -219,7 +230,7 @@ class _registerState extends State<foodreg> {
                                   _CategoryController.text != '' &&
                                   _DiscriptionController.text != '' &&
                                   _MealController.text != '') {
-                                SendUserDataToDB();
+                                // SendUserDataToDB();
                                 CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)

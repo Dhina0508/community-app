@@ -23,33 +23,33 @@ class _registerState extends State<bloodreg> {
 
   TextEditingController _DiscriptionController = TextEditingController();
 
-  SendUserDataToDB() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var currentuser = _auth.currentUser;
+  // SendUserDataToDB() async {
+  //   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //   var currentuser = _auth.currentUser;
 
-    final _CollectionReference =
-        FirebaseFirestore.instance.collection("Blood_Req_List").doc();
+  //   final _CollectionReference =
+  //       FirebaseFirestore.instance.collection("Blood_Req_List").doc();
 
-    return _CollectionReference.set({
-      "id": _CollectionReference.id,
-      "Name": _NameController.text,
-      "Blood_Group": _bloodController.text,
-      "PhoneNumber": _PhoneNoController.text,
-      "Address": _AddressController.text,
-      "discription": _DiscriptionController.text,
-    }).then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Details Of The User Has Been Added"),
-        behavior: SnackBarBehavior.floating,
-      ));
-      Navigator.of(context).pop();
-    }).catchError((onError) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("ERROR ${onError.toString()}"),
-        behavior: SnackBarBehavior.floating,
-      ));
-    });
-  }
+  //   return _CollectionReference.set({
+  //     "id": _CollectionReference.id,
+  //     "Name": _NameController.text,
+  //     "Blood_Group": _bloodController.text,
+  //     "PhoneNumber": _PhoneNoController.text,
+  //     "Address": _AddressController.text,
+  //     "discription": _DiscriptionController.text,
+  //   }).then((value) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Details Of The User Has Been Added"),
+  //       behavior: SnackBarBehavior.floating,
+  //     ));
+  //     Navigator.of(context).pop();
+  //   }).catchError((onError) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("ERROR ${onError.toString()}"),
+  //       behavior: SnackBarBehavior.floating,
+  //     ));
+  //   });
+  // }
 
   CommonDb() {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -66,6 +66,17 @@ class _registerState extends State<bloodreg> {
       "Address": _AddressController.text,
       "discription": _DiscriptionController.text,
       "Time": DateTime.now(),
+    }).then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Details Of The User Has Been Added"),
+        behavior: SnackBarBehavior.floating,
+      ));
+      Navigator.of(context).pop();
+    }).catchError((onError) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("ERROR ${onError.toString()}"),
+        behavior: SnackBarBehavior.floating,
+      ));
     });
   }
 
@@ -208,7 +219,7 @@ class _registerState extends State<bloodreg> {
                                   _AddressController.text != '' &&
                                   _DiscriptionController.text != '' &&
                                   _bloodController.text != '') {
-                                SendUserDataToDB();
+                                // SendUserDataToDB();
                                 CommonDb();
                               } else {
                                 ScaffoldMessenger.of(context)
