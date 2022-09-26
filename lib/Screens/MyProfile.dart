@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyProfile extends StatefulWidget {
-  const MyProfile({Key? key}) : super(key: key);
-
   @override
   State<MyProfile> createState() => _MyProfileState();
 }
@@ -16,12 +14,15 @@ class _MyProfileState extends State<MyProfile> {
         FirebaseFirestore.instance.collection("User_Bio_Data");
 
     return Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blueGrey[800],
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Profile'),
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            'Profile',
+            style: TextStyle(fontFamily: 'Cinzel', fontSize: 20),
+          ),
         ),
         body: FutureBuilder<DocumentSnapshot>(
           future: users.doc(FirebaseAuth.instance.currentUser!.email).get(),
@@ -39,122 +40,137 @@ class _MyProfileState extends State<MyProfile> {
               Map<String, dynamic> data =
                   snapshot.data!.data() as Map<String, dynamic>;
               return SafeArea(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.account_circle_sharp,
-                    size: 150,
-                    color: Colors.red[200],
-                  ),
-                  Card(
-                    color: Colors.pink[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "User Name: ",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                  minimum: EdgeInsets.only(top: 30),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 70,
+                          backgroundImage: NetworkImage(
+                            "${data['img']}",
                           ),
-                          Text("${data['Name']}",
-                              style: TextStyle(fontSize: 20))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.pink[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "User PhNo: ",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "${data['Name']}",
+                          style: TextStyle(
+                              fontFamily: 'Pacifico',
+                              fontSize: 35,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 20,
+                          width: 200,
+                          child: Divider(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.phone,
+                              color: Colors.green,
+                            ),
+                            title: Text("${data['PhoneNumber']}",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontFamily: 'Josefinsans')),
                           ),
-                          Text("${data['PhoneNumber']}",
-                              style: TextStyle(fontSize: 20))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.pink[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "User Email :",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.email,
+                              color: Colors.brown,
+                            ),
+                            title: Text("${data['Email']}",
+                                style: TextStyle(
+                                  fontFamily: 'Josefinsans',
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                )),
                           ),
-                          Text("${data['Email']}",
-                              style: TextStyle(fontSize: 20))
-                        ],
-                      ),
+                        ),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.bloodtype,
+                              color: Colors.red,
+                            ),
+                            title: Text("${data['Blood']}",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontFamily: 'Josefinsans')),
+                          ),
+                        ),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.accessibility_rounded,
+                              color: Colors.brown,
+                            ),
+                            title: Text("${data['Occupation']}",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontFamily: 'Josefinsans')),
+                          ),
+                        ),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.location_on_sharp,
+                              color: Colors.red,
+                            ),
+                            title: Text("${data['Address']}",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontFamily: 'Josefinsans')),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shadowColor: Colors.purple),
+                            onPressed: () =>
+                                [Navigator.of(context).pushNamed('update')],
+                            child:
+                                Text('Update', style: TextStyle(fontSize: 20)))
+                      ],
                     ),
-                  ),
-                  Card(
-                    color: Colors.pink[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text("User Blood Group: ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20)),
-                          Text("${data['Blood']}",
-                              style: TextStyle(fontSize: 20))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.pink[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text("User Occupation: ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20)),
-                          Text("${data['Occupation']}",
-                              style: TextStyle(fontSize: 20))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.pink[100],
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text("User Address: ",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20)),
-                          Text("${data['Address']}",
-                              style: TextStyle(fontSize: 20))
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                      onPressed: () =>
-                          [Navigator.of(context).pushNamed('update')],
-                      child: Text('Update', style: TextStyle(fontSize: 20)))
-                ],
-              ));
+                  ));
             }
 
-            return Center(child: Text("loading"));
+            return Center(
+                child: Text(
+              "loading...",
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ));
           },
         ));
   }

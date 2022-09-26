@@ -1,8 +1,11 @@
 import 'dart:ui';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class register extends StatefulWidget {
   register({Key? key}) : super(key: key);
@@ -12,6 +15,18 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
+  String? link;
+  ImagePicker image = ImagePicker();
+  File? file;
+
+  String url = "";
+  getImage() async {
+    var img = await image.pickImage(source: ImageSource.gallery);
+    setState(() {
+      file = File(img!.path);
+    });
+  }
+
   TextEditingController _NameController = TextEditingController();
 
   TextEditingController _EmailController = TextEditingController();
@@ -27,6 +42,12 @@ class _registerState extends State<register> {
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
+    String name = DateTime.now().millisecondsSinceEpoch.toString();
+    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
+
+    UploadTask task = imageFile.putFile(file!);
+    TaskSnapshot snapshot = await task;
+    url = await snapshot.ref.getDownloadURL();
 
     CollectionReference _CollectionReference =
         FirebaseFirestore.instance.collection("User_Bio_Data");
@@ -36,13 +57,14 @@ class _registerState extends State<register> {
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "Blood": _BloodController.text,
-      "Occupation": _JobController.text
+      "Occupation": _JobController.text,
+      "img": url,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
         behavior: SnackBarBehavior.floating,
       ));
-      Navigator.of(context).popAndPushNamed('login');
+      Navigator.of(context).popAndPushNamed('home');
     }).catchError((onError) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("ERROR ${onError.toString()}"),
@@ -91,6 +113,9 @@ class _registerState extends State<register> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 20,
+                    ),
                     Text(
                       'Submit to continue',
                       style: TextStyle(
@@ -98,10 +123,29 @@ class _registerState extends State<register> {
                           color: Colors.redAccent[200],
                           fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       'We will not share this with anyone',
                       style: TextStyle(fontSize: 16.0, color: Colors.grey),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        backgroundImage: file == null
+                            ? AssetImage("images/profile1.png")
+                            : FileImage(File(file!.path)) as ImageProvider,
+                        radius: 50,
+                      ),
+                    ),
+                    Text('Click to add Image'),
                     Padding(
                       padding:
                           const EdgeInsets.only(right: 8, top: 30, left: 8),

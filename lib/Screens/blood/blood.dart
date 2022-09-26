@@ -84,11 +84,8 @@ class _profileState extends State<blood> {
                         ),
                       );
                     } else {
-                      return Center(
-                        child: Text('No Request Yet!!'),
-                      );
+                      return Container();
                     }
-                    return Container();
                   });
             }),
       ]),

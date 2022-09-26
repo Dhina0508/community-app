@@ -74,11 +74,8 @@ class _profileState extends State<food> {
                           ),
                         );
                       } else {
-                        return Center(
-                          child: Text('No Request Yet!!'),
-                        );
+                        return Container();
                       }
-                      return Container();
                     });
               }),
         )
