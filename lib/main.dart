@@ -13,7 +13,7 @@ import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
 import 'package:ecyc/Screens/upadateUser.dart';
-
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/register.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,6 +34,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  AwesomeNotifications().initialize(null, [
+    NotificationChannel(
+        defaultColor: Colors.amber,
+        channelKey: 'key1',
+        channelName: 'ecyc',
+        channelDescription: 'demo')
+  ]);
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   NotificationSettings settings = await messaging.requestPermission(
