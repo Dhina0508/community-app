@@ -80,11 +80,8 @@ class _profileState extends State<clothes> {
                         ),
                       );
                     } else {
-                      return Center(
-                        child: Text('No Request Yet!!'),
-                      );
+                      return Container();
                     }
-                    return Container();
                   });
             }),
       ]),

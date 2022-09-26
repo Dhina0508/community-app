@@ -6,6 +6,7 @@ import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:ecyc/Screens/medical/medicalprof.dart';
 import 'package:ecyc/Screens/missing_person/missingprof.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,12 +20,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  CollectionReference users =
+      FirebaseFirestore.instance.collection("User_Bio_Data");
+
   Service service = Service();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 163, 185, 210),
+      backgroundColor: Color.fromARGB(255, 189, 122, 201),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -196,6 +200,8 @@ class _HomeState extends State<Home> {
                                 Image.network(
                                   x['img'],
                                   fit: BoxFit.cover,
+                                  height: 50,
+                                  width: 50,
                                 ),
                               ],
                             ),
@@ -223,7 +229,9 @@ class _HomeState extends State<Home> {
                               children: [
                                 Image.network(
                                   x['img'],
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
+                                  height: 50,
+                                  width: 50,
                                 ),
                               ],
                             ),
@@ -248,100 +256,311 @@ class _HomeState extends State<Home> {
               }),
         ],
       ),
-      drawer: Drawer(
-          child: ListView(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: GestureDetector(
-              child: Text(
-                'My Profile',
-                style: TextStyle(fontSize: 18, fontFamily: 'Cinzel'),
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed('profile');
-              },
-            ),
-            accountEmail: Text(''),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('images/profile.png'),
-            ),
-          ),
-          ListTile(
-            title: Text('Home'),
-            leading: Icon(
-              Icons.home,
-              color: Colors.brown,
-            ),
-            onTap: () => [Navigator.of(context).pop()],
-          ),
-          ListTile(
-            title: Text('Blood Donation'),
-            leading: Icon(
-              Icons.bloodtype,
-              color: Colors.red,
-            ),
-            onTap: () => [Navigator.of(context).pushNamed('blood')],
-          ),
-          ListTile(
-            title: Text('Health'),
-            leading: Icon(
-              Icons.local_hospital,
-              color: Colors.red,
-            ),
-            onTap: () => [Navigator.of(context).pushNamed('medical')],
-          ),
-          ListTile(
-            title: Text('Education'),
-            leading: Icon(
-              Icons.menu_book,
-              color: Colors.black,
-            ),
-            onTap: () => [Navigator.of(context).pushNamed('education')],
-          ),
-          ListTile(
-            title: Text('Food'),
-            leading: Icon(
-              Icons.food_bank,
-              color: Colors.amber,
-            ),
-            onTap: () => [Navigator.of(context).pushNamed('food')],
-          ),
-          ListTile(
-            title: Text('Clothes'),
-            leading: Image.asset(
-              'images/tshirt.png',
-              height: 25,
-              width: 25,
-            ),
-            onTap: () => [Navigator.of(context).pushNamed('clothes')],
-          ),
-          ListTile(
-            title: Text('Missing Person'),
-            leading: Icon(
-              Icons.person,
-              color: Colors.brown,
-            ),
-            onTap: () => [
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Missing()))
-            ],
-          ),
-          Divider(
-            height: 18,
-            color: Colors.black45,
-          ),
-          ListTile(
-            title: Text('Invite Friends'),
-            leading: Icon(Icons.person_add),
-            onTap: () => [],
-          ),
-          ListTile(
-            title: Text('Ecyc Features'),
-            leading: Icon(Icons.help_outline_sharp),
-            onTap: () => [],
-          ),
-        ],
-      )),
+      drawer: FutureBuilder<DocumentSnapshot>(
+          future: users.doc(FirebaseAuth.instance.currentUser!.email).get(),
+          builder:
+              (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text("Something went wrong");
+            }
+
+            if (snapshot.hasData && !snapshot.data!.exists) {
+              return Center(child: Text("Document does not exist"));
+            }
+
+            if (snapshot.connectionState == ConnectionState.done) {
+              Map<String, dynamic> data =
+                  snapshot.data!.data() as Map<String, dynamic>;
+              return Drawer(
+                  child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  UserAccountsDrawerHeader(
+                    otherAccountsPictures: <Widget>[
+                      Icon(
+                        Icons.brightness_2_rounded,
+                        color: Colors.white,
+                      ),
+                    ],
+                    accountName: GestureDetector(
+                      child: Text(
+                        "${data['Name']}",
+                        style: TextStyle(fontSize: 18, fontFamily: 'Cinzel'),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('profile');
+                      },
+                    ),
+                    accountEmail: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushNamed('profile');
+                        },
+                        child: Text("${data['Email']}")),
+                    currentAccountPicture: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed('profile');
+                      },
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          "${data['img']}",
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 189, 122, 201)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 4, top: 10),
+                    child: Card(
+                      elevation: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Health Care :",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'JosefinSans',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Blood Donation'),
+                      leading: Icon(
+                        Icons.bloodtype,
+                        color: Colors.red,
+                      ),
+                      onTap: () => [Navigator.of(context).pushNamed('blood')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text("Health / Organs"),
+                      leading: Icon(
+                        Icons.local_hospital,
+                        color: Colors.red,
+                      ),
+                      onTap: () => [Navigator.of(context).pushNamed('medical')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 4, top: 10),
+                    child: Card(
+                      elevation: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Basics :",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'JosefinSans',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Food'),
+                      leading: Icon(
+                        Icons.food_bank,
+                        color: Colors.amber,
+                      ),
+                      onTap: () => [Navigator.of(context).pushNamed('food')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Clothes'),
+                      leading: Image.asset(
+                        'images/tshirt.png',
+                        height: 25,
+                        width: 25,
+                      ),
+                      onTap: () => [Navigator.of(context).pushNamed('clothes')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 4, top: 10),
+                    child: Card(
+                      elevation: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Education :",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'JosefinSans',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Free Tution'),
+                      leading: Icon(
+                        Icons.spatial_audio_off_rounded,
+                        color: Colors.black,
+                      ),
+                      onTap: () =>
+                          [Navigator.of(context).pushNamed('education')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Book Donation'),
+                      leading: Icon(
+                        Icons.menu_book,
+                        color: Colors.brown,
+                      ),
+                      onTap: () =>
+                          [Navigator.of(context).pushNamed('education')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Educate Today'),
+                      leading: Icon(
+                        Icons.cast_for_education,
+                        color: Colors.red,
+                      ),
+                      onTap: () =>
+                          [Navigator.of(context).pushNamed('education')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Scribers'),
+                      leading: Icon(
+                        Icons.drive_file_rename_outline_rounded,
+                        color: Colors.purple,
+                      ),
+                      onTap: () =>
+                          [Navigator.of(context).pushNamed('education')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 4, top: 10),
+                    child: Card(
+                      elevation: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Emergencies :",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'JosefinSans',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Missing Person'),
+                      leading: Icon(
+                        Icons.person_off,
+                        color: Colors.red,
+                      ),
+                      onTap: () => [
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Missing()))
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('SOS'),
+                      leading: Icon(
+                        Icons.girl,
+                        color: Colors.black,
+                      ),
+                      onTap: () => [
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Missing()))
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Voluntering'),
+                      leading: Icon(
+                        Icons.person_add,
+                        color: Colors.brown,
+                      ),
+                      onTap: () => [
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Missing()))
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Ambulance Service'),
+                      leading: Icon(
+                        Icons.emergency_share,
+                        color: Colors.red,
+                      ),
+                      onTap: () => [
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Missing()))
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    height: 18,
+                    color: Colors.black45,
+                  ),
+                  ListTile(
+                    title: Text('Mapping With Foot Prints'),
+                    leading: Icon(
+                      Icons.person_pin_circle,
+                      color: Colors.brown,
+                    ),
+                    onTap: () => [Navigator.of(context).pop()],
+                  ),
+                  ListTile(
+                    title: Text('Home'),
+                    leading: Icon(
+                      Icons.home,
+                      color: Colors.black,
+                    ),
+                    onTap: () => [Navigator.of(context).pop()],
+                  ),
+                  Divider(
+                    height: 18,
+                    color: Colors.black45,
+                  ),
+                  ListTile(
+                    title: Text('Invite Friends'),
+                    leading: Icon(Icons.person_add),
+                    onTap: () => [],
+                  ),
+                  ListTile(
+                    title: Text('ECYC Features'),
+                    leading: Icon(Icons.help_outline_sharp),
+                    onTap: () => [],
+                  ),
+                ],
+              ));
+            }
+            return CircularProgressIndicator();
+          }),
     );
   }
 }

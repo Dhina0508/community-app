@@ -1,9 +1,12 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class update extends StatefulWidget {
   update({Key? key}) : super(key: key);
@@ -13,6 +16,18 @@ class update extends StatefulWidget {
 }
 
 class _updateState extends State<update> {
+  String? link;
+  ImagePicker image = ImagePicker();
+  File? file;
+
+  String url = "";
+  getImage() async {
+    var img = await image.pickImage(source: ImageSource.gallery);
+    setState(() {
+      file = File(img!.path);
+    });
+  }
+
   TextEditingController _NameController = TextEditingController();
 
   TextEditingController _EmailController = TextEditingController();
@@ -27,6 +42,12 @@ class _updateState extends State<update> {
 
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
+    String name = DateTime.now().millisecondsSinceEpoch.toString();
+    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
+
+    UploadTask task = imageFile.putFile(file!);
+    TaskSnapshot snapshot = await task;
+    url = await snapshot.ref.getDownloadURL();
     var currentuser = _auth.currentUser;
 
     CollectionReference _CollectionReference =
@@ -37,7 +58,8 @@ class _updateState extends State<update> {
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "Blood": _BloodController.text,
-      "Occupation": _JobController.text
+      "Occupation": _JobController.text,
+      "img": url,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
@@ -66,7 +88,7 @@ class _updateState extends State<update> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Upadate bio of the user',
+                'Update bio of the user',
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -92,6 +114,9 @@ class _updateState extends State<update> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       'Update Details',
                       style: TextStyle(
@@ -99,10 +124,29 @@ class _updateState extends State<update> {
                           color: Colors.redAccent[200],
                           fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       'we will not share this with anyone',
                       style: TextStyle(fontSize: 16.0, color: Colors.grey),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        backgroundImage: file == null
+                            ? AssetImage("images/profile1.png")
+                            : FileImage(File(file!.path)) as ImageProvider,
+                        radius: 50,
+                      ),
+                    ),
+                    Text('Click to add Image'),
                     Padding(
                       padding:
                           const EdgeInsets.only(right: 8, top: 30, left: 8),

@@ -74,7 +74,7 @@ class _MissingprofState extends State<Missingprof> {
                             ),
                             Text(widget.value['Name'],
                                 style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold)),
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                             SizedBox(
                               height: 20,
                             ),
@@ -96,7 +96,7 @@ class _MissingprofState extends State<Missingprof> {
                             Text(
                               widget.value['Age'],
                               style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 20,
@@ -171,7 +171,7 @@ class _MissingprofState extends State<Missingprof> {
                             Text(
                               widget.value['Identity'],
                               style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 20,
@@ -331,7 +331,7 @@ class _MissingprofState extends State<Missingprof> {
                                           width: 10,
                                         ),
                                         Text(
-                                          'Accept',
+                                          'Found',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,
@@ -358,7 +358,7 @@ class _MissingprofState extends State<Missingprof> {
                                           width: 10,
                                         ),
                                         Text(
-                                          'Decline',
+                                          'Not found',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold,

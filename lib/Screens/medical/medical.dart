@@ -71,11 +71,8 @@ class _profileState extends State<medical> {
                           ),
                         );
                       } else {
-                        return Center(
-                          child: Text('No Request Yet!!'),
-                        );
+                        return Container();
                       }
-                      return Container();
                     });
               }),
         )
