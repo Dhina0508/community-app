@@ -3,8 +3,10 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class register extends StatefulWidget {
@@ -24,6 +26,16 @@ class _registerState extends State<register> {
     var img = await image.pickImage(source: ImageSource.gallery);
     setState(() {
       file = File(img!.path);
+    });
+  }
+
+  var FcmValue;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    FirebaseMessaging.instance.getToken().then((newToken) {
+      FcmValue = newToken;
     });
   }
 
@@ -59,6 +71,7 @@ class _registerState extends State<register> {
       "Blood": _BloodController.text,
       "Occupation": _JobController.text,
       "img": url,
+      "fcm": FcmValue
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),

@@ -12,6 +12,8 @@ import 'package:ecyc/Screens/food/foodreg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
+import 'package:ecyc/Screens/scribers/scribers.dart';
+import 'package:ecyc/Screens/scribers/scribers_reg.dart';
 import 'package:ecyc/Screens/upadateUser.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
@@ -23,17 +25,10 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp();
-
-  print("Handling a background message: ${message.messageId}");
-}
-
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance.subscribeToTopic("work");
   AwesomeNotifications().initialize(null, [
     NotificationChannel(
         defaultColor: Colors.amber,
@@ -85,7 +80,9 @@ main() async {
       'login': (context) => MyHomePage(),
       'profile': (context) => MyProfile(),
       'update': (context) => update(),
-      'home': (context) => Home()
+      'home': (context) => Home(),
+      'scribers': (context) => scribers(),
+      'scribersreg': (context) => scribersreg()
     },
   ));
 }
@@ -153,4 +150,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     ));
   }
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+
+  print("Handling a background message: ${message.data}");
+  AwesomeNotifications().createNotificationFromJsonData(message.data);
 }
