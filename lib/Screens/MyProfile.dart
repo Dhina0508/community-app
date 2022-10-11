@@ -156,7 +156,7 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.purple),
+                                shadowColor: Colors.purple),
                             onPressed: () =>
                                 [Navigator.of(context).pushNamed('update')],
                             child:

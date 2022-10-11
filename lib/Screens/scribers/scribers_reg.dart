@@ -7,18 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_js/flutter_js.dart';
 
-
-class bloodreg extends StatefulWidget {
-  bloodreg({Key? key}) : super(key: key);
+class scribersreg extends StatefulWidget {
+  scribersreg({Key? key}) : super(key: key);
 
   @override
-  State<bloodreg> createState() => _registerState();
+  State<scribersreg> createState() => _registerState();
 }
 
-class _registerState extends State<bloodreg> {
+class _registerState extends State<scribersreg> {
   TextEditingController _NameController = TextEditingController();
 
-  TextEditingController _bloodController = TextEditingController();
+  TextEditingController _ExamController = TextEditingController();
 
   TextEditingController _PhoneNoController = TextEditingController();
 
@@ -61,10 +60,10 @@ class _registerState extends State<bloodreg> {
     final _CollectionReference =
         FirebaseFirestore.instance.collection("Common_Db").doc();
     return _CollectionReference.set({
-      "about": "blood",
+      "about": "scribers",
       "id": _CollectionReference.id,
       "Name": _NameController.text,
-      "Blood_Group": _bloodController.text,
+      "Exam_Group": _ExamController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "discription": _DiscriptionController.text,
@@ -155,15 +154,15 @@ class _registerState extends State<bloodreg> {
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
-                          controller: _bloodController,
+                          controller: _ExamController,
                           decoration: InputDecoration(
-                              labelText: 'Blood Group',
+                              labelText: 'Name of the exam',
                               prefixIcon: Icon(
-                                Icons.bloodtype_rounded,
+                                Icons.note,
                                 color: Colors.redAccent[200],
                                 size: 40,
                               ),
-                              hintText: 'Eg: B+ve'),
+                              hintText: 'Eg: TNPSC'),
                         ),
                       ),
                       Padding(
@@ -203,13 +202,13 @@ class _registerState extends State<bloodreg> {
                         child: TextFormField(
                           controller: _DiscriptionController,
                           decoration: InputDecoration(
-                              labelText: 'About patient',
+                              labelText: 'About yourself',
                               prefixIcon: Icon(
-                                Icons.bed_rounded,
+                                Icons.work,
                                 color: Colors.redAccent[200],
                                 size: 40,
                               ),
-                              hintText: 'About patient'),
+                              hintText: 'About Me'),
                         ),
                       ),
                       Padding(
@@ -221,10 +220,9 @@ class _registerState extends State<bloodreg> {
                                   _PhoneNoController.text != '' &&
                                   _AddressController.text != '' &&
                                   _DiscriptionController.text != '' &&
-                                  _bloodController.text != '') {
+                                  _ExamController.text != '') {
                                 // SendUserDataToDB();
                                 CommonDb();
-                              
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(

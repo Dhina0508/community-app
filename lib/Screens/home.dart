@@ -5,6 +5,7 @@ import 'package:ecyc/Screens/education/educationprof.dart';
 import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:ecyc/Screens/medical/medicalprof.dart';
 import 'package:ecyc/Screens/missing_person/missingprof.dart';
+import 'package:ecyc/Screens/scribers/scriberprofile.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -162,6 +163,30 @@ class _HomeState extends State<Home> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => foodprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "scribers") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.drive_file_rename_outline_rounded,
+                              size: 45,
+                              color: Colors.green,
+                            ),
+                            title: Text(
+                              "Name: " + x['Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => scribersprof(
                                           value: snapshot.data!.docs[i])))
                             ],
                           ),
@@ -447,7 +472,7 @@ class _HomeState extends State<Home> {
                         color: Colors.purple,
                       ),
                       onTap: () =>
-                          [Navigator.of(context).pushNamed('education')],
+                          [Navigator.of(context).pushNamed('scribers')],
                     ),
                   ),
                   Padding(
