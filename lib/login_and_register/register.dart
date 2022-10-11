@@ -43,7 +43,7 @@ class _registerState extends State<register> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
     String name = DateTime.now().millisecondsSinceEpoch.toString();
-    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
+    var imageFile = FirebaseStorage.instance.ref().child("User").child(name);
 
     UploadTask task = imageFile.putFile(file!);
     TaskSnapshot snapshot = await task;

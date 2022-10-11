@@ -43,7 +43,7 @@ class _updateState extends State<update> {
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     String name = DateTime.now().millisecondsSinceEpoch.toString();
-    var imageFile = FirebaseStorage.instance.ref().child(name).child("/.jpeg");
+    var imageFile = FirebaseStorage.instance.ref().child("User").child(name);
 
     UploadTask task = imageFile.putFile(file!);
     TaskSnapshot snapshot = await task;

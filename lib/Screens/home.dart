@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                               color: Colors.red,
                             ),
                             title: Text(
-                              "Patient Name: " + x['Name'],
+                              "Name: " + x['Name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
