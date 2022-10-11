@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_js/flutter_js.dart';
 
-
 class bloodreg extends StatefulWidget {
   bloodreg({Key? key}) : super(key: key);
 
@@ -94,7 +93,6 @@ class _registerState extends State<bloodreg> {
                 Navigator.of(context).pushNamed('blood');
               },
               icon: Icon(Icons.arrow_back)),
-          backgroundColor: Colors.transparent,
           elevation: 0,
           automaticallyImplyLeading: false,
           title: Column(
@@ -224,7 +222,6 @@ class _registerState extends State<bloodreg> {
                                   _bloodController.text != '') {
                                 // SendUserDataToDB();
                                 CommonDb();
-                              
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
