@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class clothesprof extends StatefulWidget {
@@ -213,6 +214,7 @@ class _clothesprofState extends State<clothesprof> {
                                           .collection("Common_Db")
                                           .doc(id.toString());
                                       docUser.delete();
+
                                       Navigator.of(context).pop();
                                     },
                                     child: Row(
