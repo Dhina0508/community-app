@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/books/books_profile.dart';
 import 'package:ecyc/Screens/clothes/clothesprof.dart';
 import 'package:ecyc/Screens/missing_person/missing.dart';
 import 'package:ecyc/Screens/education/educationprof.dart';
@@ -271,6 +272,30 @@ class _HomeState extends State<Home> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Missingprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
+                      } else if (x['about'] == "books") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.menu_book_rounded,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+                            title: Text(
+                              "Book Name: " + x['Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Booksprof(
                                           value: snapshot.data!.docs[i])))
                             ],
                           ),
