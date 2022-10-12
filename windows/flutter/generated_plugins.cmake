@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   flutter_js
+  geolocator_windows
   smart_auth
 )
 

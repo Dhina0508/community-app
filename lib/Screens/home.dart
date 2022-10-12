@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 189, 122, 201),
+      backgroundColor: Color.fromRGBO(248, 68, 100, 300),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -332,7 +332,8 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 189, 122, 201)),
+                      color: Color.fromRGBO(248, 68, 100, 300),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 4, top: 10),

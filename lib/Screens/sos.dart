@@ -1,3 +1,6 @@
+import 'package:ecyc/Screens/map/current_location_map.dart';
+import 'package:ecyc/Screens/map/live_location.dart';
+import 'package:ecyc/Screens/map/try.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
@@ -33,7 +36,6 @@ class _sosState extends State<sos> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        automaticallyImplyLeading: false,
       ),
       body: Center(
           child: Column(
@@ -50,9 +52,15 @@ class _sosState extends State<sos> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    'Share my location',
-                    style: TextStyle(fontSize: 17),
+                  TextButton(
+                    child: Text(
+                      'Share my location',
+                      style: TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MyApp()));
+                    },
                   ),
                   Icon(Icons.location_on)
                 ],
