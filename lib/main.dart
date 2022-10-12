@@ -2,6 +2,8 @@ import 'package:ecyc/Screens/MyProfile.dart';
 import 'package:ecyc/Screens/blood/blood.dart';
 import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:ecyc/Screens/blood/bloodreg.dart';
+import 'package:ecyc/Screens/books/books.dart';
+import 'package:ecyc/Screens/books/books_Reg.dart';
 import 'package:ecyc/Screens/clothes/clothes.dart';
 import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/education/education.dart';
@@ -14,6 +16,7 @@ import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
 import 'package:ecyc/Screens/scribers/scribers.dart';
 import 'package:ecyc/Screens/scribers/scribers_reg.dart';
+import 'package:ecyc/Screens/sos.dart';
 import 'package:ecyc/Screens/upadateUser.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
@@ -82,7 +85,10 @@ main() async {
       'update': (context) => update(),
       'home': (context) => Home(),
       'scribers': (context) => scribers(),
-      'scribersreg': (context) => scribersreg()
+      'scribersreg': (context) => scribersreg(),
+      'sos': (context) => sos(),
+      'books': (context) => books(),
+      'booksreg': (context) => booksreg()
     },
   ));
 }

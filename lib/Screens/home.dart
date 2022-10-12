@@ -447,8 +447,7 @@ class _HomeState extends State<Home> {
                         Icons.menu_book,
                         color: Colors.brown,
                       ),
-                      onTap: () =>
-                          [Navigator.of(context).pushNamed('education')],
+                      onTap: () => [Navigator.of(context).pushNamed('books')],
                     ),
                   ),
                   Padding(
@@ -513,10 +512,7 @@ class _HomeState extends State<Home> {
                         Icons.girl,
                         color: Colors.black,
                       ),
-                      onTap: () => [
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Missing()))
-                      ],
+                      onTap: () => [Navigator.of(context).pushNamed('sos')],
                     ),
                   ),
                   Padding(
