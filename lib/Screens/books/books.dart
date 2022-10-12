@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/books/books_profile.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -71,11 +72,11 @@ class _profileState extends State<books> {
                             ),
                             subtitle: Text("Ph.No: " + x['PhoneNumber']),
                             onTap: () => [
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => bloodprof(
-                              //             value: snapshot.data!.docs[i])))
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Booksprof(
+                                          value: snapshot.data!.docs[i])))
                             ],
                           ),
                         );
