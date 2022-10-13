@@ -48,19 +48,18 @@ class _sosState extends State<sos> {
                 backgroundColor: Colors.red,
                 fixedSize: const Size(250, 80),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserCurrentLocation()));
+              },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextButton(
-                    child: Text(
-                      'Share my location',
-                      style: TextStyle(fontSize: 17, color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MyApp()));
-                    },
+                  Text(
+                    'Share my location',
+                    style: TextStyle(fontSize: 17, color: Colors.white),
                   ),
                   Icon(Icons.location_on)
                 ],

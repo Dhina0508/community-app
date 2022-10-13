@@ -1,3 +1,4 @@
+import 'package:ecyc/Screens/map/try.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -14,7 +15,7 @@ class _UserCurrentLocationState extends State<UserCurrentLocation> {
   late GoogleMapController googleMapController;
 
   static const CameraPosition initialCameraPosition =
-      CameraPosition(target: LatLng(13.0827, 80.2707), zoom: 4.8);
+      CameraPosition(target: LatLng(13.4, 80.1), zoom: 10);
 
   Set<Marker> markers = {};
   @override
@@ -31,7 +32,7 @@ class _UserCurrentLocationState extends State<UserCurrentLocation> {
           icon: Icon(
             Icons.arrow_circle_left_sharp,
             size: 16 * 3,
-            color: Color.fromRGBO(28, 11, 67, 0.9),
+            color: Color.fromRGBO(248, 68, 100, 300),
           ),
         ),
 
@@ -91,6 +92,8 @@ class _UserCurrentLocationState extends State<UserCurrentLocation> {
               position: LatLng(position.latitude, position.longitude)));
 
           setState(() {});
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MyApp()));
         },
         label: const Text("Current Location"),
         icon: const Icon(Icons.my_location_outlined),
