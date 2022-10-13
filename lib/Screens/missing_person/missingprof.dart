@@ -12,8 +12,10 @@ class Missingprof extends StatefulWidget {
 }
 
 class _MissingprofState extends State<Missingprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number, @required name}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I%20Guess%20We%20Found%20Your%20Person%20$name";
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -326,8 +328,7 @@ class _MissingprofState extends State<Missingprof> {
                                       launchwp(
                                           number: ("+91" +
                                               widget.value['PhoneNumber']),
-                                          message:
-                                              "Hi, i accepted your blood request :)");
+                                          name: widget.value['Name']);
                                       String id = widget.value['id'];
                                       print(id);
                                       final docUser = FirebaseFirestore.instance

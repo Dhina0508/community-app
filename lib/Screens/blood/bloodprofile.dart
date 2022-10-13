@@ -11,8 +11,9 @@ class bloodprof extends StatefulWidget {
 }
 
 class _bloodprofState extends State<bloodprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number, @required name, @required bloodgroup}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Donate%20$bloodgroup%20Blood%20Group";
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -167,14 +168,14 @@ class _bloodprofState extends State<bloodprof> {
                       onPressed: () {
                         launchwp(
                             number: ("+91" + widget.value['PhoneNumber']),
-                            message: "Hi, i accepted your blood request :)");
-                        // String id = widget.value['id'];
-                        // print(id);
-                        // final docUser = FirebaseFirestore.instance
-                        //     .collection("Common_Db")
-                        //     .doc(id.toString());
-                        // docUser.delete();
-                        // Navigator.of(context).pop();
+                            bloodgroup: (widget.value['Blood_Group']));
+                        String id = widget.value['id'];
+                        print(id);
+                        final docUser = FirebaseFirestore.instance
+                            .collection("Common_Db")
+                            .doc(id.toString());
+                        docUser.delete();
+                        Navigator.of(context).pop();
                       },
                       child: Row(
                         children: [

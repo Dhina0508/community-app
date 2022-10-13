@@ -11,8 +11,10 @@ class medicalprof extends StatefulWidget {
 }
 
 class _medicalprofState extends State<medicalprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number, @required name}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Help%20You%20$name%20On%20Your%20Medical%20Needs";
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -181,7 +183,7 @@ class _medicalprofState extends State<medicalprof> {
                       onPressed: () {
                         launchwp(
                             number: ("+91" + widget.value['PhoneNumber']),
-                            message: "Hi, i accepted your blood request :)");
+                            name: widget.value['Name']);
                         String id = widget.value['id'];
                         print(id);
                         final docUser = FirebaseFirestore.instance

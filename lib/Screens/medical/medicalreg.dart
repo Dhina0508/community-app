@@ -19,6 +19,7 @@ class _registerState extends State<medicalreg> {
   TextEditingController _PhoneNoController = TextEditingController();
 
   TextEditingController _AddressController = TextEditingController();
+
   TextEditingController _DescriptionController = TextEditingController();
 
   // SendUserDataToDB() async {
@@ -51,10 +52,9 @@ class _registerState extends State<medicalreg> {
   CommonDb() {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
-
     final _CollectionReference =
-        FirebaseFirestore.instance.collection("Common_Db");
-    return _CollectionReference.doc().set({
+        FirebaseFirestore.instance.collection("Common_Db").doc();
+    return _CollectionReference.set({
       "about": "Medical",
       "id": _CollectionReference.id,
       "Name": _NameController.text,

@@ -11,8 +11,10 @@ class foodprof extends StatefulWidget {
 }
 
 class _bloodprofState extends State<foodprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number, @required trust}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Donate%20For%20Your%20Trust%20$trust";
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -176,7 +178,7 @@ class _bloodprofState extends State<foodprof> {
                         onPressed: () {
                           launchwp(
                               number: ("+91" + widget.value['PhoneNumber']),
-                              message: "Hi, i accepted your blood request :)");
+                              trust: widget.value['Trust Name']);
                           String id = widget.value['id'];
                           print(id);
                           final docUser = FirebaseFirestore.instance

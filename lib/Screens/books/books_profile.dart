@@ -12,8 +12,10 @@ class Booksprof extends StatefulWidget {
 }
 
 class _clothesprofState extends State<Booksprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number, @required book}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Accept%20Your%20Book%20$book";
+    ;
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -304,8 +306,7 @@ class _clothesprofState extends State<Booksprof> {
                                       launchwp(
                                           number: ("+91" +
                                               widget.value['PhoneNumber']),
-                                          message:
-                                              "Hi, i accepted your blood request :)");
+                                          book: widget.value['Name']);
                                       String id = widget.value['id'];
                                       print(id);
                                       final docUser = FirebaseFirestore.instance

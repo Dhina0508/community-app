@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/clothes/clothes.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,8 +13,10 @@ class clothesprof extends StatefulWidget {
 }
 
 class _clothesprofState extends State<clothesprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number, @required clothes}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Accept%20Your%20$clothes";
+    ;
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -221,8 +224,8 @@ class _clothesprofState extends State<clothesprof> {
                                       launchwp(
                                           number: ("+91" +
                                               widget.value['PhoneNumber']),
-                                          message:
-                                              "Hi, i accepted your blood request :)");
+                                          clothes:
+                                              widget.value['Type_of_dress']);
                                       String id = widget.value['id'];
                                       print(id);
                                       final docUser = FirebaseFirestore.instance

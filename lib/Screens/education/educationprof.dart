@@ -11,8 +11,10 @@ class educationalprof extends StatefulWidget {
 }
 
 class _educationalprofprofState extends State<educationalprof> {
-  launchwp({@required number, @required message}) async {
-    var url = "https://wa.me/$number";
+  launchwp({@required number}) async {
+    var url =
+        "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Help%20You%20In%20your%20Education";
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -179,8 +181,8 @@ class _educationalprofprofState extends State<educationalprof> {
                       child: ElevatedButton(
                         onPressed: () {
                           launchwp(
-                              number: ("+91" + widget.value['PhoneNumber']),
-                              message: "Hi, i accepted your blood request :)");
+                            number: ("+91" + widget.value['PhoneNumber']),
+                          );
                           String id = widget.value['id'];
                           print(id);
                           final docUser = FirebaseFirestore.instance
