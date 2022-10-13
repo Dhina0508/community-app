@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/books/books_profile.dart';
 import 'package:ecyc/Screens/clothes/clothesprof.dart';
 import 'package:ecyc/Screens/map/mymap.dart';
-import 'package:ecyc/Screens/map/try.dart';
+import 'package:ecyc/Screens/map/Live_location.dart';
 import 'package:ecyc/Screens/missing_person/missing.dart';
 import 'package:ecyc/Screens/education/educationprof.dart';
 import 'package:ecyc/Screens/food/foodprof.dart';

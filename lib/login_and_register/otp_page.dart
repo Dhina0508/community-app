@@ -1,4 +1,5 @@
 import 'package:ecyc/Screens/home.dart';
+import 'package:ecyc/login_and_register/SignUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -67,62 +68,66 @@ class _OtpPageState extends State<OtpPage> {
     return Scaffold(
       key: _scaffolkey,
       appBar: AppBar(title: Text('OTP Verification')),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        SizedBox(
-          height: 40,
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Center(
-            child: GestureDetector(
-              onTap: () {
-                verifyPhonenumber();
-              },
-              child: Text("Verifying: ${widget.codeDigits}-${widget.phone}"),
-            ),
-          ),
-        ),
-        Padding(
-            padding: EdgeInsets.all(40),
-            child: Pinput(
-              length: 6,
-              focusNode: _pinotpfocusnode,
-              controller: _pinotpcontroller,
-              pinAnimationType: PinAnimationType.fade,
-              onSubmitted: (pin) async {
-                try {
-                  await FirebaseAuth.instance
-                      .signInWithCredential(PhoneAuthProvider.credential(
-                          verificationId: VerificationCode!, smsCode: pin))
-                      .then((value) {
-                    if (value.user != null) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    }
-                  });
-                } catch (e) {
-                  FocusScope.of(context).unfocus();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Invalid OTP"),
-                    duration: Duration(seconds: 3),
-                  ));
-                }
-              },
-              defaultPinTheme: PinTheme(
-                width: 50,
-                height: 50,
-                textStyle: TextStyle(
-                    fontSize: 20,
-                    color: Color.fromRGBO(30, 60, 87, 1),
-                    fontWeight: FontWeight.w600),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Color.fromRGBO(234, 239, 243, 1), width: 2),
-                  borderRadius: BorderRadius.circular(20),
+      body: SingleChildScrollView(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Image.asset('images/otp.jpg'),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  verifyPhonenumber();
+                },
+                child: Text(
+                  "Verifying: ${widget.codeDigits}-${widget.phone}",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
-            ))
-      ]),
+            ),
+          ),
+          Padding(
+              padding: EdgeInsets.all(40),
+              child: Pinput(
+                closeKeyboardWhenCompleted: false,
+                length: 6,
+                focusNode: _pinotpfocusnode,
+                controller: _pinotpcontroller,
+                pinAnimationType: PinAnimationType.fade,
+                onSubmitted: (pin) async {
+                  try {
+                    await FirebaseAuth.instance
+                        .signInWithCredential(PhoneAuthProvider.credential(
+                            verificationId: VerificationCode!, smsCode: pin))
+                        .then((value) {
+                      if (value.user != null) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => SignUp()));
+                      }
+                    });
+                  } catch (e) {
+                    FocusScope.of(context).unfocus();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Invalid OTP"),
+                      duration: Duration(seconds: 3),
+                    ));
+                  }
+                },
+                defaultPinTheme: PinTheme(
+                  width: 50,
+                  height: 50,
+                  textStyle: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromRGBO(30, 60, 87, 1),
+                      fontWeight: FontWeight.w600),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Color.fromRGBO(234, 239, 243, 1), width: 2),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ))
+        ]),
+      ),
     );
   }
 }

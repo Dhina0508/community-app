@@ -38,6 +38,7 @@ class _registerState extends State<Missingreg> {
 
   TextEditingController _DescriptionController = TextEditingController();
   TextEditingController _AgeController = TextEditingController();
+  TextEditingController _SexController = TextEditingController();
   TextEditingController _Heightcontroller = TextEditingController();
   TextEditingController _ColourController = TextEditingController();
   TextEditingController _IdentityController = TextEditingController();
@@ -100,6 +101,7 @@ class _registerState extends State<Missingreg> {
       "id": _CollectionReference.id,
       "about": "missing",
       "Name": _NameController.text,
+      "Sex": _SexController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "Description": _DescriptionController.text,
@@ -226,6 +228,21 @@ class _registerState extends State<Missingreg> {
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
+                          controller: _SexController,
+                          decoration: InputDecoration(
+                              labelText: 'Sex',
+                              prefixIcon: Icon(
+                                Icons.man_outlined,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Eg: Male or Female'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
                           controller: _Heightcontroller,
                           decoration: InputDecoration(
                               labelText: 'Height',
@@ -318,21 +335,6 @@ class _registerState extends State<Missingreg> {
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
-                          controller: _AddressController,
-                          decoration: InputDecoration(
-                              labelText: 'Your Address',
-                              prefixIcon: Icon(
-                                Icons.home,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              hintText: ' Eg: T Nagar'),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
                           controller: _YourNameController,
                           decoration: InputDecoration(
                               labelText: 'Your Name',
@@ -358,6 +360,21 @@ class _registerState extends State<Missingreg> {
                               size: 40,
                             ),
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _AddressController,
+                          decoration: InputDecoration(
+                              labelText: 'Your Address',
+                              prefixIcon: Icon(
+                                Icons.home,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: ' Eg: T Nagar'),
                         ),
                       ),
                       Padding(

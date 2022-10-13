@@ -58,7 +58,7 @@ class _MyProfileState extends State<MyProfile> {
                           "${data['Name']}",
                           style: TextStyle(
                               fontFamily: 'Pacifico',
-                              fontSize: 35,
+                              fontSize: 30,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),

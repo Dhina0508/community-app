@@ -1,5 +1,6 @@
 import 'package:ecyc/login_and_register/forget.dart';
 import 'package:ecyc/login_and_register/SignUp.dart';
+import 'package:ecyc/login_and_register/phone_no_verification.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -179,7 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => SignUp()));
+                                        builder: (context) =>
+                                            PhoneNoVerification()));
                               },
                               child: Text(
                                 "Don't have an Account?   ",

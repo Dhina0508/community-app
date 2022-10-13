@@ -1,4 +1,4 @@
-import 'package:ecyc/Screens/map/try.dart';
+import 'package:ecyc/Screens/map/Live_location.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 

@@ -119,6 +119,29 @@ class _MissingprofState extends State<Missingprof> {
                                   width: 15,
                                 ),
                                 Text(
+                                  'Sex : ',
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'JosefinSans',
+                                      color: Colors.brown),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              widget.value['Sex'],
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
                                   'Height : ',
                                   style: TextStyle(
                                       fontSize: 25,
