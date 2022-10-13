@@ -43,7 +43,7 @@ class _ForgotPageState extends State<ForgotPage> {
               initialSelection: "IT",
               showCountryOnly: false,
               showOnlyCountryWhenClosed: false,
-              favorite: ["+91", "US", "+1", "PAK"],
+              favorite: ["+91"],
             ),
           ),
           Container(

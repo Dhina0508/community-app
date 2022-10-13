@@ -103,7 +103,7 @@ class SignUp extends StatelessWidget {
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
                         filled: true,
-                        hintText: 'Re-Enter Password',
+                        hintText: 'Confirm Password',
                         hintStyle: TextStyle(color: Colors.black),
                         prefixIcon: Icon(
                           Icons.lock_rounded,
@@ -145,7 +145,8 @@ class SignUp extends StatelessWidget {
                     },
                     child: Text('   Register   ')),
                 TextButton(
-                    onPressed: () => [Navigator.of(context).pop()],
+                    onPressed: () =>
+                        [Navigator.of(context).popAndPushNamed('login_page')],
                     child: Text('Have an account?',
                         style: TextStyle(fontSize: 13, color: Colors.white)))
               ],

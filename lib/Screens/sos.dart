@@ -1,6 +1,6 @@
 import 'package:ecyc/Screens/map/current_location_map.dart';
 import 'package:ecyc/Screens/map/live_location.dart';
-import 'package:ecyc/Screens/map/try.dart';
+import 'package:ecyc/Screens/map/Live_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 

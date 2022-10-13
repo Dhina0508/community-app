@@ -81,6 +81,7 @@ main() async {
       'foodreg': (context) => foodreg(),
       'register': (context) => register(),
       'login': (context) => MyHomePage(),
+      'login_page': (context) => LoginPage(),
       'profile': (context) => MyProfile(),
       'update': (context) => update(),
       'home': (context) => Home(),
@@ -103,10 +104,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 2),
-        () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginPage())));
+    Timer(Duration(seconds: 2),
+        () => Navigator.of(context).pushNamed('login_page'));
   }
 
   @override
