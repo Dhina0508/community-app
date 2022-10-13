@@ -90,9 +90,10 @@ class _registerState extends State<bloodreg> {
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('blood');
+                Navigator.of(context).pop();
               },
               icon: Icon(Icons.arrow_back)),
+          backgroundColor: Colors.transparent,
           elevation: 0,
           automaticallyImplyLeading: false,
           title: Column(

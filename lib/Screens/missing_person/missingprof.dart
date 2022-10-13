@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Missingprof extends StatefulWidget {
   var value;
@@ -11,6 +12,15 @@ class Missingprof extends StatefulWidget {
 }
 
 class _MissingprofState extends State<Missingprof> {
+  launchwp({@required number, @required message}) async {
+    var url = "https://wa.me/$number";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw "cannot launch $url";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -313,6 +323,11 @@ class _MissingprofState extends State<Missingprof> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: ElevatedButton(
                                     onPressed: () {
+                                      launchwp(
+                                          number: ("+91" +
+                                              widget.value['PhoneNumber']),
+                                          message:
+                                              "Hi, i accepted your blood request :)");
                                       String id = widget.value['id'];
                                       print(id);
                                       final docUser = FirebaseFirestore.instance
