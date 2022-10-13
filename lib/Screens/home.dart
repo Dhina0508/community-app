@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/books/books_profile.dart';
 import 'package:ecyc/Screens/clothes/clothesprof.dart';
+import 'package:ecyc/Screens/map/mymap.dart';
+import 'package:ecyc/Screens/map/try.dart';
 import 'package:ecyc/Screens/missing_person/missing.dart';
 import 'package:ecyc/Screens/education/educationprof.dart';
 import 'package:ecyc/Screens/food/foodprof.dart';
@@ -30,7 +32,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 189, 122, 201),
+      backgroundColor: Color.fromRGBO(248, 68, 100, 300),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
@@ -357,7 +359,8 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 189, 122, 201)),
+                      color: Color.fromRGBO(248, 68, 100, 300),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 4, top: 10),
@@ -548,10 +551,7 @@ class _HomeState extends State<Home> {
                         Icons.person_add,
                         color: Colors.brown,
                       ),
-                      onTap: () => [
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Missing()))
-                      ],
+                      onTap: () => [],
                     ),
                   ),
                   Padding(
@@ -562,10 +562,7 @@ class _HomeState extends State<Home> {
                         Icons.emergency_share,
                         color: Colors.red,
                       ),
-                      onTap: () => [
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Missing()))
-                      ],
+                      onTap: () => [],
                     ),
                   ),
                   Divider(
@@ -578,15 +575,7 @@ class _HomeState extends State<Home> {
                       Icons.person_pin_circle,
                       color: Colors.brown,
                     ),
-                    onTap: () => [Navigator.of(context).pop()],
-                  ),
-                  ListTile(
-                    title: Text('Home'),
-                    leading: Icon(
-                      Icons.home,
-                      color: Colors.black,
-                    ),
-                    onTap: () => [Navigator.of(context).pop()],
+                    onTap: () => [],
                   ),
                   Divider(
                     height: 18,

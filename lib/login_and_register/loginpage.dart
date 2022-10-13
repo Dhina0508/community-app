@@ -124,6 +124,8 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 60),
                   child: ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     // color: Color.fromRGBO(205, 189, 223, 1),
                     onPressed: () async {
                       setState(() {});

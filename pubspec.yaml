@@ -50,7 +50,15 @@ dependencies:
   flutter_local_notifications: ^11.0.1
   flutter_js: ^0.5.0+6
   flutter_phone_direct_caller: ^2.1.1
+<<<<<<< HEAD
   url_launcher: ^6.1.6
+=======
+  google_maps_flutter: ^2.1.12
+  geolocator: ^9.0.1
+  flutter_google_places: ^0.3.0
+  permission_handler: ^8.1.4+2
+  location: ^4.4.0
+>>>>>>> a5a3ff5ce9fcb6a320cb1f2ddf8d6b77690df2df
 
 
 dev_dependencies:
