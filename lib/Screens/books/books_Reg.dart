@@ -186,7 +186,9 @@ class _registerState extends State<booksreg> {
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           backgroundImage: file == null
-                              ? AssetImage("images/missing_prof.png")
+                              ? AssetImage(
+                                  "images/book1.png",
+                                )
                               : FileImage(File(file!.path)) as ImageProvider,
                           radius: 50,
                         ),
