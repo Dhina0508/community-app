@@ -26,7 +26,7 @@ class _bloodprofState extends State<bloodprof> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Requested By: " + widget.value['Name'],
+          "Requested By: " + widget.value['Your_name'],
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class _bloodprofState extends State<bloodprof> {
                     width: 15,
                   ),
                   Text(
-                    "Patient : ",
+                    "Patient Name : ",
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
@@ -61,31 +61,12 @@ class _bloodprofState extends State<bloodprof> {
                         color: Colors.brown),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 10,
               ),
               Text(widget.value['Name'],
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    'Contact : ',
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'JosefinSans',
-                        fontWeight: FontWeight.w500,
-                        color: Colors.brown),
-                  ),
-                ],
-              ),
-              Text(
-                widget.value['PhoneNumber'],
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
               SizedBox(
                 height: 20,
               ),
@@ -104,6 +85,9 @@ class _bloodprofState extends State<bloodprof> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 widget.value['Blood_Group'],
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -117,7 +101,7 @@ class _bloodprofState extends State<bloodprof> {
                     width: 15,
                   ),
                   Text(
-                    'Address: ',
+                    ' Patient Address: ',
                     style: TextStyle(
                         fontSize: 25,
                         fontFamily: 'JosefinSans',
@@ -125,6 +109,9 @@ class _bloodprofState extends State<bloodprof> {
                         color: Colors.brown),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0, left: 15),
@@ -151,12 +138,112 @@ class _bloodprofState extends State<bloodprof> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.value['discription'],
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Hospital Name : ",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'JosefinSans',
+                        color: Colors.brown),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(widget.value['hospital_name'],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Hospital Address : ",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'JosefinSans',
+                        color: Colors.brown),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(widget.value['hospital_address'],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Requestor Name : ",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'JosefinSans',
+                        color: Colors.brown),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(widget.value['Your_name'],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    'Requestor Contact Number : ',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'JosefinSans',
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.value['PhoneNumber'],
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Spacer(),
               Row(

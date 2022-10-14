@@ -16,6 +16,8 @@ class bloodreg extends StatefulWidget {
 
 class _registerState extends State<bloodreg> {
   TextEditingController _NameController = TextEditingController();
+  TextEditingController _HospitalNameController = TextEditingController();
+  TextEditingController _HospitalAddressController = TextEditingController();
 
   TextEditingController _bloodController = TextEditingController();
 
@@ -24,6 +26,8 @@ class _registerState extends State<bloodreg> {
   TextEditingController _AddressController = TextEditingController();
 
   TextEditingController _DiscriptionController = TextEditingController();
+
+  TextEditingController _YourNameController = TextEditingController();
 
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -63,9 +67,12 @@ class _registerState extends State<bloodreg> {
       "about": "blood",
       "id": _CollectionReference.id,
       "Name": _NameController.text,
-      "Blood_Group": _bloodController.text,
+      "Blood_Group": value == 'Others' ? _bloodController.text : value,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
+      "hospital_name": _HospitalNameController.text,
+      "hospital_address": _HospitalAddressController.text,
+      "Your_name": _YourNameController.text,
       "discription": _DiscriptionController.text,
       "Time": DateTime.now(),
     }).then((value) {
@@ -81,6 +88,19 @@ class _registerState extends State<bloodreg> {
       ));
     });
   }
+
+  final sectors = [
+    "O +ve",
+    "O -ve",
+    "A +ve",
+    "A1 +ve",
+    "B +ve",
+    "B -ve",
+    "AB +ve",
+    "AB -ve",
+    "Others"
+  ];
+  String? value;
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +148,9 @@ class _registerState extends State<bloodreg> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 40,
+                      ),
                       Text(
                         'Submit to Post Request',
                         style: TextStyle(
@@ -135,15 +158,77 @@ class _registerState extends State<bloodreg> {
                             color: Colors.redAccent[200],
                             fontWeight: FontWeight.bold),
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.bloodtype,
+                          color: Colors.red,
+                          size: 40,
+                        ),
+                        title: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          margin: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey, width: 1)),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                                dropdownColor: Colors.white,
+                                hint: Text(
+                                  'Select Blood Group',
+                                  style: TextStyle(
+                                      fontSize: 25, color: Colors.grey),
+                                ),
+                                value: value,
+                                style: TextStyle(color: Colors.black),
+                                iconSize: 16 * 2,
+                                icon: Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Colors.black,
+                                ),
+                                items: sectors.map(buildMenuItem).toList(),
+                                onChanged: (value) => setState(() {
+                                      this.value = value;
+                                    })),
+                          ),
+                        ),
+                      ),
+                      value == 'Others'
+                          ? Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10, right: 8, left: 8),
+                              child: TextFormField(
+                                controller: _bloodController,
+                                decoration: InputDecoration(
+                                  labelText: 'Blood Group',
+                                  prefixIcon: Icon(
+                                    Icons.bloodtype,
+                                    color: Colors.redAccent[200],
+                                    size: 40,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      value == 'Others'
+                          ? Container()
+                          : Divider(
+                              color: Colors.black,
+                              indent: 8,
+                              endIndent: 8,
+                            ),
                       Padding(
                         padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                            const EdgeInsets.only(right: 8, top: 20, left: 8),
                         child: TextFormField(
                           controller: _NameController,
                           decoration: InputDecoration(
-                              labelText: 'Full name',
+                              labelText: 'Patient Name',
                               prefixIcon: Icon(
-                                Icons.account_box_rounded,
+                                Icons.person,
                                 color: Colors.redAccent[200],
                                 size: 40,
                               ),
@@ -154,40 +239,9 @@ class _registerState extends State<bloodreg> {
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
-                          controller: _bloodController,
-                          decoration: InputDecoration(
-                              labelText: 'Blood Group',
-                              prefixIcon: Icon(
-                                Icons.bloodtype_rounded,
-                                color: Colors.redAccent[200],
-                                size: 40,
-                              ),
-                              hintText: 'Eg: B+ve'),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 30.0, right: 8, left: 8),
-                        child: TextFormField(
-                          controller: _PhoneNoController,
-                          keyboardType: TextInputType.phone,
-                          decoration: InputDecoration(
-                            labelText: 'Phone Number',
-                            prefixIcon: Icon(
-                              Icons.phone_android_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
                           controller: _AddressController,
                           decoration: InputDecoration(
-                              labelText: 'Address',
+                              labelText: 'Patient Address',
                               prefixIcon: Icon(
                                 Icons.house_rounded,
                                 color: Colors.redAccent[200],
@@ -213,14 +267,74 @@ class _registerState extends State<bloodreg> {
                       ),
                       Padding(
                         padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _HospitalNameController,
+                          decoration: InputDecoration(
+                              labelText: 'Hospital Name',
+                              prefixIcon: Icon(
+                                Icons.local_hospital,
+                                color: Colors.redAccent[200],
+                                size: 35,
+                              ),
+                              hintText: 'Patient admitted Hospital Name'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _HospitalAddressController,
+                          decoration: InputDecoration(
+                              labelText: 'Hospital Address',
+                              prefixIcon: Icon(
+                                Icons.add_home_work,
+                                color: Colors.redAccent[200],
+                                size: 35,
+                              ),
+                              hintText: 'Patient admitted Hospital Address'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _YourNameController,
+                          decoration: InputDecoration(
+                              labelText: 'Your Name',
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Name of the Requesting Person'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 30, right: 8, left: 8),
+                        child: TextFormField(
+                          controller: _PhoneNoController,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            labelText: ' Your Whatsapp Number',
+                            prefixIcon: Icon(
+                              Icons.phone_android_rounded,
+                              color: Colors.redAccent[200],
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
                             const EdgeInsets.only(right: 8, top: 30.0, left: 8),
                         child: ElevatedButton(
                             onPressed: () {
                               if (_NameController.text != '' &&
                                   _PhoneNoController.text != '' &&
                                   _AddressController.text != '' &&
-                                  _DiscriptionController.text != '' &&
-                                  _bloodController.text != '') {
+                                  _DiscriptionController.text != '') {
                                 // SendUserDataToDB();
                                 CommonDb();
                               } else {
@@ -249,4 +363,11 @@ class _registerState extends State<bloodreg> {
           ),
         ));
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+      value: item,
+      child: Text(
+        item,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ));
 }
