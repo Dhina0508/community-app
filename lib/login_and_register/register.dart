@@ -50,6 +50,14 @@ class _registerState extends State<register> {
   TextEditingController _BloodController = TextEditingController();
 
   TextEditingController _JobController = TextEditingController();
+  fcmToken() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+
+    final _CollectionReference =
+        FirebaseFirestore.instance.collection("devicestokens").doc();
+    return _CollectionReference.set({"fcm": FcmValue});
+  }
 
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -71,7 +79,6 @@ class _registerState extends State<register> {
       "Blood": _BloodController.text,
       "Occupation": _JobController.text,
       "img": url,
-      "fcm": FcmValue
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
