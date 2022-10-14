@@ -1,6 +1,5 @@
 import 'package:ecyc/Screens/MyProfile.dart';
 import 'package:ecyc/Screens/blood/blood.dart';
-import 'package:ecyc/Screens/blood/bloodprofile.dart';
 import 'package:ecyc/Screens/blood/bloodreg.dart';
 import 'package:ecyc/Screens/books/books.dart';
 import 'package:ecyc/Screens/books/books_Reg.dart';
@@ -9,7 +8,6 @@ import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/education/education.dart';
 import 'package:ecyc/Screens/education/educationreq.dart';
 import 'package:ecyc/Screens/food/food.dart';
-import 'package:ecyc/Screens/food/foodprof.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
@@ -17,7 +15,6 @@ import 'package:ecyc/Screens/medical/medicalreg.dart';
 import 'package:ecyc/Screens/scribers/scribers.dart';
 import 'package:ecyc/Screens/scribers/scribers_reg.dart';
 import 'package:ecyc/Screens/sos.dart';
-import 'package:ecyc/login_and_register/upadateUser.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/register.dart';
@@ -27,6 +24,8 @@ import 'package:get/get.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'login_and_register/updateUser.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +82,7 @@ main() async {
       'login': (context) => MyHomePage(),
       'login_page': (context) => LoginPage(),
       'profile': (context) => MyProfile(),
-      'update': (context) => update(),
+      // 'update': (context) => update(),
       'home': (context) => Home(),
       'scribers': (context) => scribers(),
       'scribersreg': (context) => scribersreg(),

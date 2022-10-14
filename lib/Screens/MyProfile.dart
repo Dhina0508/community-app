@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/login_and_register/upadateUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -161,19 +160,6 @@ class _MyProfileState extends State<MyProfile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                          child: CircleAvatar(
-                            radius: 70,
-                            backgroundImage: NetworkImage(
-                              "${data['img']}",
-                            ),
-                          ),
-                          onTap: () {
-                            setState(() {
-                              photo = '1';
-                            });
-                          },
-                        ),
                         photo == '1'
                             ? Column(
                                 children: [
@@ -200,7 +186,19 @@ class _MyProfileState extends State<MyProfile> {
                                       child: Text('Update'))
                                 ],
                               )
-                            : Container(),
+                            : GestureDetector(
+                                child: CircleAvatar(
+                                  radius: 70,
+                                  backgroundImage: NetworkImage(
+                                    "${data['img']}",
+                                  ),
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    photo = '1';
+                                  });
+                                },
+                              ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -521,13 +519,6 @@ class _MyProfileState extends State<MyProfile> {
                         SizedBox(
                           height: 20,
                         ),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shadowColor: Colors.purple),
-                            onPressed: () =>
-                                [Navigator.of(context).pushNamed('update')],
-                            child:
-                                Text('Update', style: TextStyle(fontSize: 20)))
                       ],
                     ),
                   ));
