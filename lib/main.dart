@@ -17,7 +17,7 @@ import 'package:ecyc/Screens/medical/medicalreg.dart';
 import 'package:ecyc/Screens/scribers/scribers.dart';
 import 'package:ecyc/Screens/scribers/scribers_reg.dart';
 import 'package:ecyc/Screens/sos.dart';
-import 'package:ecyc/Screens/upadateUser.dart';
+import 'package:ecyc/login_and_register/upadateUser.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/register.dart';
