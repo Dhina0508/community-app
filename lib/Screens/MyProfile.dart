@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/login_and_register/upadateUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MyProfile extends StatefulWidget {
   @override
@@ -8,6 +14,116 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  TextEditingController _phnoController = new TextEditingController();
+  TextEditingController _EmailController = new TextEditingController();
+  TextEditingController _BloodController = new TextEditingController();
+  TextEditingController _Professionontroller = new TextEditingController();
+  TextEditingController _LocationController = new TextEditingController();
+  TextEditingController _NameController = new TextEditingController();
+  String? link;
+  ImagePicker image = ImagePicker();
+  File? file;
+
+  String url = "";
+  getImage() async {
+    var img = await image.pickImage(source: ImageSource.gallery);
+    setState(() {
+      file = File(img!.path);
+    });
+  }
+
+  showtoast() {
+    Fluttertoast.showToast(
+        msg: "Details Cannot Be Empty",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blueGrey,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  UpdateImage() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    String name = DateTime.now().millisecondsSinceEpoch.toString();
+    var imageFile = FirebaseStorage.instance.ref().child("User").child(name);
+
+    UploadTask task = imageFile.putFile(file!);
+    TaskSnapshot snapshot = await task;
+    url = await snapshot.ref.getDownloadURL();
+    var currentuser = _auth.currentUser;
+
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({"img": url});
+  }
+
+  UpdatePhoneNo() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({
+      "PhoneNumber": _phnoController.text,
+    });
+  }
+
+  UpadateEmail() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({
+      "Email": _EmailController.text,
+    });
+  }
+
+  UpdateBlood() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({
+      "Blood": _BloodController.text,
+    });
+  }
+
+  UpdateProfession() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({
+      "Occupation": _Professionontroller.text,
+    });
+  }
+
+  UpdateName() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email)
+        .update({"Name": _NameController.text});
+  }
+
+  UpdateLocation() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({
+      "Address": _LocationController.text,
+    });
+  }
+
+  var name = '';
+  var PhNo = '';
+  var Email = '';
+  var Blood = '';
+  var Profession = '';
+  var location = '';
+  var photo = '';
   @override
   Widget build(BuildContext context) {
     CollectionReference users =
@@ -45,23 +161,90 @@ class _MyProfileState extends State<MyProfile> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: 70,
-                          backgroundImage: NetworkImage(
-                            "${data['img']}",
+                        GestureDetector(
+                          child: CircleAvatar(
+                            radius: 70,
+                            backgroundImage: NetworkImage(
+                              "${data['img']}",
+                            ),
                           ),
+                          onTap: () {
+                            setState(() {
+                              photo = '1';
+                            });
+                          },
                         ),
-                        SizedBox(
+                        photo == '1'
+                            ? Column(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      getImage();
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      backgroundImage: file == null
+                                          ? AssetImage("images/profile1.png")
+                                          : FileImage(File(file!.path))
+                                              as ImageProvider,
+                                      radius: 50,
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          photo = '';
+                                        });
+                                        UpdateImage();
+                                      },
+                                      child: Text('Update'))
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          "${data['Name']}",
-                          style: TextStyle(
-                              fontFamily: 'Pacifico',
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                        GestureDetector(
+                          child: Text(
+                            "${data['Name']}",
+                            style: const TextStyle(
+                                fontFamily: 'Pacifico',
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              name = '1';
+                            });
+                          },
                         ),
+                        name == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      controller: _NameController,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_NameController.text != '') {
+                                            setState(() {
+                                              name = '';
+                                            });
+                                            UpdateName();
+                                          } else {
+                                            showtoast();
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         SizedBox(
                           height: 20,
                           width: 200,
@@ -75,6 +258,17 @@ class _MyProfileState extends State<MyProfile> {
                           margin: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 25),
                           child: ListTile(
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.drive_file_rename_outline_rounded,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  PhNo = '1';
+                                });
+                              },
+                            ),
                             leading: Icon(
                               Icons.phone,
                               color: Colors.green,
@@ -86,11 +280,47 @@ class _MyProfileState extends State<MyProfile> {
                                     fontFamily: 'Josefinsans')),
                           ),
                         ),
+                        PhNo == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      controller: _phnoController,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_phnoController.text != '') {
+                                            setState(() {
+                                              PhNo = '';
+                                            });
+                                            UpdatePhoneNo();
+                                          } else {
+                                            showtoast();
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         Card(
                           color: Colors.white,
                           margin: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 25),
                           child: ListTile(
+                            trailing: IconButton(
+                                icon: Icon(
+                                  Icons.drive_file_rename_outline_rounded,
+                                  color: Colors.green,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    Email = '1';
+                                  });
+                                }),
                             leading: Icon(
                               Icons.email,
                               color: Colors.brown,
@@ -103,11 +333,48 @@ class _MyProfileState extends State<MyProfile> {
                                 )),
                           ),
                         ),
+                        Email == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      controller: _EmailController,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_EmailController.text != '') {
+                                            setState(() {
+                                              Email = '';
+                                            });
+                                            UpadateEmail();
+                                          } else {
+                                            showtoast();
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         Card(
                           color: Colors.white,
                           margin: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 25),
                           child: ListTile(
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.drive_file_rename_outline_rounded,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  Blood = '1';
+                                });
+                              },
+                            ),
                             leading: Icon(
                               Icons.bloodtype,
                               color: Colors.red,
@@ -119,11 +386,48 @@ class _MyProfileState extends State<MyProfile> {
                                     fontFamily: 'Josefinsans')),
                           ),
                         ),
+                        Blood == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      controller: _BloodController,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_BloodController.text != '') {
+                                            setState(() {
+                                              Blood = '';
+                                            });
+                                            UpdateBlood();
+                                          } else {
+                                            showtoast();
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         Card(
                           color: Colors.white,
                           margin: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 25),
                           child: ListTile(
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.drive_file_rename_outline_rounded,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  Profession = '1';
+                                });
+                              },
+                            ),
                             leading: Icon(
                               Icons.accessibility_rounded,
                               color: Colors.brown,
@@ -135,11 +439,48 @@ class _MyProfileState extends State<MyProfile> {
                                     fontFamily: 'Josefinsans')),
                           ),
                         ),
+                        Profession == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      controller: _Professionontroller,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_Professionontroller.text != '') {
+                                            setState(() {
+                                              Profession = '';
+                                            });
+                                            UpdateProfession();
+                                          } else {
+                                            showtoast();
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         Card(
                           color: Colors.white,
                           margin: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 25),
                           child: ListTile(
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.drive_file_rename_outline_rounded,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  location = '1';
+                                });
+                              },
+                            ),
                             leading: Icon(
                               Icons.location_on_sharp,
                               color: Colors.red,
@@ -151,6 +492,32 @@ class _MyProfileState extends State<MyProfile> {
                                     fontFamily: 'Josefinsans')),
                           ),
                         ),
+                        location == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      controller: _LocationController,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_LocationController.text != '') {
+                                            setState(() {
+                                              location = '';
+                                            });
+                                            UpdateLocation();
+                                          } else {
+                                            showtoast();
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
                         SizedBox(
                           height: 20,
                         ),
