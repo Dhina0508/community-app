@@ -15,6 +15,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _isHidden = true;
+
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   Service service = Service();
@@ -106,10 +108,17 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     controller: passwordcontroller,
-                    obscureText: true,
+                    obscureText: _isHidden,
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
                         filled: true,
+                        suffixIcon: InkWell(
+                          onTap: _togglePasswordView,
+                          child: Icon(
+                            Icons.visibility,
+                            size: 25,
+                          ),
+                        ),
                         hintText: 'Enter Password',
                         hintStyle: TextStyle(color: Colors.black),
                         prefixIcon: Icon(
@@ -197,5 +206,11 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ));
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }

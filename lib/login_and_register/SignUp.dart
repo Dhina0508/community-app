@@ -1,10 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  bool _isHidden = true;
+
   TextEditingController _Usernamecontroller = TextEditingController();
+
   TextEditingController _Emailcontroller = TextEditingController();
+
   TextEditingController _Passwordcontroller = TextEditingController();
+
   TextEditingController _RePasswordcontroller = TextEditingController();
 
   @override
@@ -78,9 +88,16 @@ class SignUp extends StatelessWidget {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     controller: _Passwordcontroller,
-                    obscureText: true,
+                    obscureText: _isHidden,
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
+                        suffixIcon: InkWell(
+                          onTap: _togglePasswordView,
+                          child: Icon(
+                            Icons.visibility,
+                            size: 25,
+                          ),
+                        ),
                         filled: true,
                         hintText: 'Enter Password',
                         hintStyle: TextStyle(color: Colors.black),
@@ -99,9 +116,16 @@ class SignUp extends StatelessWidget {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     controller: _RePasswordcontroller,
-                    obscureText: true,
+                    obscureText: _isHidden,
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
+                        suffixIcon: InkWell(
+                          onTap: _togglePasswordView,
+                          child: Icon(
+                            Icons.visibility,
+                            size: 25,
+                          ),
+                        ),
                         filled: true,
                         hintText: 'Confirm Password',
                         hintStyle: TextStyle(color: Colors.black),
@@ -155,5 +179,11 @@ class SignUp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }

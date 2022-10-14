@@ -32,22 +32,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 68, 100, 300),
+      // backgroundColor: Color.fromRGBO(248, 68, 100, 300),
+      backgroundColor: Color.fromARGB(255, 202, 191, 191),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
-        actions: [
-          IconButton(
-              onPressed: () async {
-                service.signOut(context);
-                SharedPreferences pref = await SharedPreferences.getInstance();
-                pref.remove("email");
-              },
-              icon: Icon(
-                Icons.logout,
-                color: Colors.white,
-              ))
-        ],
         centerTitle: true,
         backgroundColor: Colors.transparent,
         title: Container(
@@ -590,6 +579,16 @@ class _HomeState extends State<Home> {
                     title: Text('ECYC Features'),
                     leading: Icon(Icons.help_outline_sharp),
                     onTap: () => [],
+                  ),
+                  ListTile(
+                    title: Text('Log Out'),
+                    leading: Icon(Icons.logout),
+                    onTap: () async {
+                      service.signOut(context);
+                      SharedPreferences pref =
+                          await SharedPreferences.getInstance();
+                      pref.remove("email");
+                    },
                   ),
                 ],
               ));

@@ -40,7 +40,7 @@ class _OtpPageState extends State<OtpPage> {
               .then((value) {
             if (value.user != null) {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+                  context, MaterialPageRoute(builder: (context) => SignUp()));
             }
           });
         },
