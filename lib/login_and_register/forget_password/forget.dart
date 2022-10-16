@@ -1,4 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:ecyc/login_and_register/forget_password/otp.dart';
 import 'package:ecyc/login_and_register/otp_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class ForgotPage extends StatefulWidget {
 }
 
 class _ForgotPageState extends State<ForgotPage> {
-  String dialCodeDigits = "+00";
+  String dialCodeDigits = "+91";
   TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class _ForgotPageState extends State<ForgotPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => OtpPage(
+                        builder: (context) => Otp_Page(
                             phone: _controller.text,
                             codeDigits: dialCodeDigits)));
               },

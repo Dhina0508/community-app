@@ -1,4 +1,4 @@
-import 'package:ecyc/login_and_register/forget.dart';
+import 'package:ecyc/login_and_register/forget_password/forget.dart';
 import 'package:ecyc/login_and_register/SignUp.dart';
 import 'package:ecyc/login_and_register/phone_no_verification.dart';
 import 'package:flutter/material.dart';
