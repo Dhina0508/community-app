@@ -169,10 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                           alignment: Alignment.topLeft,
                           child: TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ForgotPage()));
+                                Navigator.of(context).pushNamed('getEmail');
                               },
                               child: Text(
                                 "Forgot Password?",

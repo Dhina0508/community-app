@@ -16,6 +16,7 @@ import 'package:ecyc/Screens/scribers/scribers.dart';
 import 'package:ecyc/Screens/scribers/scribers_reg.dart';
 import 'package:ecyc/Screens/sos.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:ecyc/login_and_register/forget_password/get_email.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/register.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -88,7 +89,8 @@ main() async {
       'scribersreg': (context) => scribersreg(),
       'sos': (context) => sos(),
       'books': (context) => books(),
-      'booksreg': (context) => booksreg()
+      'booksreg': (context) => booksreg(),
+      'getEmail': (context) => GetEmail()
     },
   ));
 }
