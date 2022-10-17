@@ -3,6 +3,7 @@ import 'package:ecyc/Screens/blood/blood.dart';
 import 'package:ecyc/Screens/blood/bloodreg.dart';
 import 'package:ecyc/Screens/books/books.dart';
 import 'package:ecyc/Screens/books/books_Reg.dart';
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/Screens/clothes/clothes.dart';
 import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/education/education.dart';
@@ -68,7 +69,7 @@ main() async {
       primarySwatch: Colors.blue,
     ),
     debugShowCheckedModeBanner: false,
-    home: email == null ? MyHomePage() : Home(),
+    home: email == null ? MyHomePage() : BottomNavigatorBar(),
     routes: {
       'blood': (context) => blood(),
       'medical': (context) => medical(),

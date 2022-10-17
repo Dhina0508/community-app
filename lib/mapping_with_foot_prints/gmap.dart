@@ -24,7 +24,8 @@ class _gmapState extends State<gmap> {
         markerId: MarkerId('Trial1'),
         position: LatLng(13.047411, 80.075922),
         infoWindow: InfoWindow(
-            title: 'Panimalar Engineering College', snippet: 'Boys College'),
+            title: 'Panimalar Engineering College',
+            snippet: 'Autonomous institution'),
         onTap: () async {
           var url = "https://panimalar.ac.in/";
           if (await canLaunch(url)) {
@@ -38,18 +39,25 @@ class _gmapState extends State<gmap> {
         markerId: MarkerId('Trial2'),
         position: LatLng(13.043362, 80.231425),
         infoWindow: InfoWindow(
-          title: 'Earth + Air',
-          snippet: 'IT Company',
-        ),
+            title: 'Earth + Air',
+            snippet: 'IT Company',
+            onTap: () async {
+              var url = "https://www.earthandair.in/";
+              if (await canLaunch(url)) {
+                await launch(url);
+              } else {
+                throw "cannot launch $url";
+              }
+            }),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed));
     Marker ThirdMarker = Marker(
         markerId: MarkerId('Trial3'),
         position: LatLng(13.01, 80.176),
         infoWindow: InfoWindow(
-            title: 'Young chennai',
+            title: 'WIPRO',
             snippet: 'Best Place',
             onTap: () async {
-              var url = "https://en.wikipedia.org/wiki/Tamil_language";
+              var url = "https://www.wipro.com/";
               if (await canLaunch(url)) {
                 await launch(url);
               } else {
