@@ -28,25 +28,16 @@ class otp_Verificatioon extends StatelessWidget {
                   snapshot.data!.data() as Map<String, dynamic>;
               var PhoneNo = data['PhoneNumber'];
 
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(PhoneNo),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ChangePass(
-                                        user: users,
-                                        email: email,
-                                      )));
-                        },
-                        child: Text('Proceed')),
-                  ],
-                ),
-              );
+              return ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChangePass(
+                                  email: email,
+                                )));
+                  },
+                  child: Text('Proceed'));
             }
 
             return Text("loading");

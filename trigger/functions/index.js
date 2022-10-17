@@ -18,6 +18,7 @@ exports.newSubscriberNotification = functions.firestore
                     tokens.push(token.data().devtoken);
                 }
                 var payload = {
+                    topic:"work",
                     "notification": {
                         "title": "From ",
                         "body": "Motive ",

@@ -1,3 +1,4 @@
+import 'package:ecyc/login_and_register/forget_password/change_pass.dart';
 import 'package:ecyc/login_and_register/forget_password/otp_proceed_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +27,8 @@ class GetEmail extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => otp_Verificatioon(
-                              email: _EmailController.text,
+                        builder: (context) => ChangePass(
+                              email: _EmailController.text.trim(),
                             )));
               },
               child: Text('Proceed'))
