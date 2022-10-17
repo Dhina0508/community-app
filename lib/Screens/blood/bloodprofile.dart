@@ -129,7 +129,7 @@ class _bloodprofState extends State<bloodprof> {
                             child: Text(
                               widget.value['Address'],
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 25, fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
@@ -158,7 +158,7 @@ class _bloodprofState extends State<bloodprof> {
                             child: Text(
                               widget.value['discription'],
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 25, fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(

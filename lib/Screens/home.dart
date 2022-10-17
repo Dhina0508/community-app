@@ -595,6 +595,19 @@ class _HomeState extends State<Home> {
             }
             return CircularProgressIndicator();
           }),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Notification',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person), label: 'My Profile'),
+        ],
+      ),
     );
   }
 }
