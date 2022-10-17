@@ -173,7 +173,7 @@ class _MyProfileState extends State<MyProfile> {
                                           ? AssetImage("images/profile1.png")
                                           : FileImage(File(file!.path))
                                               as ImageProvider,
-                                      radius: 50,
+                                      radius: 70,
                                     ),
                                   ),
                                   ElevatedButton(
@@ -225,6 +225,8 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Your Name'),
                                       controller: _NameController,
                                     )),
                                     ElevatedButton(
@@ -236,6 +238,9 @@ class _MyProfileState extends State<MyProfile> {
                                             UpdateName();
                                           } else {
                                             showtoast();
+                                            setState(() {
+                                              name = '';
+                                            });
                                           }
                                         },
                                         child: Text('Update'))
@@ -259,7 +264,7 @@ class _MyProfileState extends State<MyProfile> {
                             trailing: IconButton(
                               icon: Icon(
                                 Icons.drive_file_rename_outline_rounded,
-                                color: Colors.green,
+                                color: Colors.grey,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -286,6 +291,8 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Contact Number'),
                                       controller: _phnoController,
                                     )),
                                     ElevatedButton(
@@ -296,6 +303,9 @@ class _MyProfileState extends State<MyProfile> {
                                             });
                                             UpdatePhoneNo();
                                           } else {
+                                            setState(() {
+                                              PhNo = '';
+                                            });
                                             showtoast();
                                           }
                                         },
@@ -312,7 +322,7 @@ class _MyProfileState extends State<MyProfile> {
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.drive_file_rename_outline_rounded,
-                                  color: Colors.green,
+                                  color: Colors.grey,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -339,6 +349,8 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Your Email id'),
                                       controller: _EmailController,
                                     )),
                                     ElevatedButton(
@@ -350,6 +362,9 @@ class _MyProfileState extends State<MyProfile> {
                                             UpadateEmail();
                                           } else {
                                             showtoast();
+                                            setState(() {
+                                              Email = '';
+                                            });
                                           }
                                         },
                                         child: Text('Update'))
@@ -365,7 +380,7 @@ class _MyProfileState extends State<MyProfile> {
                             trailing: IconButton(
                               icon: Icon(
                                 Icons.drive_file_rename_outline_rounded,
-                                color: Colors.green,
+                                color: Colors.grey,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -392,6 +407,8 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Your blood Group'),
                                       controller: _BloodController,
                                     )),
                                     ElevatedButton(
@@ -403,6 +420,9 @@ class _MyProfileState extends State<MyProfile> {
                                             UpdateBlood();
                                           } else {
                                             showtoast();
+                                            setState(() {
+                                              Blood = '';
+                                            });
                                           }
                                         },
                                         child: Text('Update'))
@@ -418,7 +438,7 @@ class _MyProfileState extends State<MyProfile> {
                             trailing: IconButton(
                               icon: Icon(
                                 Icons.drive_file_rename_outline_rounded,
-                                color: Colors.green,
+                                color: Colors.grey,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -445,6 +465,8 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Your Occupation'),
                                       controller: _Professionontroller,
                                     )),
                                     ElevatedButton(
@@ -456,6 +478,9 @@ class _MyProfileState extends State<MyProfile> {
                                             UpdateProfession();
                                           } else {
                                             showtoast();
+                                            setState(() {
+                                              Profession = '';
+                                            });
                                           }
                                         },
                                         child: Text('Update'))
@@ -471,7 +496,7 @@ class _MyProfileState extends State<MyProfile> {
                             trailing: IconButton(
                               icon: Icon(
                                 Icons.drive_file_rename_outline_rounded,
-                                color: Colors.green,
+                                color: Colors.grey,
                               ),
                               onPressed: () {
                                 setState(() {
@@ -498,6 +523,8 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Your Address'),
                                       controller: _LocationController,
                                     )),
                                     ElevatedButton(
@@ -509,6 +536,9 @@ class _MyProfileState extends State<MyProfile> {
                                             UpdateLocation();
                                           } else {
                                             showtoast();
+                                            setState(() {
+                                              location = '';
+                                            });
                                           }
                                         },
                                         child: Text('Update'))

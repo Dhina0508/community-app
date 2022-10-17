@@ -46,11 +46,6 @@ class _MyAppState extends State<MyApp> {
         title: Text('Live Location'),
       ),
       body: Column(children: [
-        // TextButton(
-        //     onPressed: () {
-        //       _getLocation();
-        //     },
-        //     child: Text('Refresh')),
         Expanded(
             child: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -106,7 +101,15 @@ class _MyAppState extends State<MyApp> {
                               ],
                             ),
                             SizedBox(
-                              height: 70,
+                              height: 20,
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  _getLocation();
+                                },
+                                child: Text('Refresh')),
+                            SizedBox(
+                              height: 50,
                             ),
                             Container(
                               height: 70,
