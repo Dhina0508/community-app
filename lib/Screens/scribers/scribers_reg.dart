@@ -18,6 +18,7 @@ class _registerState extends State<scribersreg> {
   TextEditingController _NameController = TextEditingController();
 
   TextEditingController _ExamController = TextEditingController();
+  TextEditingController _ExamDateController = TextEditingController();
 
   TextEditingController _PhoneNoController = TextEditingController();
 
@@ -64,6 +65,7 @@ class _registerState extends State<scribersreg> {
       "id": _CollectionReference.id,
       "Name": _NameController.text,
       "Exam_Group": _ExamController.text,
+      "Exam_Date": _ExamDateController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "discription": _DiscriptionController.text,
@@ -143,7 +145,7 @@ class _registerState extends State<scribersreg> {
                           decoration: InputDecoration(
                               labelText: 'Full name',
                               prefixIcon: Icon(
-                                Icons.account_box_rounded,
+                                Icons.person,
                                 color: Colors.redAccent[200],
                                 size: 40,
                               ),
@@ -158,11 +160,27 @@ class _registerState extends State<scribersreg> {
                           decoration: InputDecoration(
                               labelText: 'Name of the exam',
                               prefixIcon: Icon(
-                                Icons.note,
+                                Icons.note_alt_outlined,
                                 color: Colors.redAccent[200],
                                 size: 40,
                               ),
-                              hintText: 'Eg: TNPSC'),
+                              hintText: 'Eg: TNPSC,StateBoard,..'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: _ExamDateController,
+                          decoration: InputDecoration(
+                              labelText: 'Date of the exam',
+                              prefixIcon: Icon(
+                                Icons.calendar_month,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              hintText: 'Eg: 25/10/2022'),
                         ),
                       ),
                       Padding(

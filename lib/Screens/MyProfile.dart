@@ -19,6 +19,8 @@ class _MyProfileState extends State<MyProfile> {
   TextEditingController _Professionontroller = new TextEditingController();
   TextEditingController _LocationController = new TextEditingController();
   TextEditingController _NameController = new TextEditingController();
+  TextEditingController _AgeController = new TextEditingController();
+
   String? link;
   ImagePicker image = ImagePicker();
   File? file;
@@ -77,6 +79,16 @@ class _MyProfileState extends State<MyProfile> {
     });
   }
 
+  UpadateAge() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentuser = _auth.currentUser;
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("User_Bio_Data");
+    return _CollectionReference.doc(currentuser!.email).update({
+      "Age": _AgeController.text,
+    });
+  }
+
   UpdateBlood() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
@@ -123,6 +135,7 @@ class _MyProfileState extends State<MyProfile> {
   var Profession = '';
   var location = '';
   var photo = '';
+  var age = '';
   @override
   Widget build(BuildContext context) {
     CollectionReference users =
@@ -364,6 +377,64 @@ class _MyProfileState extends State<MyProfile> {
                                             showtoast();
                                             setState(() {
                                               Email = '';
+                                            });
+                                          }
+                                        },
+                                        child: Text('Update'))
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                        Card(
+                          color: Colors.white,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 25),
+                          child: ListTile(
+                            trailing: IconButton(
+                                icon: Icon(
+                                  Icons.drive_file_rename_outline_rounded,
+                                  color: Colors.grey,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    age = '1';
+                                  });
+                                }),
+                            leading: Icon(
+                              Icons.child_care,
+                              color: Colors.black,
+                            ),
+                            title: Text("${data['Age']}",
+                                style: TextStyle(
+                                  fontFamily: 'Josefinsans',
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                )),
+                          ),
+                        ),
+                        age == '1'
+                            ? Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 25.0, right: 25.0),
+                                child: Column(
+                                  children: [
+                                    Card(
+                                        child: TextField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Update Your Age'),
+                                      controller: _AgeController,
+                                    )),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (_AgeController.text != '') {
+                                            setState(() {
+                                              age = '';
+                                            });
+                                            UpadateAge();
+                                          } else {
+                                            showtoast();
+                                            setState(() {
+                                              age = '';
                                             });
                                           }
                                         },

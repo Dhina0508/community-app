@@ -11,6 +11,7 @@ import 'package:ecyc/Screens/medical/medicalprof.dart';
 import 'package:ecyc/Screens/missing_person/missingprof.dart';
 import 'package:ecyc/Screens/scribers/scriberprofile.dart';
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
+import 'package:ecyc/mapping_with_foot_prints/gmap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -445,32 +446,22 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 25),
-                    child: ListTile(
-                        title: Text('Free Tution'),
-                        leading: Icon(
-                          Icons.spatial_audio_off_rounded,
-                          color: Colors.black,
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Free_tution()));
-                        }),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 25),
-                    child: ListTile(
-                      title: Text('Book Donation'),
-                      leading: Icon(
-                        Icons.menu_book,
-                        color: Colors.brown,
-                      ),
-                      onTap: () => [Navigator.of(context).pushNamed('books')],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(left: 25),
+                  //   child: ListTile(
+                  //       title: Text('Free Tution'),
+                  //       leading: Icon(
+                  //         Icons.spatial_audio_off_rounded,
+                  //         color: Colors.black,
+                  //       ),
+                  //       onTap: () {
+                  //         Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => Free_tution()));
+                  //       }),
+                  // ),
+
                   Padding(
                     padding: EdgeInsets.only(left: 25),
                     child: ListTile(
@@ -481,6 +472,17 @@ class _HomeState extends State<Home> {
                       ),
                       onTap: () =>
                           [Navigator.of(context).pushNamed('education')],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 25),
+                    child: ListTile(
+                      title: Text('Book Donation'),
+                      leading: Icon(
+                        Icons.menu_book,
+                        color: Colors.brown,
+                      ),
+                      onTap: () => [Navigator.of(context).pushNamed('books')],
                     ),
                   ),
                   Padding(
@@ -568,7 +570,10 @@ class _HomeState extends State<Home> {
                       Icons.person_pin_circle,
                       color: Colors.brown,
                     ),
-                    onTap: () => [],
+                    onTap: () => [
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => gmap()))
+                    ],
                   ),
                   Divider(
                     height: 18,
@@ -605,8 +610,8 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Notification',
+            icon: Icon(Icons.add_box_sharp),
+            label: 'Feed',
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person), label: 'My Profile'),

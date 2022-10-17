@@ -92,11 +92,8 @@ main() async {
       'sos': (context) => sos(),
       'books': (context) => books(),
       'booksreg': (context) => booksreg(),
-<<<<<<< HEAD
-      'free_tutionreg': (context) => free_tution_reg()
-=======
+      // 'free_tutionreg': (context) => free_tution_reg(),
       'getEmail': (context) => GetEmail()
->>>>>>> b1e51ea4497c714dec7ba564504d5f4b7122fe2d
     },
   ));
 }

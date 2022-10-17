@@ -65,7 +65,7 @@ class _profileState extends State<scribers> {
                               color: Colors.green,
                             ),
                             title: Text(
-                              "Patient Name: " + x['Name'],
+                              "Requestor Name: " + x['Name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
