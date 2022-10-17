@@ -9,6 +9,7 @@ import 'package:ecyc/Screens/education/education.dart';
 import 'package:ecyc/Screens/education/educationreq.dart';
 import 'package:ecyc/Screens/food/food.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
+import 'package:ecyc/Screens/free_tution/free_tution_reg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
@@ -82,13 +83,15 @@ main() async {
       'login': (context) => MyHomePage(),
       'login_page': (context) => LoginPage(),
       'profile': (context) => MyProfile(),
+
       // 'update': (context) => update(),
       'home': (context) => Home(),
       'scribers': (context) => scribers(),
       'scribersreg': (context) => scribersreg(),
       'sos': (context) => sos(),
       'books': (context) => books(),
-      'booksreg': (context) => booksreg()
+      'booksreg': (context) => booksreg(),
+      'free_tutionreg': (context) => free_tution_reg()
     },
   ));
 }

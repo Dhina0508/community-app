@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/books/books_profile.dart';
 import 'package:ecyc/Screens/clothes/clothesprof.dart';
+import 'package:ecyc/Screens/free_tution/free_tution.dart';
 import 'package:ecyc/Screens/map/mymap.dart';
 import 'package:ecyc/Screens/map/Live_location.dart';
 import 'package:ecyc/Screens/missing_person/missing.dart';
@@ -447,14 +448,17 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: EdgeInsets.only(left: 25),
                     child: ListTile(
-                      title: Text('Free Tution'),
-                      leading: Icon(
-                        Icons.spatial_audio_off_rounded,
-                        color: Colors.black,
-                      ),
-                      onTap: () =>
-                          [Navigator.of(context).pushNamed('education')],
-                    ),
+                        title: Text('Free Tution'),
+                        leading: Icon(
+                          Icons.spatial_audio_off_rounded,
+                          color: Colors.black,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Free_tution()));
+                        }),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 25),
