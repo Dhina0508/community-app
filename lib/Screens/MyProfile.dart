@@ -201,6 +201,7 @@ class _MyProfileState extends State<MyProfile> {
                               )
                             : GestureDetector(
                                 child: CircleAvatar(
+                                  backgroundColor: Colors.white,
                                   radius: 70,
                                   backgroundImage: NetworkImage(
                                     "${data['img']}",

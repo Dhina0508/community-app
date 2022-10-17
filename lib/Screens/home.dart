@@ -344,6 +344,7 @@ class _HomeState extends State<Home> {
                         Navigator.of(context).pushNamed('profile');
                       },
                       child: CircleAvatar(
+                        backgroundColor: Colors.white,
                         backgroundImage: NetworkImage(
                           "${data['img']}",
                         ),
