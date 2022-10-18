@@ -7,10 +7,10 @@
 //   free_tution_prof({this.value});
 
 //   @override
-//   State<free_tution_prof> createState() => _educationalprofprofState();
+//   State<free_tution_prof> createState() => _free_tution_profState();
 // }
 
-// class _educationalprofprofState extends State<free_tution_prof> {
+// class _free_tution_profState extends State<free_tution_prof> {
 //   launchwp({@required number}) async {
 //     var url =
 //         "https://api.whatsapp.com/send?phone=$number&text=I'm%20Willing%20To%20Help%20You%20In%20your%20Education";

@@ -1,4 +1,3 @@
-
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
@@ -7,10 +6,10 @@
 //   free_tution_reg({Key? key}) : super(key: key);
 
 //   @override
-//   State<free_tution_reg> createState() => _registerState();
+//   State<free_tution_reg> createState() => _free_tution_regState();
 // }
 
-// class _registerState extends State<free_tution_reg> {
+// class _free_tution_regState extends State<free_tution_reg> {
 //   TextEditingController _NameController = TextEditingController();
 
 //   TextEditingController _EducationController = TextEditingController();
@@ -136,7 +135,7 @@
 //                         child: TextFormField(
 //                           controller: _NameController,
 //                           decoration: InputDecoration(
-//                               labelText: 'Full name',
+//                               labelText: 'Staff name',
 //                               prefixIcon: Icon(
 //                                 Icons.account_box_rounded,
 //                                 color: Colors.redAccent[200],
@@ -171,6 +170,7 @@
 //                                 Icons.menu_book_rounded,
 //                                 color: Colors.redAccent,
 //                                 size: 40,
+
 //                               ),
 //                               hintText: 'Eg.UG,PG,..'),
 //                         ),

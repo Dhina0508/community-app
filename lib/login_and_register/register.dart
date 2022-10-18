@@ -50,6 +50,9 @@ class _registerState extends State<register> {
   TextEditingController _BloodController = TextEditingController();
 
   TextEditingController _JobController = TextEditingController();
+
+  TextEditingController _AgeController = TextEditingController();
+
   fcmToken() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
@@ -76,6 +79,7 @@ class _registerState extends State<register> {
       "Email": _EmailController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
+      "Age": _AgeController.text,
       "Blood": _BloodController.text,
       "Occupation": _JobController.text,
       "img": url,
@@ -209,6 +213,21 @@ class _registerState extends State<register> {
                               size: 40,
                             ),
                             hintText: 'Eg: B+ve'),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(right: 8, top: 30, left: 8),
+                      child: TextFormField(
+                        controller: _AgeController,
+                        decoration: InputDecoration(
+                            labelText: 'Age',
+                            prefixIcon: Icon(
+                              Icons.person_pin_rounded,
+                              color: Colors.redAccent[200],
+                              size: 40,
+                            ),
+                            hintText: 'Eg: 24'),
                       ),
                     ),
                     Padding(

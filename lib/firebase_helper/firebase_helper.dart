@@ -1,3 +1,4 @@
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +13,9 @@ class Service {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()))
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BottomNavigatorBar()))
               });
     } catch (e) {
       errorBox(context, e);
@@ -25,7 +28,9 @@ class Service {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) => {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()))
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BottomNavigatorBar()))
               });
     } catch (e) {
       errorBox(context, e);

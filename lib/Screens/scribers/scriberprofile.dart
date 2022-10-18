@@ -54,7 +54,7 @@ class _scriberprofState extends State<scribersprof> {
                     width: 15,
                   ),
                   Text(
-                    "Patient : ",
+                    "Name : ",
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
@@ -118,6 +118,28 @@ class _scriberprofState extends State<scribersprof> {
                     width: 15,
                   ),
                   Text(
+                    'Exam Date : ',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'JosefinSans',
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown),
+                  ),
+                ],
+              ),
+              Text(
+                widget.value['Exam_Date'],
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
                     'Address: ',
                     style: TextStyle(
                         fontSize: 25,
@@ -131,7 +153,7 @@ class _scriberprofState extends State<scribersprof> {
                 padding: const EdgeInsets.only(top: 8.0, left: 15),
                 child: Text(
                   widget.value['Address'],
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
@@ -156,7 +178,7 @@ class _scriberprofState extends State<scribersprof> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.value['discription'],
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               Spacer(),

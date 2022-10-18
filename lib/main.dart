@@ -3,12 +3,14 @@ import 'package:ecyc/Screens/blood/blood.dart';
 import 'package:ecyc/Screens/blood/bloodreg.dart';
 import 'package:ecyc/Screens/books/books.dart';
 import 'package:ecyc/Screens/books/books_Reg.dart';
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/Screens/clothes/clothes.dart';
 import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/education/education.dart';
 import 'package:ecyc/Screens/education/educationreq.dart';
 import 'package:ecyc/Screens/food/food.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
+import 'package:ecyc/Screens/free_tution/free_tution_reg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
@@ -67,7 +69,7 @@ main() async {
       primarySwatch: Colors.blue,
     ),
     debugShowCheckedModeBanner: false,
-    home: email == null ? MyHomePage() : Home(),
+    home: email == null ? MyHomePage() : BottomNavigatorBar(),
     routes: {
       'blood': (context) => blood(),
       'medical': (context) => medical(),
@@ -83,6 +85,7 @@ main() async {
       'login': (context) => MyHomePage(),
       'login_page': (context) => LoginPage(),
       'profile': (context) => MyProfile(),
+
       // 'update': (context) => update(),
       'home': (context) => Home(),
       'scribers': (context) => scribers(),
@@ -90,6 +93,7 @@ main() async {
       'sos': (context) => sos(),
       'books': (context) => books(),
       'booksreg': (context) => booksreg(),
+      // 'free_tutionreg': (context) => free_tution_reg(),
       'getEmail': (context) => GetEmail()
     },
   ));

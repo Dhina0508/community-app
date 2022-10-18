@@ -1,20 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/Screens/books/books_profile.dart';
-import 'package:ecyc/Screens/clothes/clothesprof.dart';
-import 'package:ecyc/Screens/map/mymap.dart';
-import 'package:ecyc/Screens/map/Live_location.dart';
+
 import 'package:ecyc/Screens/missing_person/missing.dart';
-import 'package:ecyc/Screens/education/educationprof.dart';
-import 'package:ecyc/Screens/food/foodprof.dart';
-import 'package:ecyc/Screens/medical/medicalprof.dart';
-import 'package:ecyc/Screens/missing_person/missingprof.dart';
-import 'package:ecyc/Screens/scribers/scriberprofile.dart';
+
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
+import 'package:ecyc/mapping_with_foot_prints/gmap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'blood/bloodprofile.dart';
+import 'books/books_profile.dart';
+import 'clothes/clothesprof.dart';
+import 'education/educationprof.dart';
+import 'food/foodprof.dart';
+import 'medical/medicalprof.dart';
+import 'missing_person/missingprof.dart';
+import 'scribers/scriberprofile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -63,8 +64,8 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Image.asset(
-            'images/hand1.png',
-            color: Colors.white.withOpacity(0.7),
+            'images/ecyc.png',
+            color: Colors.white.withOpacity(0.2),
             colorBlendMode: BlendMode.modulate,
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -327,6 +328,7 @@ class _HomeState extends State<Home> {
               }),
         ],
       ),
+
       drawer: FutureBuilder<DocumentSnapshot>(
           future: users.doc(FirebaseAuth.instance.currentUser!.email).get(),
           builder:
@@ -372,6 +374,7 @@ class _HomeState extends State<Home> {
                         Navigator.of(context).pushNamed('profile');
                       },
                       child: CircleAvatar(
+                        backgroundColor: Colors.white,
                         backgroundImage: NetworkImage(
                           "${data['img']}",
                         ),
@@ -474,13 +477,29 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(left: 25),
+                  //   child: ListTile(
+                  //       title: Text('Free Tution'),
+                  //       leading: Icon(
+                  //         Icons.spatial_audio_off_rounded,
+                  //         color: Colors.black,
+                  //       ),
+                  //       onTap: () {
+                  //         Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => Free_tution()));
+                  //       }),
+                  // ),
+
                   Padding(
                     padding: EdgeInsets.only(left: 25),
                     child: ListTile(
-                      title: Text('Free Tution'),
+                      title: Text('Educate Today'),
                       leading: Icon(
-                        Icons.spatial_audio_off_rounded,
-                        color: Colors.black,
+                        Icons.cast_for_education,
+                        color: Colors.red,
                       ),
                       onTap: () =>
                           [Navigator.of(context).pushNamed('education')],
@@ -495,18 +514,6 @@ class _HomeState extends State<Home> {
                         color: Colors.brown,
                       ),
                       onTap: () => [Navigator.of(context).pushNamed('books')],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 25),
-                    child: ListTile(
-                      title: Text('Educate Today'),
-                      leading: Icon(
-                        Icons.cast_for_education,
-                        color: Colors.red,
-                      ),
-                      onTap: () =>
-                          [Navigator.of(context).pushNamed('education')],
                     ),
                   ),
                   Padding(
@@ -594,7 +601,10 @@ class _HomeState extends State<Home> {
                       Icons.person_pin_circle,
                       color: Colors.brown,
                     ),
-                    onTap: () => [],
+                    onTap: () => [
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => gmap()))
+                    ],
                   ),
                   Divider(
                     height: 18,
@@ -625,19 +635,6 @@ class _HomeState extends State<Home> {
             }
             return CircularProgressIndicator();
           }),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Notification',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'My Profile'),
-        ],
-      ),
     );
   }
 }

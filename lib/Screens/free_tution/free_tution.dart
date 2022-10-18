@@ -1,17 +1,17 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:ecyc/Screens/education/educationprof.dart';
+// import 'package:ecyc/Screens/free_tution/free_tution_prof.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
-
 
 // class Free_tution extends StatefulWidget {
 //   const Free_tution({Key? key}) : super(key: key);
 
 //   @override
-//   State<Free_tution> createState() => _profileState();
+//   State<Free_tution> createState() => _Free_tutionState();
 // }
 
-// class _profileState extends State<Free_tution> {
+// class _Free_tutionState extends State<Free_tution> {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -20,7 +20,7 @@
 //         actions: [
 //           IconButton(
 //               onPressed: () =>
-//                   [Navigator.of(context).pushNamed('free_tution_reg')],
+//                   [Navigator.of(context).pushNamed('free_tutionreg')],
 //               icon: Icon(Icons.add))
 //         ],
 //         backgroundColor: Colors.red,
