@@ -11,8 +11,6 @@ class ChangePass extends StatelessWidget {
       FirebaseFirestore.instance.collection('User_Bio_Data');
   @override
   Widget build(BuildContext context) {
-    TextEditingController _NewPassword = new TextEditingController();
-    TextEditingController _code = new TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: Text('Change Password'),
