@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/scribers/scriberprofile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +21,9 @@ class _profileState extends State<scribers> {
         leading: IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BottomNavigatorBar()));
             },
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.green,

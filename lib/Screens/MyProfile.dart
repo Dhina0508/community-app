@@ -421,6 +421,7 @@ class _MyProfileState extends State<MyProfile> {
                                   children: [
                                     Card(
                                         child: TextField(
+                                      keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                           hintText: 'Update Your Age'),
                                       controller: _AgeController,

@@ -94,7 +94,8 @@ main() async {
       'books': (context) => books(),
       'booksreg': (context) => booksreg(),
       // 'free_tutionreg': (context) => free_tution_reg(),
-      'getEmail': (context) => GetEmail()
+      'getEmail': (context) => GetEmail(),
+      'BottomNavigatorBar': (context) => BottomNavigatorBar(),
     },
   ));
 }

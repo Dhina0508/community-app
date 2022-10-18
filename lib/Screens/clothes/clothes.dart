@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/Screens/clothes/clothesprof.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,9 @@ class _profileState extends State<clothes> {
         leading: IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BottomNavigatorBar()));
             },
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.blueAccent,

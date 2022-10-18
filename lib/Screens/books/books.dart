@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/books/books_profile.dart';
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class _profileState extends State<books> {
         leading: IconButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BottomNavigatorBar()));
             },
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.brown,
