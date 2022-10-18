@@ -23,6 +23,7 @@ class _FeedState extends State<Feed> {
       backgroundColor: Color.fromARGB(255, 202, 191, 191),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Notification',
           style: TextStyle(
@@ -38,8 +39,8 @@ class _FeedState extends State<Feed> {
       body: Stack(
         children: [
           Image.asset(
-            'images/notification1.png',
-            color: Color.fromARGB(255, 202, 191, 191).withOpacity(0.3),
+            'images/ecyc.png',
+            color: Colors.white.withOpacity(0.2),
             colorBlendMode: BlendMode.modulate,
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,

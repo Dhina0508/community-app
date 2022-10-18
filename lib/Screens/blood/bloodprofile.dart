@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class bloodprof extends StatefulWidget {
   var value;
+  final count = '0';
   bloodprof({this.value});
 
   @override

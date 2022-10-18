@@ -36,7 +36,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_box_sharp),
+              icon: Icon(Icons.notifications_active),
               label: 'Feed',
               backgroundColor: Colors.red),
           BottomNavigationBarItem(

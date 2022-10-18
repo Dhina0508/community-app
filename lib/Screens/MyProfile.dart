@@ -142,14 +142,15 @@ class _MyProfileState extends State<MyProfile> {
         FirebaseFirestore.instance.collection("User_Bio_Data");
 
     return Scaffold(
-        backgroundColor: Colors.blueGrey[800],
+        backgroundColor: Color.fromARGB(255, 202, 191, 191),
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(
             'Profile',
-            style: TextStyle(fontFamily: 'Cinzel', fontSize: 20),
+            style: TextStyle(
+                fontFamily: 'Cinzel', fontSize: 25, color: Colors.black),
           ),
         ),
         body: FutureBuilder<DocumentSnapshot>(
@@ -222,7 +223,7 @@ class _MyProfileState extends State<MyProfile> {
                             style: const TextStyle(
                                 fontFamily: 'Pacifico',
                                 fontSize: 30,
-                                color: Colors.white,
+                                color: Colors.brown,
                                 fontWeight: FontWeight.bold),
                           ),
                           onTap: () {

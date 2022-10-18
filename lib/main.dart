@@ -10,7 +10,6 @@ import 'package:ecyc/Screens/education/education.dart';
 import 'package:ecyc/Screens/education/educationreq.dart';
 import 'package:ecyc/Screens/food/food.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
-import 'package:ecyc/Screens/free_tution/free_tution_reg.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
@@ -27,7 +26,6 @@ import 'package:get/get.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 import 'login_and_register/updateUser.dart';
 
 main() async {

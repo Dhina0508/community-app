@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 import 'package:ecyc/Screens/missing_person/missing.dart';
 
@@ -8,15 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'blood/bloodprofile.dart';
-import 'books/books_profile.dart';
-import 'clothes/clothesprof.dart';
-import 'education/educationprof.dart';
-import 'food/foodprof.dart';
-import 'medical/medicalprof.dart';
-import 'missing_person/missingprof.dart';
-import 'scribers/scriberprofile.dart';
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -25,10 +18,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var _DotPosition = 0;
+  var _FireStoreInstance = FirebaseFirestore.instance;
+  List _SlidingImages = [];
   CollectionReference users =
       FirebaseFirestore.instance.collection("User_Bio_Data");
 
   Service service = Service();
+  FetchSlidingImages() async {
+    QuerySnapshot qn = await _FireStoreInstance.collection("Posters").get();
+    setState(() {
+      for (int i = 0; i < qn.docs.length; i++) {
+        _SlidingImages.add(qn.docs[i]["img"]);
+      }
+    });
+    return qn.docs;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    FetchSlidingImages();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +50,23 @@ class _HomeState extends State<Home> {
       backgroundColor: Color.fromARGB(255, 202, 191, 191),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => gmap()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'images/globe1.png',
+                height: 30,
+                width: 30,
+              ),
+            ),
+          ),
+        ],
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -44,289 +74,340 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.all(7),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(colors: [
-              Color.fromARGB(221, 241, 32, 32),
-              Color.fromARGB(234, 219, 33, 219),
-              Color.fromARGB(210, 52, 18, 175),
-              Color.fromARGB(210, 52, 18, 175),
-            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+            // gradient: LinearGradient(colors: [
+            //   Color.fromARGB(221, 241, 32, 32),
+            //   Color.fromARGB(234, 219, 33, 219),
+            //   Color.fromARGB(210, 52, 18, 175),
+            //   Color.fromARGB(210, 52, 18, 175),
+            // ], begin: Alignment.topRight, end: Alignment.bottomLeft),
           ),
           child: Text(
             'ECYC',
             style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontFamily: 'Cinzel',
                 fontWeight: FontWeight.bold,
                 fontSize: 30),
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          Image.asset(
-            'images/ecyc.png',
-            color: Colors.white.withOpacity(0.2),
-            colorBlendMode: BlendMode.modulate,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                CarouselSlider(
+                  items: _SlidingImages.map((item) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                image: NetworkImage(item),
+                                fit: BoxFit.fitWidth,
+                              )),
+                        ),
+                      )).toList(),
+                  options: CarouselOptions(
+                      autoPlay: true,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      autoPlayAnimationDuration: Duration(milliseconds: 700),
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.8,
+                      enlargeStrategy: CenterPageEnlargeStrategy.height,
+                      onPageChanged: (val, carouselPageChangedReason) {
+                        setState(() {
+                          _DotPosition = val;
+                        });
+                      }),
+                ),
+                DotsIndicator(
+                    dotsCount:
+                        _SlidingImages.length == 0 ? 1 : _SlidingImages.length,
+                    position: _DotPosition.toDouble(),
+                    decorator: DotsDecorator(
+                        activeColor: Colors.deepOrange,
+                        spacing: EdgeInsets.all(2),
+                        activeSize: Size(8, 8),
+                        size: Size(6, 6))),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Blood Donation',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              Image.asset(
+                                'images/blood.png',
+                                height: 140,
+                              ),
+                              Text(
+                                'Approved : Nil',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Health/Oragans',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              Image.asset(
+                                'images/plus.png',
+                                height: 140,
+                              ),
+                              Text(
+                                'Approved : Nil',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Food Donation',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              Image.asset(
+                                'images/plate.png',
+                                height: 140,
+                              ),
+                              Text(
+                                'Approved : Nil',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Clothes',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              Image.asset(
+                                'images/shirt1.jpeg',
+                                height: 140,
+                              ),
+                              Text(
+                                'Approved : Nil',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Education Today',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset(
+                                'images/book icon.png',
+                                height: 130,
+                              ),
+                              Text(
+                                'Approved : Nil',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Missing Person',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              Image.asset(
+                                'images/missing.jpg',
+                                height: 140,
+                              ),
+                              Text(
+                                'Approved : 00',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        height: 200,
+                        width: 170,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'Voluntering',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              )),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset(
+                                'images/volunteer-icon-10.png',
+                                height: 130,
+                              ),
+                              Text(
+                                'Approved : Nil',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-          StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection("Common_Db")
-                  .orderBy('Time')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, i) {
-                      QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      if (x['about'] == "Medical") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.local_hospital_rounded,
-                              size: 40,
-                              color: Colors.red,
-                            ),
-                            title: Text(
-                              "Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => medicalprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "blood") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.bloodtype_rounded,
-                                  size: 45,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                            title: Text(
-                              "Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => bloodprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "food") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.food_bank_rounded,
-                              size: 45,
-                              color: Colors.amber,
-                            ),
-                            title: Text(
-                              "Trust Name: " + x['Trust Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => foodprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "scribers") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.drive_file_rename_outline_rounded,
-                              size: 45,
-                              color: Colors.green,
-                            ),
-                            title: Text(
-                              "Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => scribersprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "education") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.school_rounded,
-                              size: 35,
-                              color: Colors.red,
-                            ),
-                            title: Text(
-                              "Name : " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => educationalprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "cloth") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.network(
-                                  x['img'],
-                                  fit: BoxFit.cover,
-                                  height: 50,
-                                  width: 50,
-                                ),
-                              ],
-                            ),
-                            title: Text(
-                              "Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => clothesprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "missing") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.network(
-                                  x['img'],
-                                  fit: BoxFit.fill,
-                                  height: 50,
-                                  width: 50,
-                                ),
-                              ],
-                            ),
-                            title: Text(
-                              "Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Missingprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "missing") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.network(
-                                  x['img'],
-                                  fit: BoxFit.fill,
-                                  height: 50,
-                                  width: 50,
-                                ),
-                              ],
-                            ),
-                            title: Text(
-                              "Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Missingprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['about'] == "books") {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.menu_book_rounded,
-                              size: 40,
-                              color: Colors.red,
-                            ),
-                            title: Text(
-                              "Book Name: " + x['Name'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Booksprof(
-                                          value: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      }
-                      return Container();
-                    });
-              }),
-        ],
+        ),
       ),
 
       drawer: FutureBuilder<DocumentSnapshot>(
@@ -569,17 +650,7 @@ class _HomeState extends State<Home> {
                       onTap: () => [Navigator.of(context).pushNamed('sos')],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 25),
-                    child: ListTile(
-                      title: Text('Voluntering'),
-                      leading: Icon(
-                        Icons.person_add,
-                        color: Colors.brown,
-                      ),
-                      onTap: () => [],
-                    ),
-                  ),
+
                   Padding(
                     padding: EdgeInsets.only(left: 25),
                     child: ListTile(
@@ -595,16 +666,25 @@ class _HomeState extends State<Home> {
                     height: 18,
                     color: Colors.black45,
                   ),
+
                   ListTile(
-                    title: Text('Mapping With Foot Prints'),
+                    title: Text('Happenings'),
                     leading: Icon(
                       Icons.person_pin_circle,
-                      color: Colors.brown,
+                      color: Colors.red,
                     ),
                     onTap: () => [
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => gmap()))
                     ],
+                  ),
+                  ListTile(
+                    title: Text('Voluntering'),
+                    leading: Icon(
+                      Icons.person_add,
+                      color: Colors.brown,
+                    ),
+                    onTap: () => [],
                   ),
                   Divider(
                     height: 18,
@@ -633,7 +713,7 @@ class _HomeState extends State<Home> {
                 ],
               ));
             }
-            return CircularProgressIndicator();
+            return Drawer();
           }),
     );
   }

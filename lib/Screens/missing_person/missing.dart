@@ -65,6 +65,8 @@ class _profileState extends State<Missing> {
                               Image.network(
                                 x['img'],
                                 fit: BoxFit.cover,
+                                height: 50,
+                                width: 50,
                               ),
                             ],
                           ),

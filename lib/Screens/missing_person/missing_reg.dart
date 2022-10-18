@@ -388,6 +388,11 @@ class _registerState extends State<Missingreg> {
                                   _AddressController != '' &&
                                   _AgeController != '' &&
                                   _MissingareaController != '' &&
+                                  _SexController != '' &&
+                                  _ColourController != '' &&
+                                  _DescriptionController != '' &&
+                                  _Heightcontroller != '' &&
+                                  _YourNameController != '' &&
                                   _MissingdateController != '') {
                                 //  SendUserDataToDB();
                                 CommonDb();
