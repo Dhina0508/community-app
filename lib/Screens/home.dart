@@ -267,6 +267,36 @@ class _HomeState extends State<Home> {
                             ],
                           ),
                         );
+                      } else if (x['about'] == "missing") {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Image.network(
+                                  x['img'],
+                                  fit: BoxFit.fill,
+                                  height: 50,
+                                  width: 50,
+                                ),
+                              ],
+                            ),
+                            title: Text(
+                              "Name: " + x['Name'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Missingprof(
+                                          value: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
                       } else if (x['about'] == "books") {
                         return Card(
                           elevation: 5,
