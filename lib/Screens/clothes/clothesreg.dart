@@ -28,6 +28,7 @@ class _registerState extends State<clothesreg> {
     });
   }
 
+  var button = "1";
   TextEditingController _NameController = TextEditingController();
 
   TextEditingController _ClothController = TextEditingController();
@@ -269,29 +270,49 @@ class _registerState extends State<clothesreg> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30.0, left: 8),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              if (_NameController.text != '' &&
-                                  _PhoneNoController.text != '' &&
-                                  _AddressController.text != '' &&
-                                  _Num_of_clothController.text != '' &&
-                                  _ClothController.text != '') {
-                                // SendUserDataToDB();
-                                CommonDb();
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content:
-                                      Text("Error : Details cannot be empty"),
-                                  behavior: SnackBarBehavior.floating,
-                                  backgroundColor: Colors.red,
-                                ));
-                              }
-                            },
-                            child: Text('   Submit   ')),
-                      ),
+                          padding: const EdgeInsets.only(
+                              right: 8, top: 30.0, left: 8),
+                          child: button == "1"
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    if (_NameController.text != '' &&
+                                        _PhoneNoController.text != '' &&
+                                        _AddressController.text != '' &&
+                                        _Num_of_clothController.text != '' &&
+                                        _ClothController.text != '') {
+                                      // SendUserDataToDB();
+                                      CloseButton();
+                                      CircularProgressIndicator();
+                                      CommonDb();
+                                      setState(() {
+                                        button = "";
+                                      });
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "Error : Details cannot be empty"),
+                                        behavior: SnackBarBehavior.floating,
+                                        backgroundColor: Colors.red,
+                                      ));
+                                    }
+                                  },
+                                  child: Text('   Submit   '))
+                              : ElevatedButton(
+                                  onPressed: () => [],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('Posting....'),
+                                      SizedBox(
+                                        height: 40,
+                                        width: 40,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  )))
                     ],
                   ),
                 ),

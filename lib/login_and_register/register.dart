@@ -53,15 +53,6 @@ class _registerState extends State<register> {
 
   TextEditingController _AgeController = TextEditingController();
 
-  fcmToken() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var currentuser = _auth.currentUser;
-
-    final _CollectionReference =
-        FirebaseFirestore.instance.collection("devicestokens").doc();
-    return _CollectionReference.set({"fcm": FcmValue});
-  }
-
   SendUserDataToDB() async {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
