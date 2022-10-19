@@ -187,7 +187,7 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/plus.png',
-                                height: 130,
+                                height: 100,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -308,7 +308,7 @@ class _HomeState extends State<Home> {
                               ),
                               Image.asset(
                                 'images/book icon.png',
-                                height: 120,
+                                height: 90,
                               ),
                               Text(
                                 'Approved : Nil',

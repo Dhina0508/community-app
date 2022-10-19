@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecyc/Screens/chat.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,6 +23,21 @@ class _bloodprofState extends State<bloodprof> {
     } else {
       throw "cannot launch $url";
     }
+  }
+
+  var ChatRoomKey;
+
+  ChatRoomId({required number}) async {
+    var Email = FirebaseAuth.instance.currentUser!.email;
+    ChatRoomKey = "$number$Email";
+    print("chat room id: " + ChatRoomKey);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ChatRoomId(number: widget.value['PhoneNumber']);
   }
 
   @override
@@ -272,11 +289,18 @@ class _bloodprofState extends State<bloodprof> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    ChatRoomId(
+                                        number: widget.value['PhoneNumber']);
+                                    print("Chatroom Key: " + ChatRoomKey);
+
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                chatScreen()));
+                                            builder: (context) => chatScreen(
+                                                  chatroomid: ChatRoomKey,
+                                                  name:
+                                                      widget.value['Your_name'],
+                                                )));
                                     // launchwp(
                                     //     number: ("+91" +
                                     //         widget.value['PhoneNumber']),
