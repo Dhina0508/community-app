@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecyc/Screens/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -271,18 +272,23 @@ class _bloodprofState extends State<bloodprof> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    launchwp(
-                                        number: ("+91" +
-                                            widget.value['PhoneNumber']),
-                                        bloodgroup:
-                                            (widget.value['Blood_Group']));
-                                    String id = widget.value['id'];
-                                    print(id);
-                                    final docUser = FirebaseFirestore.instance
-                                        .collection("Common_Db")
-                                        .doc(id.toString());
-                                    docUser.delete();
-                                    Navigator.of(context).pop();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                chatScreen()));
+                                    // launchwp(
+                                    //     number: ("+91" +
+                                    //         widget.value['PhoneNumber']),
+                                    //     bloodgroup:
+                                    //         (widget.value['Blood_Group']));
+                                    // String id = widget.value['id'];
+                                    // print(id);
+                                    // final docUser = FirebaseFirestore.instance
+                                    //     .collection("Common_Db")
+                                    //     .doc(id.toString());
+                                    // docUser.delete();
+                                    // Navigator.of(context).pop();
                                   },
                                   child: Row(
                                     children: [
@@ -294,7 +300,7 @@ class _bloodprofState extends State<bloodprof> {
                                         width: 10,
                                       ),
                                       Text(
-                                        'Accept',
+                                        '   Chat   ',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,

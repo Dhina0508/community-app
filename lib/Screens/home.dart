@@ -117,9 +117,7 @@ class _HomeState extends State<Home> {
                       viewportFraction: 0.8,
                       enlargeStrategy: CenterPageEnlargeStrategy.height,
                       onPageChanged: (val, carouselPageChangedReason) {
-                        setState(() {
-                          _DotPosition = val;
-                        });
+                        _DotPosition = val;
                       }),
                 ),
                 DotsIndicator(
@@ -127,7 +125,7 @@ class _HomeState extends State<Home> {
                         _SlidingImages.length == 0 ? 1 : _SlidingImages.length,
                     position: _DotPosition.toDouble(),
                     decorator: DotsDecorator(
-                        activeColor: Colors.deepOrange,
+                        activeColor: Colors.red,
                         spacing: EdgeInsets.all(2),
                         activeSize: Size(8, 8),
                         size: Size(6, 6))),
@@ -155,7 +153,7 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/blood.png',
-                                height: 140,
+                                height: 130,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -189,7 +187,7 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/plus.png',
-                                height: 140,
+                                height: 130,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -231,7 +229,7 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/plate.png',
-                                height: 140,
+                                height: 130,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -265,7 +263,7 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/shirt1.jpeg',
-                                height: 140,
+                                height: 130,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -310,7 +308,7 @@ class _HomeState extends State<Home> {
                               ),
                               Image.asset(
                                 'images/book icon.png',
-                                height: 130,
+                                height: 120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -344,10 +342,10 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/missing.jpg',
-                                height: 140,
+                                height: 130,
                               ),
                               Text(
-                                'Approved : 00',
+                                'Approved : Nil',
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
@@ -389,7 +387,7 @@ class _HomeState extends State<Home> {
                               ),
                               Image.asset(
                                 'images/volunteer-icon-10.png',
-                                height: 130,
+                                height: 120,
                               ),
                               Text(
                                 'Approved : Nil',
