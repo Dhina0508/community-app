@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/Screens/chat.dart';
+import 'package:ecyc/Screens/chat/ChatScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,17 +27,20 @@ class _bloodprofState extends State<bloodprof> {
 
   var ChatRoomKey;
 
-  ChatRoomId({required number}) async {
+  ChatRoomId({required email}) async {
     var Email = FirebaseAuth.instance.currentUser!.email;
-    ChatRoomKey = "$number$Email";
-    print("chat room id: " + ChatRoomKey);
+    if (Email.toString().length >= email.toString().length) {
+      ChatRoomKey = "$Email-$email";
+    } else {
+      ChatRoomKey = "$email-$Email";
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    ChatRoomId(number: widget.value['PhoneNumber']);
+    ChatRoomId(email: widget.value['email']);
   }
 
   @override
@@ -315,8 +318,7 @@ class _bloodprofState extends State<bloodprof> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    ChatRoomId(
-                                        number: widget.value['PhoneNumber']);
+                                    ChatRoomId(email: widget.value['email']);
                                     print("Chatroom Key: " + ChatRoomKey);
 
                                     Navigator.push(

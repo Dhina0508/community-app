@@ -4,6 +4,7 @@ import 'package:ecyc/Screens/blood/bloodreg.dart';
 import 'package:ecyc/Screens/books/books.dart';
 import 'package:ecyc/Screens/books/books_Reg.dart';
 import 'package:ecyc/Screens/bottomnavigationbar.dart';
+import 'package:ecyc/Screens/chat/Chat_Lobby.dart';
 import 'package:ecyc/Screens/clothes/clothes.dart';
 import 'package:ecyc/Screens/clothes/clothesreg.dart';
 import 'package:ecyc/Screens/education/education.dart';
@@ -83,6 +84,7 @@ main() async {
       'login': (context) => MyHomePage(),
       'login_page': (context) => LoginPage(),
       'profile': (context) => MyProfile(),
+      'chatlobby': (context) => Lobby(),
 
       // 'update': (context) => update(),
       'home': (context) => Home(),

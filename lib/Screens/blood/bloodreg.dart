@@ -63,6 +63,7 @@ class _registerState extends State<bloodreg> {
   CommonDb() {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     var currentuser = _auth.currentUser;
+    var email = FirebaseAuth.instance.currentUser!.email;
 
     final _CollectionReference =
         FirebaseFirestore.instance.collection("Common_Db").doc();
@@ -78,6 +79,7 @@ class _registerState extends State<bloodreg> {
       "Your_name": _YourNameController.text,
       "discription": _DiscriptionController.text,
       "Date": _datecontroller.text,
+      "email": email,
       "Time": DateTime.now(),
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
