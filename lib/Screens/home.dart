@@ -53,6 +53,13 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         actions: [
+          IconButton(
+              onPressed: () => [Navigator.of(context).pushNamed('chatlobby')],
+              icon: Icon(
+                Icons.mail,
+                color: Colors.white,
+                size: 35,
+              )),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -388,7 +395,7 @@ class _HomeState extends State<Home> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
                               SizedBox(
-                                height: 10,
+                                height: Dimension.height10,
                               ),
                               Image.asset(
                                 'images/volunteer-icon-10.png',
@@ -397,7 +404,7 @@ class _HomeState extends State<Home> {
                               Text(
                                 'Approved : Nil',
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: Dimension.font20,
                                 ),
                               ),
                             ],
