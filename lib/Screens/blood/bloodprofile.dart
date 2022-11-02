@@ -131,6 +131,32 @@ class _bloodprofState extends State<bloodprof> {
                                 width: 15,
                               ),
                               Text(
+                                'Requested Date : ',
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontFamily: 'JosefinSans',
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.brown),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            widget.value['Date'],
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Text(
                                 ' Patient Address: ',
                                 style: TextStyle(
                                     fontSize: 25,

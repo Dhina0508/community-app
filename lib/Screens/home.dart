@@ -5,6 +5,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecyc/Screens/missing_person/missing.dart';
 
 import 'package:ecyc/firebase_helper/firebase_helper.dart';
+import 'package:ecyc/helper/dimensions.dart';
 import 'package:ecyc/mapping_with_foot_prints/gmap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -59,11 +60,8 @@ class _HomeState extends State<Home> {
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                'images/globe1.png',
-                height: 30,
-                width: 30,
-              ),
+              child: Image.asset('images/globe1.png',
+                  height: Dimension.height30, width: Dimension.width30),
             ),
           ),
         ],
@@ -139,11 +137,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -152,8 +151,8 @@ class _HomeState extends State<Home> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
                               Image.asset(
-                                'images/blood.png',
-                                height: 130,
+                                'images/blood_img.png',
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -173,11 +172,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -187,7 +187,7 @@ class _HomeState extends State<Home> {
                               )),
                               Image.asset(
                                 'images/plus.png',
-                                height: 100,
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -215,11 +215,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -228,8 +229,8 @@ class _HomeState extends State<Home> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
                               Image.asset(
-                                'images/plate.png',
-                                height: 130,
+                                'images/food_donation.jpg',
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -249,11 +250,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -262,8 +264,8 @@ class _HomeState extends State<Home> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
                               Image.asset(
-                                'images/shirt1.jpeg',
-                                height: 130,
+                                'images/cloth_img.png',
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -291,11 +293,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -307,8 +310,8 @@ class _HomeState extends State<Home> {
                                 height: 10,
                               ),
                               Image.asset(
-                                'images/book icon.png',
-                                height: 90,
+                                'images/book.png',
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -328,11 +331,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -341,8 +345,8 @@ class _HomeState extends State<Home> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
                               Image.asset(
-                                'images/missing.jpg',
-                                height: 130,
+                                'images/missing_person.png',
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',
@@ -370,11 +374,12 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                         ),
-                        height: 200,
-                        width: 170,
+                        height: Dimension.height200,
+                        width: Dimension.width170,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Center(
                                   child: Text(
@@ -387,7 +392,7 @@ class _HomeState extends State<Home> {
                               ),
                               Image.asset(
                                 'images/volunteer-icon-10.png',
-                                height: 120,
+                                height: Dimension.height120,
                               ),
                               Text(
                                 'Approved : Nil',

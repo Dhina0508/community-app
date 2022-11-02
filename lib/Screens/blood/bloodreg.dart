@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_js/flutter_js.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class bloodreg extends StatefulWidget {
   bloodreg({Key? key}) : super(key: key);
@@ -28,6 +30,7 @@ class _registerState extends State<bloodreg> {
   TextEditingController _DiscriptionController = TextEditingController();
 
   TextEditingController _YourNameController = TextEditingController();
+  TextEditingController _datecontroller = TextEditingController();
 
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -74,6 +77,7 @@ class _registerState extends State<bloodreg> {
       "hospital_address": _HospitalAddressController.text,
       "Your_name": _YourNameController.text,
       "discription": _DiscriptionController.text,
+      "Date": _datecontroller.text,
       "Time": DateTime.now(),
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -221,8 +225,34 @@ class _registerState extends State<bloodreg> {
                               endIndent: 8,
                             ),
                       Padding(
+                        padding: EdgeInsets.only(right: 8, top: 20, left: 8),
+                        child: TextField(
+                          controller: _datecontroller,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.calendar_month,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              labelText: 'Select Date'),
+                          onTap: () async {
+                            DateTime? picketdate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2010),
+                                lastDate: DateTime(2200));
+                            if (picketdate != null) {
+                              setState(() {
+                                _datecontroller.text =
+                                    DateFormat('dd-MM-yyyy').format(picketdate);
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      Padding(
                         padding:
-                            const EdgeInsets.only(right: 8, top: 20, left: 8),
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
                           controller: _NameController,
                           decoration: InputDecoration(
@@ -333,6 +363,7 @@ class _registerState extends State<bloodreg> {
                             onPressed: () {
                               if (_NameController.text != '' &&
                                   _PhoneNoController.text != '' &&
+                                  _datecontroller != '' &&
                                   _AddressController.text != '' &&
                                   _DiscriptionController.text != '') {
                                 // SendUserDataToDB();
