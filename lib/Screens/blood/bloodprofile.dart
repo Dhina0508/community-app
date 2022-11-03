@@ -28,9 +28,9 @@ class _bloodprofState extends State<bloodprof> {
   var ChatRoomKey;
   var requestor;
   var receiptnt;
+  var Email = FirebaseAuth.instance.currentUser!.email;
 
   ChatRoomId({required email}) async {
-    var Email = FirebaseAuth.instance.currentUser!.email;
     if (Email.toString().length >= email.toString().length) {
       ChatRoomKey = "$Email-$email";
     } else {
@@ -315,90 +315,96 @@ class _bloodprofState extends State<bloodprof> {
                             height: 20,
                           ),
                           Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    ChatRoomId(email: widget.value['email']);
-                                    print("Chatroom Key: " + ChatRoomKey);
+                          Email == widget.value['email']
+                              ? ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text('Remove your Request'))
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          ChatRoomId(
+                                              email: widget.value['email']);
+                                          print("Chatroom Key: " + ChatRoomKey);
 
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => chatScreen(
-                                                  requestor: requestor,
-                                                  receiptnt: receiptnt,
-                                                  chatroomid: ChatRoomKey,
-                                                  name:
-                                                      widget.value['Your_name'],
-                                                )));
-                                    // launchwp(
-                                    //     number: ("+91" +
-                                    //         widget.value['PhoneNumber']),
-                                    //     bloodgroup:
-                                    //         (widget.value['Blood_Group']));
-                                    // String id = widget.value['id'];
-                                    // print(id);
-                                    // final docUser = FirebaseFirestore.instance
-                                    //     .collection("Common_Db")
-                                    //     .doc(id.toString());
-                                    // docUser.delete();
-                                    // Navigator.of(context).pop();
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.done,
-                                        color: Colors.green,
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      chatScreen(
+                                                        requestor: requestor,
+                                                        receiptnt: receiptnt,
+                                                        chatroomid: ChatRoomKey,
+                                                        name: widget
+                                                            .value['Your_name'],
+                                                      )));
+                                          // launchwp(
+                                          //     number: ("+91" +
+                                          //         widget.value['PhoneNumber']),
+                                          //     bloodgroup:
+                                          //         (widget.value['Blood_Group']));
+                                          // String id = widget.value['id'];
+                                          // print(id);
+                                          // final docUser = FirebaseFirestore.instance
+                                          //     .collection("Common_Db")
+                                          //     .doc(id.toString());
+                                          // docUser.delete();
+                                          // Navigator.of(context).pop();
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.done,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              '   Chat   ',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                        // minWidth: MediaQuery.of(context).size.width,
+                                        // color: Colors.deepOrange,
                                       ),
-                                      SizedBox(
-                                        width: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () =>
+                                            [Navigator.of(context).pop()],
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.not_interested_rounded,
+                                              color: Colors.red,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              'Decline',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                        // minWidth: MediaQuery.of(context).size.width,
+                                        // color: Colors.deepOrange,
                                       ),
-                                      Text(
-                                        '   Chat   ',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                  // minWidth: MediaQuery.of(context).size.width,
-                                  // color: Colors.deepOrange,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ElevatedButton(
-                                  onPressed: () =>
-                                      [Navigator.of(context).pop()],
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.not_interested_rounded,
-                                        color: Colors.red,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        'Decline',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                  // minWidth: MediaQuery.of(context).size.width,
-                                  // color: Colors.deepOrange,
-                                ),
-                              ),
-                            ],
-                          )
+                                    ),
+                                  ],
+                                )
                         ],
                       ),
                     ),

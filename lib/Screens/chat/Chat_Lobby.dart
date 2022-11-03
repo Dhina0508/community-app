@@ -32,7 +32,7 @@ class _LobbyState extends State<Lobby> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, i) {
                       QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      if (x['receiptnt'] == Email || x['requestor'] == Email) {
+                      if (x['receiptnt'] == Email) {
                         return Card(
                           elevation: 5,
                           child: ListTile(
@@ -42,7 +42,7 @@ class _LobbyState extends State<Lobby> {
                               color: Colors.red,
                             ),
                             title: Text(
-                              "Patient Name: " + x['requestor'],
+                              "Donnor Name: Under Development",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -56,9 +56,32 @@ class _LobbyState extends State<Lobby> {
                             ],
                           ),
                         );
-                      } else {
-                        return Container();
+                      } else if (x['requestor'] == Email) {
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.bloodtype,
+                              size: 40,
+                              color: Colors.red,
+                            ),
+                            title: Text(
+                              "Patient Name: " + x['requestorName'],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            subtitle: Text("Message"),
+                            onTap: () => [
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => chatScreen(
+                                          chatroomid: snapshot.data!.docs[i])))
+                            ],
+                          ),
+                        );
                       }
+                      return Container();
                     });
               }),
         ));
