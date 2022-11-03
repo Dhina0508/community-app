@@ -7,8 +7,10 @@ var loginuser = FirebaseAuth.instance.currentUser;
 class chatScreen extends StatefulWidget {
   var chatroomid;
   var name;
+  var requestor;
+  var receiptnt;
 
-  chatScreen({this.chatroomid, this.name});
+  chatScreen({this.chatroomid, this.name, this.requestor, this.receiptnt});
   @override
   State<chatScreen> createState() => _chatScreenState();
 }
@@ -17,6 +19,7 @@ class _chatScreenState extends State<chatScreen> {
   TextEditingController _MessageController = new TextEditingController();
   final storemessage = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
+
   getCurrentUser() {
     final user = auth.currentUser;
     if (user != null) {
@@ -24,15 +27,32 @@ class _chatScreenState extends State<chatScreen> {
     }
   }
 
+  UpdateDetails() {
+    CollectionReference _CollectionReference =
+        FirebaseFirestore.instance.collection("Chats");
+    return _CollectionReference.doc(widget.chatroomid).set({
+      "requestor": widget.requestor.toString(),
+      "receiptnt": widget.receiptnt.toString(),
+      "chatroomid": widget.chatroomid.toString(),
+      "Time": DateTime.now().toString()
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getCurrentUser();
+    UpdateDetails();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.name == null) {
+      return Scaffold(
+        appBar: AppBar(title: Text('working on...')),
+      );
+    }
     return Scaffold(
       appBar: AppBar(title: Text(widget.name)),
       body: Column(

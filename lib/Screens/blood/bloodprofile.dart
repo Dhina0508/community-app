@@ -26,6 +26,8 @@ class _bloodprofState extends State<bloodprof> {
   }
 
   var ChatRoomKey;
+  var requestor;
+  var receiptnt;
 
   ChatRoomId({required email}) async {
     var Email = FirebaseAuth.instance.currentUser!.email;
@@ -34,6 +36,8 @@ class _bloodprofState extends State<bloodprof> {
     } else {
       ChatRoomKey = "$email-$Email";
     }
+    requestor = Email.toString();
+    receiptnt = email.toString();
   }
 
   @override
@@ -325,6 +329,8 @@ class _bloodprofState extends State<bloodprof> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => chatScreen(
+                                                  requestor: requestor,
+                                                  receiptnt: receiptnt,
                                                   chatroomid: ChatRoomKey,
                                                   name:
                                                       widget.value['Your_name'],
