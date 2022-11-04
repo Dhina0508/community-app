@@ -376,6 +376,7 @@ class _bloodprofState extends State<bloodprof> {
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             chatScreen(
+                                                              topic: "blood",
                                                               receiptntName:
                                                                   receiptntName,
                                                               requestor:
