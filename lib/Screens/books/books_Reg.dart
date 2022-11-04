@@ -47,6 +47,9 @@ class _registerState extends State<booksreg> {
 
   TextEditingController _TypeController = TextEditingController();
 
+  var email = FirebaseAuth.instance.currentUser!.email;
+  var button = "1";
+
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentuser = _auth.currentUser;
@@ -109,7 +112,8 @@ class _registerState extends State<booksreg> {
       "Edition": _EditionController.text,
       "Author": _AuthorController.text,
       "publish": _Publishcontroller.text,
-      "Your Name": _YourNameController.text,
+      "email": email,
+      "Your_name": _YourNameController.text,
       "Time": DateTime.now(),
       "img": url
     }).then((value) {
@@ -331,35 +335,50 @@ class _registerState extends State<booksreg> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30.0, left: 8),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              if (_YourNameController.text != '' &&
-                                  _PhoneNoController.text != '' &&
-                                  _AddressController.text != '' &&
-                                  _AuthorController.text != '' &&
-                                  _TitleController.text != '' &&
-                                  _TitleController.text != '' &&
-                                  _DescriptionController.text != '' &&
-                                  _TypeController.text != '') {
-                                //  SendUserDataToDB();
-                                Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                                CommonDb();
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content:
-                                      Text("Error : Details cannot be empty"),
-                                  behavior: SnackBarBehavior.floating,
-                                  backgroundColor: Colors.red,
-                                ));
-                              }
-                            },
-                            child: Text('   Submit   ')),
-                      ),
+                          padding: const EdgeInsets.only(
+                              right: 8, top: 30.0, left: 8),
+                          child: button == "1"
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    if (_YourNameController.text != '' &&
+                                        _PhoneNoController.text != '' &&
+                                        _AddressController.text != '' &&
+                                        _AuthorController.text != '' &&
+                                        _TitleController.text != '' &&
+                                        _TitleController.text != '' &&
+                                        _DescriptionController.text != '' &&
+                                        _TypeController.text != '') {
+                                      //  SendUserDataToDB();
+                                      Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                      CommonDb();
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "Error : Details cannot be empty"),
+                                        behavior: SnackBarBehavior.floating,
+                                        backgroundColor: Colors.red,
+                                      ));
+                                    }
+                                  },
+                                  child: Text('   Submit   '))
+                              : ElevatedButton(
+                                  onPressed: () => [],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('Posting....'),
+                                      SizedBox(
+                                        height: 40,
+                                        width: 40,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  )))
                     ],
                   ),
                 ),

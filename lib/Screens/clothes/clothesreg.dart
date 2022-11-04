@@ -41,6 +41,8 @@ class _registerState extends State<clothesreg> {
 
   TextEditingController _DescriptionController = TextEditingController();
 
+  var email = FirebaseAuth.instance.currentUser!.email;
+
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentuser = _auth.currentUser;
@@ -88,9 +90,10 @@ class _registerState extends State<clothesreg> {
     final _CollectionReference =
         FirebaseFirestore.instance.collection("Common_Db").doc();
     return _CollectionReference.set({
+      "email": email,
       "about": "cloth",
       "id": _CollectionReference.id,
-      "Name": _NameController.text,
+      "Your_name": _NameController.text,
       "Type_of_dress": _ClothController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,

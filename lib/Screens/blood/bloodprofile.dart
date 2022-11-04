@@ -32,9 +32,9 @@ class _bloodprofState extends State<bloodprof> {
 
   ChatRoomId({required email}) async {
     if (Email.toString().length >= email.toString().length) {
-      ChatRoomKey = "$Email-blood-$email";
+      ChatRoomKey = "$Email-$email";
     } else {
-      ChatRoomKey = "$email-blood-$Email";
+      ChatRoomKey = "$email-$Email";
     }
     requestor = Email.toString();
     receiptnt = email.toString();

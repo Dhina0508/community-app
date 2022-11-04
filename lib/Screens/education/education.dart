@@ -58,7 +58,7 @@ class _profileState extends State<education> {
                               color: Colors.red,
                             ),
                             title: Text(
-                              "Name : " + x['Name'],
+                              "Name : " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),

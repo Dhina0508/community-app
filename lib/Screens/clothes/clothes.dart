@@ -68,7 +68,7 @@ class _profileState extends State<clothes> {
                             ],
                           ),
                           title: Text(
-                            "Name: " + x['Name'],
+                            "Name: " + x["Your_name"],
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),

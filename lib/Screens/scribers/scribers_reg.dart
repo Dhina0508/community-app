@@ -26,6 +26,8 @@ class _registerState extends State<scribersreg> {
 
   TextEditingController _DiscriptionController = TextEditingController();
 
+  var email = FirebaseAuth.instance.currentUser!.email;
+
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentuser = _auth.currentUser;
@@ -63,7 +65,8 @@ class _registerState extends State<scribersreg> {
     return _CollectionReference.set({
       "about": "scribers",
       "id": _CollectionReference.id,
-      "Name": _NameController.text,
+      "Your_name": _NameController.text,
+      "email": email,
       "Exam_Group": _ExamController.text,
       "Exam_Date": _ExamDateController.text,
       "PhoneNumber": _PhoneNoController.text,

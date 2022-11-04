@@ -29,6 +29,8 @@ class _registerState extends State<Missingreg> {
     });
   }
 
+  var button = "1";
+
   TextEditingController _NameController = TextEditingController();
   TextEditingController _YourNameController = TextEditingController();
 
@@ -44,6 +46,7 @@ class _registerState extends State<Missingreg> {
   TextEditingController _IdentityController = TextEditingController();
   TextEditingController _MissingdateController = TextEditingController();
   TextEditingController _MissingareaController = TextEditingController();
+  var email = FirebaseAuth.instance.currentUser!.email;
 
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -99,6 +102,7 @@ class _registerState extends State<Missingreg> {
         FirebaseFirestore.instance.collection("Common_Db").doc();
     return _CollectionReference.set({
       "id": _CollectionReference.id,
+      "email": email,
       "about": "missing",
       "Name": _NameController.text,
       "Sex": _SexController.text,
@@ -111,7 +115,7 @@ class _registerState extends State<Missingreg> {
       "Identity": _IdentityController.text,
       "Missing Date": _MissingdateController.text,
       "Missing Area": _MissingareaController.text,
-      "Your Name": _YourNameController.text,
+      "Your_name": _YourNameController.text,
       "Time": DateTime.now(),
       "img": url
     }).then((value) {
@@ -378,36 +382,51 @@ class _registerState extends State<Missingreg> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30.0, left: 8),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              if (_NameController.text != '' &&
-                                  _PhoneNoController.text != '' &&
-                                  _IdentityController.text != '' &&
-                                  _AddressController != '' &&
-                                  _AgeController != '' &&
-                                  _MissingareaController != '' &&
-                                  _SexController != '' &&
-                                  _ColourController != '' &&
-                                  _DescriptionController != '' &&
-                                  _Heightcontroller != '' &&
-                                  _YourNameController != '' &&
-                                  _MissingdateController != '') {
-                                //  SendUserDataToDB();
-                                CommonDb();
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content:
-                                      Text("Error : Details cannot be empty"),
-                                  behavior: SnackBarBehavior.floating,
-                                  backgroundColor: Colors.red,
-                                ));
-                              }
-                            },
-                            child: Text('   Submit   ')),
-                      ),
+                          padding: const EdgeInsets.only(
+                              right: 8, top: 30.0, left: 8),
+                          child: button == "1"
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    if (_NameController.text != '' &&
+                                        _PhoneNoController.text != '' &&
+                                        _IdentityController.text != '' &&
+                                        _AddressController != '' &&
+                                        _AgeController != '' &&
+                                        _MissingareaController != '' &&
+                                        _SexController != '' &&
+                                        _ColourController != '' &&
+                                        _DescriptionController != '' &&
+                                        _Heightcontroller != '' &&
+                                        _YourNameController != '' &&
+                                        _MissingdateController != '') {
+                                      //  SendUserDataToDB();
+                                      CommonDb();
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "Error : Details cannot be empty"),
+                                        behavior: SnackBarBehavior.floating,
+                                        backgroundColor: Colors.red,
+                                      ));
+                                    }
+                                  },
+                                  child: Text('   Submit   '))
+                              : ElevatedButton(
+                                  onPressed: () => [],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('Posting....'),
+                                      SizedBox(
+                                        height: 40,
+                                        width: 40,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ))),
                     ],
                   ),
                 ),

@@ -13,6 +13,7 @@ class medicalreg extends StatefulWidget {
 
 class _registerState extends State<medicalreg> {
   TextEditingController _NameController = TextEditingController();
+  TextEditingController _YourNameController = TextEditingController();
 
   TextEditingController _hospitalController = TextEditingController();
 
@@ -21,6 +22,7 @@ class _registerState extends State<medicalreg> {
   TextEditingController _AddressController = TextEditingController();
 
   TextEditingController _DescriptionController = TextEditingController();
+  var email = FirebaseAuth.instance.currentUser!.email;
 
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -62,6 +64,8 @@ class _registerState extends State<medicalreg> {
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "Description": _DescriptionController.text,
+      "Your_name": _YourNameController.text,
+      "email": email,
       "Time": DateTime.now(),
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -152,6 +156,21 @@ class _registerState extends State<medicalreg> {
                                 size: 35,
                               ),
                               hintText: 'Eg.Apollo'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
+                          controller: _YourNameController,
+                          decoration: InputDecoration(
+                              labelText: 'Your Name',
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Name of the Requesting Person'),
                         ),
                       ),
                       Padding(

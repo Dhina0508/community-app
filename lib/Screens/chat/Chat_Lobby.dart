@@ -32,54 +32,444 @@ class _LobbyState extends State<Lobby> {
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, i) {
                       QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      if (x['receiptnt'] == Email) {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.bloodtype,
-                              size: 40,
-                              color: Colors.red,
+                      if (x['about'] == "blood") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.bloodtype,
+                                size: 40,
+                                color: Colors.red,
+                              ),
+                              title: Text(
+                                "Donnor Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
                             ),
-                            title: Text(
-                              "Donnor Name: " + x['receiptntName'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.bloodtype,
+                                size: 40,
+                                color: Colors.red,
+                              ),
+                              title: Text(
+                                "Patient Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
                             ),
-                            subtitle: Text("Message"),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => chatScreen(
-                                          chatroomid: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
-                      } else if (x['requestor'] == Email) {
-                        return Card(
-                          elevation: 5,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.bloodtype,
-                              size: 40,
-                              color: Colors.red,
+                          );
+                        }
+                      } else if (x['about'] == "medical") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.local_hospital_rounded,
+                                size: 40,
+                                color: Colors.red,
+                              ),
+                              title: Text(
+                                "Supporter Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
                             ),
-                            title: Text(
-                              "Patient Name: " + x['requestorName'],
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.local_hospital_rounded,
+                                size: 40,
+                                color: Colors.red,
+                              ),
+                              title: Text(
+                                "Patient Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
                             ),
-                            subtitle: Text("Message"),
-                            onTap: () => [
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => chatScreen(
-                                          chatroomid: snapshot.data!.docs[i])))
-                            ],
-                          ),
-                        );
+                          );
+                        }
+                      } else if (x['about'] == "food") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.food_bank_rounded,
+                                size: 40,
+                                color: Colors.yellow,
+                              ),
+                              title: Text(
+                                "Supporter Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.food_bank_rounded,
+                                size: 40,
+                                color: Colors.yellow,
+                              ),
+                              title: Text(
+                                "Requestor Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        }
+                      } else if (x['about'] == "cloth") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    'images/tshirt.png',
+                                    width: 25,
+                                    height: 25,
+                                  ),
+                                ],
+                              ),
+                              title: Text(
+                                "Receiver Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    'images/tshirt.png',
+                                    width: 25,
+                                    height: 25,
+                                  ),
+                                ],
+                              ),
+                              title: Text(
+                                "Cloth Donnor Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        }
+                      } else if (x['about'] == "education") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.school_rounded,
+                                size: 35,
+                                color: Colors.red,
+                              ),
+                              title: Text(
+                                "Helper Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.school_rounded,
+                                size: 35,
+                                color: Colors.red,
+                              ),
+                              title: Text(
+                                "Requestor Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        }
+                      } else if (x['about'] == "bookd") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.menu_book_rounded,
+                                size: 35,
+                                color: Colors.brown,
+                              ),
+                              title: Text(
+                                "Receiver Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.menu_book_rounded,
+                                size: 35,
+                                color: Colors.brown,
+                              ),
+                              title: Text(
+                                "Donor Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        }
+                      } else if (x['about'] == "scriber") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.drive_file_rename_outline_rounded,
+                                size: 35,
+                                color: Colors.green,
+                              ),
+                              title: Text(
+                                "Helper Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.drive_file_rename_outline_rounded,
+                                size: 35,
+                                color: Colors.green,
+                              ),
+                              title: Text(
+                                "Requestor Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        }
+                      } else if (x['about'] == "missing") {
+                        if (x['receiptnt'] == Email) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.network(
+                                    x['img'],
+                                    fit: BoxFit.cover,
+                                    height: 50,
+                                    width: 50,
+                                  ),
+                                ],
+                              ),
+                              title: Text(
+                                "Helper Name: " + x['receiptntName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              leading: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.network(
+                                    x['img'],
+                                    fit: BoxFit.cover,
+                                    height: 50,
+                                    width: 50,
+                                  ),
+                                ],
+                              ),
+                              title: Text(
+                                "Requestor Name: " + x['requestorName'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              subtitle: Text("Message"),
+                              onTap: () => [
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => chatScreen(
+                                            chatroomid:
+                                                snapshot.data!.docs[i])))
+                              ],
+                            ),
+                          );
+                        }
                       }
                       return Container();
                     });

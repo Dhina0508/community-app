@@ -157,9 +157,10 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
-                              Image.asset(
-                                'images/blood_img.png',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/blood_img.png',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',
@@ -192,9 +193,10 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
-                              Image.asset(
-                                'images/plus.png',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/plus.png',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',
@@ -235,9 +237,10 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
-                              Image.asset(
-                                'images/food_donation.jpg',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/food_donation.jpg',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',
@@ -270,9 +273,10 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
-                              Image.asset(
-                                'images/cloth_img.png',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/cloth_img.png',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',
@@ -316,9 +320,10 @@ class _HomeState extends State<Home> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Image.asset(
-                                'images/book.png',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/book.png',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',
@@ -351,9 +356,10 @@ class _HomeState extends State<Home> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               )),
-                              Image.asset(
-                                'images/missing_person.png',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/missing_person.png',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',
@@ -397,9 +403,10 @@ class _HomeState extends State<Home> {
                               SizedBox(
                                 height: Dimension.height10,
                               ),
-                              Image.asset(
-                                'images/volunteer-icon-10.png',
-                                height: Dimension.height120,
+                              Expanded(
+                                child: Image.asset(
+                                  'images/volunteer-icon-10.png',
+                                ),
                               ),
                               Text(
                                 'Approved : Nil',

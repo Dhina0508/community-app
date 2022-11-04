@@ -24,6 +24,9 @@ class _registerState extends State<foodreg> {
 
   TextEditingController _DiscriptionController = TextEditingController();
 
+  TextEditingController _YourNameController = TextEditingController();
+  var email = FirebaseAuth.instance.currentUser!.email;
+
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
   //   var currentuser = _auth.currentUser;
@@ -63,6 +66,8 @@ class _registerState extends State<foodreg> {
       "id": _CollectionReference.id,
       "about": 'food',
       "Trust Name": _TrustController.text,
+      "Your_name": _YourNameController.text,
+      "email": email,
       "Meal": _MealController.text,
       "Pepole_List": _PeopleController.text,
       "Category_name": _CategoryController.text,
@@ -148,6 +153,21 @@ class _registerState extends State<foodreg> {
                         padding:
                             const EdgeInsets.only(right: 8, top: 30, left: 8),
                         child: TextFormField(
+                          controller: _YourNameController,
+                          decoration: InputDecoration(
+                              labelText: 'Your Name',
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Colors.red,
+                                size: 40,
+                              ),
+                              hintText: 'Name of the Requesting Person'),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 8, top: 30, left: 8),
+                        child: TextFormField(
                           controller: _PhoneNoController,
                           decoration: InputDecoration(
                               labelText: 'Phone No',
@@ -180,6 +200,7 @@ class _registerState extends State<foodreg> {
                         child: TextFormField(
                           controller: _MealController,
                           decoration: InputDecoration(
+                            hintText: "breakfast/lunch/Dinner/Snack",
                             labelText: 'Food Type',
                             prefixIcon: Icon(
                               Icons.fastfood_rounded,
@@ -225,7 +246,8 @@ class _registerState extends State<foodreg> {
                             const EdgeInsets.only(right: 8, top: 30.0, left: 8),
                         child: ElevatedButton(
                             onPressed: () {
-                              if (_TrustController.text != '' &&
+                              if (_YourNameController.text != '' &&
+                                  _TrustController.text != '' &&
                                   _PhoneNoController.text != '' &&
                                   _CategoryController.text != '' &&
                                   _DiscriptionController.text != '' &&
