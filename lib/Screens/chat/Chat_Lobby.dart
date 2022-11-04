@@ -42,11 +42,11 @@ class _LobbyState extends State<Lobby> {
                               color: Colors.red,
                             ),
                             title: Text(
-                              "Donnor Name: Under Development",
+                              "Donnor Name: " + x['receiptntName'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            subtitle: Text("Ph.No: " + x['requestor']),
+                            subtitle: Text("Message"),
                             onTap: () => [
                               Navigator.push(
                                   context,
