@@ -302,7 +302,7 @@ class _LobbyState extends State<Lobby> {
                             ),
                           );
                         }
-                      } else if (x['about'] == "bookd") {
+                      } else if (x['about'] == "books") {
                         if (x['receiptnt'] == Email) {
                           return Card(
                             elevation: 5,

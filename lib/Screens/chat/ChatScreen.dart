@@ -11,6 +11,7 @@ class chatScreen extends StatefulWidget {
   var receiptnt;
   var receiptntName;
   var topic;
+  var img;
 
   chatScreen(
       {this.chatroomid,
@@ -18,6 +19,7 @@ class chatScreen extends StatefulWidget {
       this.requestor,
       this.receiptnt,
       this.receiptntName,
+      this.img,
       this.topic});
   @override
   State<chatScreen> createState() => _chatScreenState();
@@ -39,6 +41,7 @@ class _chatScreenState extends State<chatScreen> {
       "receiptntName": widget.receiptntName,
       "receiptnt": widget.receiptnt.toString(),
       "chatroomid": widget.chatroomid.toString(),
+      "img": widget.img,
       "Time": DateTime.now().toString(),
       "about": widget.topic
     });

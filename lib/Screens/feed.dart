@@ -68,7 +68,7 @@ class _FeedState extends State<Feed> {
                               color: Colors.red,
                             ),
                             title: Text(
-                              "Name: " + x['Name'],
+                              "Name: " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -97,7 +97,7 @@ class _FeedState extends State<Feed> {
                               ],
                             ),
                             title: Text(
-                              "Name: " + x['Name'],
+                              "Name: " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -145,7 +145,7 @@ class _FeedState extends State<Feed> {
                               color: Colors.green,
                             ),
                             title: Text(
-                              "Name: " + x['Name'],
+                              "Name: " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -169,7 +169,7 @@ class _FeedState extends State<Feed> {
                               color: Colors.red,
                             ),
                             title: Text(
-                              "Name : " + x['Name'],
+                              "Name : " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -199,7 +199,7 @@ class _FeedState extends State<Feed> {
                               ],
                             ),
                             title: Text(
-                              "Name: " + x['Name'],
+                              "Name: " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -229,7 +229,7 @@ class _FeedState extends State<Feed> {
                               ],
                             ),
                             title: Text(
-                              "Name: " + x['Name'],
+                              "Name: " + x['Your_name'],
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),

@@ -428,6 +428,9 @@ class _MissingprofState extends State<Missingprof> {
                                                       MaterialPageRoute(
                                                           builder: (context) =>
                                                               chatScreen(
+                                                                img: widget
+                                                                        .value[
+                                                                    'img'],
                                                                 topic:
                                                                     "missing",
                                                                 receiptntName:
