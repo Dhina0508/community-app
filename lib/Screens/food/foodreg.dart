@@ -66,7 +66,7 @@ class _registerState extends State<foodreg> {
       "id": _CollectionReference.id,
       "about": 'food',
       "Trust Name": _TrustController.text,
-      "Your_name": _YourNameController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "email": email,
       "Meal": _MealController.text,
       "Pepole_List": _PeopleController.text,
@@ -147,21 +147,6 @@ class _registerState extends State<foodreg> {
                                 size: 40,
                               ),
                               hintText: 'Trust Name'),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
-                          controller: _YourNameController,
-                          decoration: InputDecoration(
-                              labelText: 'Your Name',
-                              prefixIcon: Icon(
-                                Icons.person,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              hintText: 'Name of the Requesting Person'),
                         ),
                       ),
                       Padding(

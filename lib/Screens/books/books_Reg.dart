@@ -113,7 +113,7 @@ class _registerState extends State<booksreg> {
       "Author": _AuthorController.text,
       "publish": _Publishcontroller.text,
       "email": email,
-      "Your_name": _YourNameController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "Time": DateTime.now(),
       "img": url
     }).then((value) {
