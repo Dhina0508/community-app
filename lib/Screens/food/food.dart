@@ -21,11 +21,6 @@ class _profileState extends State<food> {
           'Food Request List',
           style: TextStyle(color: Colors.black),
         ),
-        actions: [
-          IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('foodreg')],
-              icon: Icon(Icons.add))
-        ],
         backgroundColor: Colors.amber,
       ),
       body: Stack(children: [
@@ -80,6 +75,13 @@ class _profileState extends State<food> {
               }),
         )
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.amber,
+        onPressed: () {
+          Navigator.of(context).pushNamed('foodreg');
+        },
+      ),
     );
   }
 }

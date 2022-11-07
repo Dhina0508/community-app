@@ -31,11 +31,6 @@ class _profileState extends State<scribers> {
           'Scribers Request List',
           style: TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('scribersreg')],
-              icon: Icon(Icons.add))
-        ],
       ),
       body: Stack(children: [
         Center(
@@ -89,6 +84,13 @@ class _profileState extends State<scribers> {
               }),
         )
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
+        onPressed: () {
+          Navigator.of(context).pushNamed('scribersreg');
+        },
+      ),
     );
   }
 }

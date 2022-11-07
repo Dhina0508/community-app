@@ -1,3 +1,5 @@
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecyc/helper/dimensions.dart';
 import 'package:ecyc/login_and_register/forget_password/forget.dart';
 import 'package:ecyc/login_and_register/SignUp.dart';
 import 'package:ecyc/login_and_register/phone_no_verification.dart';
@@ -26,24 +28,17 @@ class _LoginPageState extends State<LoginPage> {
     // print(
     //   "the current width is" + MediaQuery.of(context).size.width.toString());
     return Scaffold(
-        body: Ink(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 236, 5, 5),
-          Color.fromARGB(234, 216, 114, 216),
-          Color.fromARGB(236, 91, 19, 159),
-          Color.fromARGB(235, 51, 11, 120),
-        ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+        body: Stack(children: [
+      Image.asset(
+        'images/chennai.jpg',
       ),
-      child: SingleChildScrollView(
+      SingleChildScrollView(
         child: SafeArea(
           child: Center(
             child: Column(
               children: [
                 SizedBox(
-                  height: 75 * 2,
+                  height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 75,
+                  height: 20,
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 20, left: 20),
@@ -174,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 "Forgot Password?",
                                 style: TextStyle(
-                                    fontSize: 13, color: Colors.white),
+                                    fontSize: 13, color: Colors.black),
                               ))),
                     ),
                     Padding(
@@ -192,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 "Don't have an Account?   ",
                                 style: TextStyle(
-                                    fontSize: 13, color: Colors.white),
+                                    fontSize: 13, color: Colors.black),
                               ))),
                     ),
                   ],
@@ -202,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-    ));
+    ]));
   }
 
   void _togglePasswordView() {

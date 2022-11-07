@@ -32,11 +32,6 @@ class _profileState extends State<books> {
           'Books Available List',
           style: TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('booksreg')],
-              icon: Icon(Icons.add))
-        ],
       ),
       body: Stack(children: [
         Center(
@@ -90,6 +85,13 @@ class _profileState extends State<books> {
               }),
         )
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.brown,
+        onPressed: () {
+          Navigator.of(context).pushNamed('booksreg');
+        },
+      ),
     );
   }
 }

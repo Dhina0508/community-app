@@ -18,11 +18,6 @@ class _profileState extends State<medical> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Medical Request List'),
-        actions: [
-          IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('medicalreg')],
-              icon: Icon(Icons.add))
-        ],
         backgroundColor: Colors.redAccent,
       ),
       body: Stack(children: [
@@ -77,6 +72,13 @@ class _profileState extends State<medical> {
               }),
         )
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.redAccent,
+        onPressed: () {
+          Navigator.of(context).pushNamed('medicalreg');
+        },
+      ),
     );
   }
 }

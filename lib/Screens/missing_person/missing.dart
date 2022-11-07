@@ -26,14 +26,6 @@ class _profileState extends State<Missing> {
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.blueAccent,
         title: Text('Missing Person List'),
-        actions: [
-          IconButton(
-              onPressed: () => [
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Missingreg()))
-                  ],
-              icon: Icon(Icons.add))
-        ],
       ),
       body: Stack(children: [
         Center(
@@ -91,6 +83,14 @@ class _profileState extends State<Missing> {
                   });
             }),
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blueAccent,
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Missingreg()));
+        },
+      ),
     );
   }
 }

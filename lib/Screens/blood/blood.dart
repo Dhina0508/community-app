@@ -32,11 +32,6 @@ class _profileState extends State<blood> {
           'Blood Request List',
           style: TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('bloodreg')],
-              icon: Icon(Icons.add))
-        ],
       ),
       body: Stack(children: [
         Center(
@@ -90,6 +85,14 @@ class _profileState extends State<blood> {
               }),
         )
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.redAccent,
+        onPressed: () {
+          Navigator.of(context).pushNamed('bloodreg');
+        },
+      ),
+      //  floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

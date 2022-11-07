@@ -56,9 +56,9 @@ class _HomeState extends State<Home> {
           IconButton(
               onPressed: () => [Navigator.of(context).pushNamed('chatlobby')],
               icon: Icon(
-                Icons.mail,
+                Icons.chat,
                 color: Colors.white,
-                size: 35,
+                size: 29,
               )),
           GestureDetector(
             onTap: () {

@@ -21,7 +21,6 @@ class _FeedState extends State<Feed> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 202, 191, 191),
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(

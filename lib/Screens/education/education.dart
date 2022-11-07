@@ -18,12 +18,6 @@ class _profileState extends State<education> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Education Request List'),
-        actions: [
-          IconButton(
-              onPressed: () =>
-                  [Navigator.of(context).pushNamed('educationreg')],
-              icon: Icon(Icons.add))
-        ],
         backgroundColor: Colors.red,
       ),
       body: Stack(children: [
@@ -79,6 +73,13 @@ class _profileState extends State<education> {
               }),
         )
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+        onPressed: () {
+          Navigator.of(context).pushNamed('educationreg');
+        },
+      ),
     );
   }
 }

@@ -26,11 +26,6 @@ class _profileState extends State<clothes> {
             icon: Icon(Icons.arrow_back)),
         backgroundColor: Colors.blueAccent,
         title: Text('Clothes Donated List'),
-        actions: [
-          IconButton(
-              onPressed: () => [Navigator.of(context).pushNamed('clothesreg')],
-              icon: Icon(Icons.add))
-        ],
       ),
       body: Stack(children: [
         Center(
@@ -88,6 +83,13 @@ class _profileState extends State<clothes> {
                   });
             }),
       ]),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blueAccent,
+        onPressed: () {
+          Navigator.of(context).pushNamed('clothesreg');
+        },
+      ),
     );
   }
 }
