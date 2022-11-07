@@ -490,6 +490,10 @@ class _MyProfileState extends State<MyProfile> {
                                               name = '';
                                             });
                                             UpdateName();
+                                            final user = FirebaseAuth
+                                                .instance.currentUser;
+                                            user?.updateDisplayName(
+                                                _NameController.text);
                                           } else {
                                             showtoast();
                                             setState(() {
