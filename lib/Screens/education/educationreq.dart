@@ -62,7 +62,7 @@ class _registerState extends State<educationreg> {
     return _CollectionReference.set({
       "about": "education",
       "id": _CollectionReference.id,
-      "Your_name": _NameController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "email": email,
       "Education_List": _EducationController.text,
       "Institution_name": _InstitutionController.text,

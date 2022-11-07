@@ -271,13 +271,17 @@ class _registerState extends State<register> {
                       padding:
                           const EdgeInsets.only(right: 8, top: 30.0, left: 8),
                       child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_NameController.text != "" &&
                                 _EmailController.text != "" &&
                                 _BloodController.text != "" &&
                                 _JobController.text != "" &&
                                 _PhoneNoController.text != "" &&
                                 _AddressController.text != "") {
+                              final user = FirebaseAuth.instance.currentUser;
+                              await user
+                                  ?.updateDisplayName(_NameController.text);
+
                               SendUserDataToDB();
                             } else {
                               ScaffoldMessenger.of(context)

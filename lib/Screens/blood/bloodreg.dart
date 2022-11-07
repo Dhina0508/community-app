@@ -74,9 +74,9 @@ class _registerState extends State<bloodreg> {
       "Blood_Group": value == 'Others' ? _bloodController.text : value,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "hospital_name": _HospitalNameController.text,
       "hospital_address": _HospitalAddressController.text,
-      "Your_name": _YourNameController.text,
       "discription": _DiscriptionController.text,
       "Date": _datecontroller.text,
       "email": email,
@@ -325,21 +325,6 @@ class _registerState extends State<bloodreg> {
                                 size: 35,
                               ),
                               hintText: 'Patient admitted Hospital Address'),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
-                          controller: _YourNameController,
-                          decoration: InputDecoration(
-                              labelText: 'Your Name',
-                              prefixIcon: Icon(
-                                Icons.person,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              hintText: 'Name of the Requesting Person'),
                         ),
                       ),
                       Padding(

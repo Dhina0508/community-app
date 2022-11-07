@@ -96,6 +96,7 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
+
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(10),

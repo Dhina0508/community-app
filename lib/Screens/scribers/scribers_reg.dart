@@ -65,7 +65,7 @@ class _registerState extends State<scribersreg> {
     return _CollectionReference.set({
       "about": "scribers",
       "id": _CollectionReference.id,
-      "Your_name": _NameController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "email": email,
       "Exam_Group": _ExamController.text,
       "Exam_Date": _ExamDateController.text,
@@ -139,21 +139,6 @@ class _registerState extends State<scribersreg> {
                             fontSize: 30,
                             color: Colors.redAccent[200],
                             fontWeight: FontWeight.bold),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
-                          controller: _NameController,
-                          decoration: InputDecoration(
-                              labelText: 'Full name',
-                              prefixIcon: Icon(
-                                Icons.person,
-                                color: Colors.redAccent[200],
-                                size: 40,
-                              ),
-                              hintText: 'Enter Name'),
-                        ),
                       ),
                       Padding(
                         padding:

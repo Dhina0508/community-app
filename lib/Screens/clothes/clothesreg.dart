@@ -93,7 +93,7 @@ class _registerState extends State<clothesreg> {
       "email": email,
       "about": "cloth",
       "id": _CollectionReference.id,
-      "Your_name": _NameController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "Type_of_dress": _ClothController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,

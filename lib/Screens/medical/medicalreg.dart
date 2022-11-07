@@ -64,7 +64,7 @@ class _registerState extends State<medicalreg> {
       "PhoneNumber": _PhoneNoController.text,
       "Address": _AddressController.text,
       "Description": _DescriptionController.text,
-      "Your_name": _YourNameController.text,
+      "Your_name": FirebaseAuth.instance.currentUser?.displayName,
       "email": email,
       "Time": DateTime.now(),
     }).then((value) {
@@ -156,21 +156,6 @@ class _registerState extends State<medicalreg> {
                                 size: 35,
                               ),
                               hintText: 'Eg.Apollo'),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 8, top: 30, left: 8),
-                        child: TextFormField(
-                          controller: _YourNameController,
-                          decoration: InputDecoration(
-                              labelText: 'Your Name',
-                              prefixIcon: Icon(
-                                Icons.person,
-                                color: Colors.red,
-                                size: 40,
-                              ),
-                              hintText: 'Name of the Requesting Person'),
                         ),
                       ),
                       Padding(
