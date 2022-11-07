@@ -58,7 +58,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -110,7 +110,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -162,7 +162,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -219,7 +219,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -276,7 +276,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -328,7 +328,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -380,7 +380,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
@@ -438,7 +438,7 @@ class _LobbyState extends State<Lobby> {
                               ],
                             ),
                           );
-                        } else {
+                        } else if (x['requestor'] == Email) {
                           return Card(
                             elevation: 5,
                             child: ListTile(
