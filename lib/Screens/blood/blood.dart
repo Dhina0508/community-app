@@ -68,7 +68,8 @@ class _profileState extends State<blood> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            subtitle: Text("Ph.No: " + x['PhoneNumber']),
+                            subtitle:
+                                Text("Hospital Name: " + x['hospital_name']),
                             onTap: () => [
                               Navigator.push(
                                   context,

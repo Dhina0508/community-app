@@ -70,6 +70,14 @@ class _bloodprofState extends State<foodprof> {
           }
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
+                onPressed: () => [Navigator.of(context).pop()],
+              ),
               title: Text(
                 "Requested By: " + widget.value['Trust Name'],
                 style: TextStyle(fontFamily: 'Cinzel', color: Colors.black),
@@ -134,6 +142,26 @@ class _bloodprofState extends State<foodprof> {
                       ),
                       Text(
                         widget.value['PhoneNumber'],
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Date of the Event: ',
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'JosefinSans',
+                                color: Colors.brown),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        widget.value['Date'],
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),

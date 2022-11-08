@@ -17,6 +17,14 @@ class _profileState extends State<food> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () => [Navigator.of(context).pop()],
+        ),
         title: Text(
           'Food Request List',
           style: TextStyle(color: Colors.black),
@@ -76,7 +84,10 @@ class _profileState extends State<food> {
         )
       ]),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
         backgroundColor: Colors.amber,
         onPressed: () {
           Navigator.of(context).pushNamed('foodreg');
