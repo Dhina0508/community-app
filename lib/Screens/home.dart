@@ -1,6 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecyc/Screens/blood/blood.dart';
+import 'package:ecyc/Screens/clothes/clothes.dart';
+import 'package:ecyc/Screens/education/education.dart';
+import 'package:ecyc/Screens/food/food.dart';
+import 'package:ecyc/Screens/medical/medical.dart';
 
 import 'package:ecyc/Screens/missing_person/missing.dart';
 
@@ -47,7 +52,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color.fromRGBO(248, 68, 100, 300),
+      //  backgroundColor: Color.fromRGBO(248, 68, 100, 300),
       backgroundColor: Color.fromARGB(255, 202, 191, 191),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -98,128 +103,138 @@ class _HomeState extends State<Home> {
       ),
 
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CarouselSlider(
-                  items: _SlidingImages.map((item) => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                image: NetworkImage(item),
-                                fit: BoxFit.fitWidth,
-                              )),
-                        ),
-                      )).toList(),
-                  options: CarouselOptions(
-                      autoPlay: true,
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      autoPlayAnimationDuration: Duration(milliseconds: 700),
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.8,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      onPageChanged: (val, carouselPageChangedReason) {
-                        _DotPosition = val;
-                      }),
-                ),
-                DotsIndicator(
-                    dotsCount:
-                        _SlidingImages.length == 0 ? 1 : _SlidingImages.length,
-                    position: _DotPosition.toDouble(),
-                    decorator: DotsDecorator(
-                        activeColor: Colors.red,
-                        spacing: EdgeInsets.all(2),
-                        activeSize: Size(8, 8),
-                        size: Size(6, 6))),
-                Row(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CarouselSlider(
+                items: _SlidingImages.map((item) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: NetworkImage(item),
+                              fit: BoxFit.fitWidth,
+                            )),
+                      ),
+                    )).toList(),
+                options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    autoPlayAnimationDuration: Duration(milliseconds: 700),
+                    enlargeCenterPage: true,
+                    viewportFraction: 0.8,
+                    enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    onPageChanged: (val, carouselPageChangedReason) {
+                      _DotPosition = val;
+                    }),
+              ),
+              DotsIndicator(
+                  dotsCount:
+                      _SlidingImages.length == 0 ? 1 : _SlidingImages.length,
+                  position: _DotPosition.toDouble(),
+                  decorator: DotsDecorator(
+                      activeColor: Colors.red,
+                      spacing: EdgeInsets.all(2),
+                      activeSize: Size(8, 8),
+                      size: Size(6, 6))),
+              Padding(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                        ),
-                        height: Dimension.height200,
-                        width: Dimension.width170,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Center(
-                                  child: Text(
-                                'Blood Donation',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              )),
-                              Expanded(
-                                child: Image.asset(
-                                  'images/blood_img.png',
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => blood()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          height: Dimension.height200,
+                          width: Dimension.width170,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Center(
+                                    child: Text(
+                                  'Blood Donation',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                                Expanded(
+                                  child: Image.asset(
+                                    'images/blood_img.png',
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                        ),
-                        height: Dimension.height200,
-                        width: Dimension.width170,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Center(
-                                  child: Text(
-                                'Health/Oragans',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              )),
-                              Expanded(
-                                child: Image.asset(
-                                  'images/plus.png',
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => medical()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          height: Dimension.height200,
+                          width: Dimension.width170,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Center(
+                                    child: Text(
+                                  'Health/Oragans',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                                Expanded(
+                                  child: Image.asset(
+                                    'images/plus.png',
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => food()));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -243,19 +258,19 @@ class _HomeState extends State<Home> {
                                   'images/food_donation.jpg',
                                 ),
                               ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => clothes()));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -279,27 +294,29 @@ class _HomeState extends State<Home> {
                                   'images/cloth_img.png',
                                 ),
                               ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => education()));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -326,19 +343,19 @@ class _HomeState extends State<Home> {
                                   'images/book.png',
                                 ),
                               ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Missing()));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -362,27 +379,24 @@ class _HomeState extends State<Home> {
                                   'images/missing_person.png',
                                 ),
                               ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {},
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -409,21 +423,15 @@ class _HomeState extends State<Home> {
                                   'images/volunteer-icon-10.png',
                                 ),
                               ),
-                              Text(
-                                'Approved : Nil',
-                                style: TextStyle(
-                                  fontSize: Dimension.font20,
-                                ),
-                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

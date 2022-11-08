@@ -92,7 +92,7 @@ class _registerState extends State<register> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: Colors.redAccent[200],
+        backgroundColor: Color.fromRGBO(236, 13, 53, 1),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -110,200 +110,182 @@ class _registerState extends State<register> {
             ],
           ),
         ),
-        body: Ink(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 236, 5, 5),
-              Color.fromARGB(234, 131, 56, 188),
-              Color.fromARGB(235, 90, 31, 146),
-              Color.fromARGB(235, 51, 11, 120),
-            ], begin: Alignment.topRight, end: Alignment.bottomLeft),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 100),
-            child: Container(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
+        body: Padding(
+          padding: const EdgeInsets.only(top: 100),
+          child: Container(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Submit to continue',
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Color.fromRGBO(236, 13, 53, 1),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'We will not share this with anyone',
+                    style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      getImage();
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      backgroundImage: file == null
+                          ? AssetImage("images/profile1.png")
+                          : FileImage(File(file!.path)) as ImageProvider,
+                      radius: 50,
                     ),
-                    Text(
-                      'Submit to continue',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.redAccent[200],
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'We will not share this with anyone',
-                      style: TextStyle(fontSize: 16.0, color: Colors.grey),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        getImage();
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        backgroundImage: file == null
-                            ? AssetImage("images/profile1.png")
-                            : FileImage(File(file!.path)) as ImageProvider,
-                        radius: 50,
-                      ),
-                    ),
-                    Text('Click to add Image'),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30, left: 8),
-                      child: TextFormField(
-                        controller: _NameController,
-                        decoration: InputDecoration(
-                            labelText: 'Full name',
-                            prefixIcon: Icon(
-                              Icons.account_box_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                            hintText: 'Enter your Name'),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30, left: 8),
-                      child: TextFormField(
-                        controller: _EmailController,
-                        decoration: InputDecoration(
-                            labelText: 'Email',
-                            prefixIcon: Icon(
-                              Icons.mail_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                            hintText: 'Someone@email.com'),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30, left: 8),
-                      child: TextFormField(
-                        controller: _BloodController,
-                        decoration: InputDecoration(
-                            labelText: 'Blood Group',
-                            prefixIcon: Icon(
-                              Icons.bloodtype_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                            hintText: 'Eg: B+ve'),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30, left: 8),
-                      child: TextFormField(
-                        controller: _AgeController,
-                        decoration: InputDecoration(
-                            labelText: 'Age',
-                            prefixIcon: Icon(
-                              Icons.person_pin_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                            hintText: 'Eg: 24'),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30, left: 8),
-                      child: TextFormField(
-                        controller: _JobController,
-                        decoration: InputDecoration(
-                            labelText: 'Occupation',
-                            prefixIcon: Icon(
-                              Icons.work_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                            hintText: 'Eg: Business'),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 30.0, right: 8, left: 8),
-                      child: TextFormField(
-                        controller: _PhoneNoController,
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          labelText: 'Phone Number',
+                  ),
+                  Text('Click to add Image'),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _NameController,
+                      decoration: InputDecoration(
+                          labelText: 'Full name',
                           prefixIcon: Icon(
-                            Icons.phone_android_rounded,
+                            Icons.account_box_rounded,
                             color: Colors.redAccent[200],
                             size: 40,
                           ),
+                          hintText: 'Enter your Name'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _EmailController,
+                      decoration: InputDecoration(
+                          labelText: 'Email',
+                          prefixIcon: Icon(
+                            Icons.mail_rounded,
+                            color: Colors.redAccent[200],
+                            size: 40,
+                          ),
+                          hintText: 'Someone@email.com'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _BloodController,
+                      decoration: InputDecoration(
+                          labelText: 'Blood Group',
+                          prefixIcon: Icon(
+                            Icons.bloodtype_rounded,
+                            color: Colors.redAccent[200],
+                            size: 40,
+                          ),
+                          hintText: 'Eg: B+ve'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _AgeController,
+                      decoration: InputDecoration(
+                          labelText: 'Age',
+                          prefixIcon: Icon(
+                            Icons.person_pin_rounded,
+                            color: Colors.redAccent[200],
+                            size: 40,
+                          ),
+                          hintText: 'Eg: 24'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _JobController,
+                      decoration: InputDecoration(
+                          labelText: 'Occupation',
+                          prefixIcon: Icon(
+                            Icons.work_rounded,
+                            color: Colors.redAccent[200],
+                            size: 40,
+                          ),
+                          hintText: 'Eg: Business'),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 30.0, right: 8, left: 8),
+                    child: TextFormField(
+                      controller: _PhoneNoController,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        prefixIcon: Icon(
+                          Icons.phone_android_rounded,
+                          color: Colors.redAccent[200],
+                          size: 40,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30, left: 8),
-                      child: TextFormField(
-                        controller: _AddressController,
-                        decoration: InputDecoration(
-                            labelText: 'Address',
-                            prefixIcon: Icon(
-                              Icons.house_rounded,
-                              color: Colors.redAccent[200],
-                              size: 40,
-                            ),
-                            hintText: 'Your address'),
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, top: 30, left: 8),
+                    child: TextFormField(
+                      controller: _AddressController,
+                      decoration: InputDecoration(
+                          labelText: 'Address',
+                          prefixIcon: Icon(
+                            Icons.house_rounded,
+                            color: Colors.redAccent[200],
+                            size: 40,
+                          ),
+                          hintText: 'Your address'),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 8, top: 30.0, left: 8),
-                      child: ElevatedButton(
-                          onPressed: () async {
-                            if (_NameController.text != "" &&
-                                _EmailController.text != "" &&
-                                _BloodController.text != "" &&
-                                _JobController.text != "" &&
-                                _PhoneNoController.text != "" &&
-                                _AddressController.text != "") {
-                              final user = FirebaseAuth.instance.currentUser;
-                              await user
-                                  ?.updateDisplayName(_NameController.text);
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 8, top: 30.0, left: 8),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(236, 13, 53, 1),
+                        ),
+                        onPressed: () async {
+                          if (_NameController.text != "" &&
+                              _EmailController.text != "" &&
+                              _BloodController.text != "" &&
+                              _JobController.text != "" &&
+                              _PhoneNoController.text != "" &&
+                              _AddressController.text != "") {
+                            final user = FirebaseAuth.instance.currentUser;
+                            await user?.updateDisplayName(_NameController.text);
 
-                              SendUserDataToDB();
-                            } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content:
-                                    Text("Error : Details cannot be empty"),
-                                behavior: SnackBarBehavior.floating,
-                                backgroundColor: Colors.red,
-                              ));
-                            }
-                          },
-                          child: Text('   Submit   ')),
-                    ),
-                  ],
-                ),
+                            SendUserDataToDB();
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Error : Details cannot be empty"),
+                              behavior: SnackBarBehavior.floating,
+                              backgroundColor: Colors.red,
+                            ));
+                          }
+                        },
+                        child: Text('Submit')),
+                  ),
+                ],
               ),
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Colors.white,
-              ),
+            ),
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              color: Colors.white,
             ),
           ),
         ));

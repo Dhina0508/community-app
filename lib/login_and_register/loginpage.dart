@@ -190,10 +190,10 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.only(top: 30),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 112, 142, 167),
+                      backgroundColor: Color.fromARGB(200, 236, 13, 54),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      fixedSize: const Size(300, 50),
+                      fixedSize: const Size(250, 50),
                     ),
                     // color: Color.fromRGBO(205, 189, 223, 1),
                     onPressed: () {
@@ -204,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: Text(
                       'Register',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ),
                 ),
