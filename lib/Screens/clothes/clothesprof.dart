@@ -103,16 +103,27 @@ class _clothesprofState extends State<clothesprof> {
                                   SizedBox(
                                     height: 35,
                                   ),
-                                  Container(
-                                    height: 150,
-                                    width: 150,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
+                                  GestureDetector(
+                                    child: Container(
+                                      height: 150,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Image.network(
+                                        widget.value['img'],
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                    child: Image.network(
-                                      widget.value['img'],
-                                      fit: BoxFit.cover,
-                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailScreen(
+                                                    img: widget.value['img'],
+                                                  )));
+                                    },
                                   ),
                                   Row(
                                     children: [
@@ -378,5 +389,26 @@ class _clothesprofState extends State<clothesprof> {
                 })
               ]));
         });
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  var img;
+  DetailScreen({this.img});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        child: Center(
+          child: Hero(
+            tag: 'imageHero',
+            child: Image.network(img),
+          ),
+        ),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
   }
 }

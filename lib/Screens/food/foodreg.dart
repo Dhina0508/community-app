@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class foodreg extends StatefulWidget {
   foodreg({Key? key}) : super(key: key);
@@ -25,6 +26,9 @@ class _registerState extends State<foodreg> {
   TextEditingController _DiscriptionController = TextEditingController();
 
   TextEditingController _YourNameController = TextEditingController();
+
+  TextEditingController _datecontroller = TextEditingController();
+
   var email = FirebaseAuth.instance.currentUser!.email;
 
   // SendUserDataToDB() async {
@@ -73,6 +77,7 @@ class _registerState extends State<foodreg> {
       "Category_name": _CategoryController.text,
       "PhoneNumber": _PhoneNoController.text,
       "Discription": _DiscriptionController.text,
+      "Date": _datecontroller.text,
       "Time": DateTime.now(),
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -147,6 +152,32 @@ class _registerState extends State<foodreg> {
                                 size: 40,
                               ),
                               hintText: 'Trust Name'),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 8, top: 20, left: 8),
+                        child: TextField(
+                          controller: _datecontroller,
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.calendar_month,
+                                color: Colors.redAccent[200],
+                                size: 40,
+                              ),
+                              labelText: 'Select Date'),
+                          onTap: () async {
+                            DateTime? picketdate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2010),
+                                lastDate: DateTime(2200));
+                            if (picketdate != null) {
+                              setState(() {
+                                _datecontroller.text =
+                                    DateFormat('dd-MM-yyyy').format(picketdate);
+                              });
+                            }
+                          },
                         ),
                       ),
                       Padding(
@@ -231,12 +262,12 @@ class _registerState extends State<foodreg> {
                             const EdgeInsets.only(right: 8, top: 30.0, left: 8),
                         child: ElevatedButton(
                             onPressed: () {
-                              if (_YourNameController.text != '' &&
-                                  _TrustController.text != '' &&
+                              if (_TrustController.text != '' &&
                                   _PhoneNoController.text != '' &&
                                   _CategoryController.text != '' &&
                                   _DiscriptionController.text != '' &&
-                                  _MealController.text != '') {
+                                  _MealController.text != '' &&
+                                  _datecontroller.text != "") {
                                 // SendUserDataToDB();
                                 CommonDb();
                               } else {

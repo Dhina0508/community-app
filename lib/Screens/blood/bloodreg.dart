@@ -31,6 +31,7 @@ class _registerState extends State<bloodreg> {
 
   TextEditingController _YourNameController = TextEditingController();
   TextEditingController _datecontroller = TextEditingController();
+  TextEditingController _UHIDcontroller = TextEditingController();
 
   // SendUserDataToDB() async {
   //   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -79,6 +80,7 @@ class _registerState extends State<bloodreg> {
       "hospital_address": _HospitalAddressController.text,
       "discription": _DiscriptionController.text,
       "Date": _datecontroller.text,
+      "UHID": _UHIDcontroller.text,
       "email": email,
       "Time": DateTime.now(),
     }).then((value) {
@@ -331,6 +333,22 @@ class _registerState extends State<bloodreg> {
                         padding:
                             const EdgeInsets.only(top: 30, right: 8, left: 8),
                         child: TextFormField(
+                          controller: _UHIDcontroller,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            labelText: ' Your UHID',
+                            prefixIcon: Icon(
+                              Icons.phone_android_rounded,
+                              color: Colors.redAccent[200],
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 30, right: 8, left: 8),
+                        child: TextFormField(
                           controller: _PhoneNoController,
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
@@ -348,11 +366,15 @@ class _registerState extends State<bloodreg> {
                             const EdgeInsets.only(right: 8, top: 30.0, left: 8),
                         child: ElevatedButton(
                             onPressed: () {
-                              if (_NameController.text != '' &&
+                              if (value != null &&
+                                  _datecontroller.text != "" &&
+                                  _DiscriptionController.text != "" &&
+                                  _NameController.text != '' &&
                                   _PhoneNoController.text != '' &&
                                   _datecontroller != '' &&
                                   _AddressController.text != '' &&
-                                  _DiscriptionController.text != '') {
+                                  _DiscriptionController.text != '' &&
+                                  _UHIDcontroller.text != "") {
                                 // SendUserDataToDB();
                                 CommonDb();
                               } else {
