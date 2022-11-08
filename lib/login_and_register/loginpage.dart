@@ -31,6 +31,9 @@ class _LoginPageState extends State<LoginPage> {
         body: Stack(children: [
       Image.asset(
         'images/chennai.jpg',
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        fit: BoxFit.cover,
       ),
       SingleChildScrollView(
         child: SafeArea(
@@ -38,43 +41,15 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 30,
+                  height: 180,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Ink(
-                      child: Container(
-                        padding: EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(221, 241, 32, 32),
-                                Color.fromARGB(234, 219, 33, 219),
-                                Color.fromARGB(210, 52, 18, 175),
-                                Color.fromARGB(210, 52, 18, 175),
-                              ],
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft),
-                        ),
-                        child: Text(
-                          'ECYC',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Cinzel',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30),
-                        ),
-                      ),
-                    ),
-                  ],
+                Text(
+                  'Login',
+                  style: TextStyle(
+                      fontFamily: 'Cinzel', fontSize: 30, color: Colors.white),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 20, left: 20),
@@ -126,11 +101,34 @@ class _LoginPageState extends State<LoginPage> {
                         )),
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Container(
+                          alignment: Alignment.topLeft,
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('getEmail');
+                              },
+                              child: Text(
+                                "Forgot Password?",
+                                style: TextStyle(
+                                    fontSize: 13, color: Colors.white),
+                              ))),
+                    ),
+                  ],
+                ),
                 Padding(
-                  padding: EdgeInsets.only(top: 60),
+                  padding: EdgeInsets.only(top: 30),
                   child: ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      fixedSize: const Size(100, 50),
+                    ),
                     // color: Color.fromRGBO(205, 189, 223, 1),
                     onPressed: () async {
                       setState(() {});
@@ -147,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     },
                     child: Text(
-                      'Submit',
+                      'Login',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -158,20 +156,6 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 10 / 2),
-                      child: Container(
-                          alignment: Alignment.topLeft,
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pushNamed('getEmail');
-                              },
-                              child: Text(
-                                "Forgot Password?",
-                                style: TextStyle(
-                                    fontSize: 13, color: Colors.black),
-                              ))),
-                    ),
                     Padding(
                       padding: EdgeInsets.only(left: 10 / 2),
                       child: Container(
@@ -187,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 "Don't have an Account?   ",
                                 style: TextStyle(
-                                    fontSize: 13, color: Colors.black),
+                                    fontSize: 13, color: Colors.white),
                               ))),
                     ),
                   ],
