@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 180,
                 ),
                 Text(
-                  'Login',
+                  'Sign In',
                   style: TextStyle(
                       fontFamily: 'Cinzel', fontSize: 30, color: Colors.white),
                 ),
@@ -124,10 +124,10 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.only(top: 30),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.orange,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      fixedSize: const Size(100, 50),
+                      fixedSize: const Size(80, 35),
                     ),
                     // color: Color.fromRGBO(205, 189, 223, 1),
                     onPressed: () async {
@@ -146,36 +146,55 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: Text(
                       'Login',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 10 / 2),
-                      child: Container(
-                          alignment: Alignment.bottomRight,
-                          child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PhoneNoVerification()));
-                              },
-                              child: Text(
-                                "Don't have an Account?   ",
-                                style: TextStyle(
-                                    fontSize: 13, color: Colors.white),
-                              ))),
+                Row(children: <Widget>[
+                  Expanded(
+                      child: Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                    endIndent: 20,
+                    indent: 20,
+                  )),
+                  Text(
+                    "or",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                  Expanded(
+                      child: Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                    endIndent: 20,
+                    indent: 20,
+                  )),
+                ]),
+                Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 112, 142, 167),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      fixedSize: const Size(300, 50),
                     ),
-                  ],
-                )
+                    // color: Color.fromRGBO(205, 189, 223, 1),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PhoneNoVerification()));
+                    },
+                    child: Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

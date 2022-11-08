@@ -9,7 +9,17 @@ class GetEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Enter Your Email Address')),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Verification',
+          style: TextStyle(fontFamily: 'Cinzel', color: Colors.black),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
