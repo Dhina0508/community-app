@@ -1,9 +1,9 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecyc/login_and_register/loginpage.dart';
 import 'package:ecyc/login_and_register/phone_no_verification.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class All extends StatefulWidget {
@@ -39,6 +39,7 @@ class _AllState extends State<All> {
 
   @override
   Widget build(BuildContext context) {
+    String done = "done";
     return Scaffold(
       body: Center(
           child: Column(
@@ -125,7 +126,9 @@ class _AllState extends State<All> {
           ),
           Spacer(),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                pref.setString("status", done);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
