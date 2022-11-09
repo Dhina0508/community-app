@@ -11,6 +11,7 @@ import 'package:ecyc/Screens/education/education.dart';
 import 'package:ecyc/Screens/education/educationreq.dart';
 import 'package:ecyc/Screens/food/food.dart';
 import 'package:ecyc/Screens/food/foodreg.dart';
+import 'package:ecyc/Screens/get%20started%20screen/blood%20donation.dart';
 import 'package:ecyc/Screens/home.dart';
 import 'package:ecyc/Screens/medical/medical.dart';
 import 'package:ecyc/Screens/medical/medicalreg.dart';
@@ -110,8 +111,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2),
-        () => Navigator.of(context).pushNamed('login_page'));
+    Timer(
+        Duration(seconds: 2),
+        () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => BloodStartScreen())));
   }
 
   @override

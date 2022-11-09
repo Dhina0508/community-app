@@ -461,7 +461,7 @@ class _MyProfileState extends State<MyProfile> {
                             "${data['Name']}",
                             style: const TextStyle(
                                 fontFamily: 'Josefinsans',
-                                fontSize: 30,
+                                fontSize: 27,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -536,7 +536,7 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                             title: Text("${data['PhoneNumber']}",
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     color: Colors.black,
                                     fontFamily: 'Josefinsans')),
                           ),
@@ -594,7 +594,7 @@ class _MyProfileState extends State<MyProfile> {
                             title: Text("${data['Email']}",
                                 style: TextStyle(
                                   fontFamily: 'Josefinsans',
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   color: Colors.black,
                                 )),
                           ),
@@ -652,7 +652,7 @@ class _MyProfileState extends State<MyProfile> {
                             title: Text("${data['Age']}",
                                 style: TextStyle(
                                   fontFamily: 'Josefinsans',
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   color: Colors.black,
                                 )),
                           ),
@@ -711,7 +711,7 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                             title: Text("${data['Blood']}",
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     color: Colors.black,
                                     fontFamily: 'Josefinsans')),
                           ),
@@ -769,7 +769,7 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                             title: Text("${data['Occupation']}",
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     color: Colors.black,
                                     fontFamily: 'Josefinsans')),
                           ),
@@ -827,7 +827,7 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                             title: Text("${data['Address']}",
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     color: Colors.black,
                                     fontFamily: 'Josefinsans')),
                           ),
