@@ -155,7 +155,24 @@ class _chatScreenState extends State<chatScreen> {
       });
 
       return Scaffold(
-        appBar: AppBar(title: Text(widget.requestorname)),
+        appBar: AppBar(
+          title: Text(
+            widget.requestorname,
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          elevation: 0,
+          backgroundColor: Colors.white,
+        ),
         body: Column(
           children: [
             Expanded(
@@ -188,18 +205,28 @@ class _chatScreenState extends State<chatScreen> {
                                     child: Container(
                                         decoration: BoxDecoration(
                                             color: email == x['User']
-                                                ? Colors.redAccent[100]
-                                                : Colors.lightBlueAccent[100],
+                                                ? Color.fromARGB(
+                                                    255, 199, 58, 224)
+                                                : Colors.black12,
                                             borderRadius:
-                                                BorderRadius.circular(10)),
+                                                BorderRadius.circular(20)),
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
-                                            x['Messgaes'],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ))),
+                                            padding: EdgeInsets.all(10.0),
+                                            child: email == x['User']
+                                                ? Text(
+                                                    x['Messgaes'],
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )
+                                                : Text(
+                                                    x['Messgaes'],
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )))),
                                 Text(
                                   x['User'],
                                   style: TextStyle(fontSize: 8),
@@ -210,31 +237,38 @@ class _chatScreenState extends State<chatScreen> {
                         });
                   }),
             )),
-            Card(
-              color: Colors.amber[100],
-              child: TextFormField(
-                controller: _MessageController,
-                textAlignVertical: TextAlignVertical.center,
-                autofocus: true,
-                decoration: InputDecoration(
-                    hintText: "Send A Message",
-                    suffix: IconButton(
-                        onPressed: () {
-                          if (_MessageController.text.isNotEmpty) {
-                            storemessage
-                                .collection("Chats")
-                                .doc(widget.chatroomid)
-                                .collection("messages")
-                                .doc()
-                                .set({
-                              "Messgaes": _MessageController.text.trim(),
-                              "User": email,
-                              'time': DateTime.now()
-                            });
-                            _MessageController.clear();
-                          }
-                        },
-                        icon: Icon(Icons.send))),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 55,
+                child: TextFormField(
+                  controller: _MessageController,
+                  textAlignVertical: TextAlignVertical.center,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                      fillColor: Colors.green[100],
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      hintText: "  Message....",
+                      suffix: IconButton(
+                          onPressed: () {
+                            if (_MessageController.text.isNotEmpty) {
+                              storemessage
+                                  .collection("Chats")
+                                  .doc(widget.chatroomid)
+                                  .collection("messages")
+                                  .doc()
+                                  .set({
+                                "Messgaes": _MessageController.text.trim(),
+                                "User": email,
+                                'time': DateTime.now()
+                              });
+                              _MessageController.clear();
+                            }
+                          },
+                          icon: Icon(Icons.send))),
+                ),
               ),
             ),
           ],

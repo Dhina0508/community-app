@@ -8,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class register extends StatefulWidget {
   register({Key? key}) : super(key: key);
@@ -74,7 +75,9 @@ class _registerState extends State<register> {
       "Blood": _BloodController.text,
       "Occupation": _JobController.text,
       "img": url,
-    }).then((value) {
+    }).then((value) async {
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.setString("email", _EmailController.text.trim());
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Details Of The User Has Been Added"),
         behavior: SnackBarBehavior.floating,

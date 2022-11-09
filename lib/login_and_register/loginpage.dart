@@ -1,11 +1,14 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecyc/Screens/bottomnavigationbar.dart';
 import 'package:ecyc/helper/dimensions.dart';
 import 'package:ecyc/login_and_register/forget_password/forget.dart';
 import 'package:ecyc/login_and_register/SignUp.dart';
 import 'package:ecyc/login_and_register/phone_no_verification.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../firebase_helper/firebase_helper.dart';
 
@@ -17,6 +20,29 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .then((value) {
+      return Navigator.push(context,
+          MaterialPageRoute(builder: (context) => BottomNavigatorBar()));
+    });
+  }
+
   bool _isHidden = true;
   var visible = "";
 
@@ -42,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 180,
+                  height: 100,
                 ),
                 Text(
                   'Sign In',
@@ -59,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: emailcontroller,
                     decoration: InputDecoration(
                         label: Text('Enter Login Id'),
-                        hintText: 'something@gmail.com',
+                        hintText: 'someone@gmail.com',
                         fillColor: Colors.grey.shade100,
                         filled: true,
                         hintStyle: TextStyle(
@@ -208,6 +234,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 50,
+                )
               ],
             ),
           ),
