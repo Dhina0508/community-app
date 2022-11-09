@@ -70,7 +70,7 @@ class _AllState extends State<All> {
             options: CarouselOptions(
                 autoPlay: true,
                 autoPlayCurve: Curves.fastOutSlowIn,
-                autoPlayAnimationDuration: Duration(milliseconds: 700),
+                autoPlayAnimationDuration: Duration(milliseconds: 900),
                 enlargeCenterPage: true,
                 viewportFraction: 0.8,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -90,7 +90,7 @@ class _AllState extends State<All> {
             height: 60,
           ),
           Text(
-            'Want to watch a miracle?',
+            'Wanna watch a miracle?',
             style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -123,7 +123,6 @@ class _AllState extends State<All> {
               ],
             ),
           ),
-          Spacer(),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -165,7 +164,7 @@ class _AllState extends State<All> {
                   child: Text(
                     'Login',
                     style: TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.bold,
+                      fontSize: 14, fontWeight: FontWeight.bold,
                       color: Color.fromRGBO(236, 13, 53, 1),
                       //   decoration: TextDecoration.underline,
                     ),
