@@ -16,7 +16,7 @@ class All extends StatefulWidget {
 class _AllState extends State<All> {
   var _DotPosition = 0;
   var _FireStoreInstance = FirebaseFirestore.instance;
-  List _SlidingImages = [];
+  List<String> _SlidingImages = [];
 
   FetchSlidingImages() async {
     QuerySnapshot qn =
@@ -45,9 +45,7 @@ class _AllState extends State<All> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Spacer(
-            flex: 1,
-          ),
+          Spacer(),
           Text(
             'Welcome',
             style: TextStyle(fontFamily: 'Cinzel', fontSize: 25),
@@ -90,7 +88,7 @@ class _AllState extends State<All> {
             height: 60,
           ),
           Text(
-            'Wanna watch a miracle?',
+            'Wanna make a miracle?',
             style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -102,7 +100,7 @@ class _AllState extends State<All> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Donation is not just a word it's an emotion.",
+                  "We are together",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black87,
@@ -113,7 +111,7 @@ class _AllState extends State<All> {
                   height: 10,
                 ),
                 Text(
-                  "All in one App",
+                  "Make a difference to people's life with just one App",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black87,
@@ -123,6 +121,7 @@ class _AllState extends State<All> {
               ],
             ),
           ),
+          Spacer(),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(

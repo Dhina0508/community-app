@@ -297,7 +297,7 @@ class _HomeState extends State<Home> {
                                 )),
                                 Expanded(
                                   child: Image.asset(
-                                    'images/cloth_img.png',
+                                    'images/cloth.png',
                                   ),
                                 ),
                               ],
