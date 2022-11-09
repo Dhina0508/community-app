@@ -90,8 +90,9 @@ class _PhoneNoVerificationState extends State<PhoneNoVerification> {
                         height: 50,
                         child: DecoratedBox(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color.fromARGB(32, 244, 237, 237)),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color.fromARGB(88, 247, 225, 225),
+                          ),
                           child: CountryCodePicker(
                             onChanged: (country) {
                               setState(() {
@@ -107,13 +108,17 @@ class _PhoneNoVerificationState extends State<PhoneNoVerification> {
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 10, right: 10, left: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
                       child: TextField(
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                         decoration: InputDecoration(
-                            suffix: TextButton(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            fillColor: Color.fromARGB(88, 247, 225, 225),
+                            filled: true,
+                            suffixIcon: TextButton(
                                 onPressed: () {
                                   verifyPhonenumber(
                                       codeDigits: dialCodeDigits,
@@ -124,14 +129,16 @@ class _PhoneNoVerificationState extends State<PhoneNoVerification> {
                                 },
                                 child: Text(
                                   'Send OTP',
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                    color: Color.fromARGB(200, 236, 13, 54),
+                                  ),
                                 )),
                             hintText: "Phone Number",
                             hintStyle: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.normal),
                             prefix: Padding(
-                              padding: EdgeInsets.all(4),
+                              padding: const EdgeInsets.all(3.0),
                               child: Text(
                                 dialCodeDigits,
                                 style: TextStyle(color: Colors.white),

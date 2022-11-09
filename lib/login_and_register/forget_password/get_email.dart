@@ -13,35 +13,73 @@ class GetEmail extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Verification',
-          style: TextStyle(fontFamily: 'Cinzel', color: Colors.black),
-        ),
-        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
       ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Enter the email that you used while you created your account'),
+          Icon(
+            Icons.lock_outline_rounded,
+            size: 200,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Forgot password ? ',
+            style: TextStyle(
+                fontFamily: 'JosefinSans', color: Colors.black, fontSize: 27),
+          ),
+          SizedBox(
+            height: 50,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Card(
-                child: TextField(
+            child: Text(
+              "Please enter your Email Id and we 'll send you a link to get back into your account :",
+              style: TextStyle(fontSize: 16, color: Colors.black54),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail), hintText: 'Email Id'),
               controller: _EmailController,
-            )),
+            ),
+          ),
+          SizedBox(
+            height: 30,
           ),
           ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(236, 13, 53, 1),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                fixedSize: const Size(250, 50),
+              ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChangePass(
-                              email: _EmailController.text.trim(),
-                            )));
+                _EmailController.text == ""
+                    ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Please Enter a valid Email Id'),
+                        behavior: SnackBarBehavior.floating,
+                      ))
+                    : Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChangePass(
+                                  email: _EmailController.text.trim(),
+                                )));
               },
-              child: Text('Proceed'))
+              child: Text('Send Update link'))
         ],
       )),
     );

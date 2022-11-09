@@ -26,7 +26,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
         selectedFontSize: 15,
         unselectedFontSize: 12,
         unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Color.fromRGBO(236, 13, 53, 1),
         backgroundColor: Color.fromARGB(255, 202, 191, 191),
         showUnselectedLabels: false,
         items: [
