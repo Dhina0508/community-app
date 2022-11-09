@@ -251,7 +251,7 @@ class _chatScreenState extends State<chatScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15)),
                       hintText: "  Message....",
-                      suffix: IconButton(
+                      suffixIcon: IconButton(
                           onPressed: () {
                             if (_MessageController.text.isNotEmpty) {
                               storemessage
