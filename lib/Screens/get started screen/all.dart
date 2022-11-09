@@ -16,7 +16,7 @@ class All extends StatefulWidget {
 class _AllState extends State<All> {
   var _DotPosition = 0;
   var _FireStoreInstance = FirebaseFirestore.instance;
-  List _SlidingImages = [];
+  List<String> _SlidingImages = [];
 
   FetchSlidingImages() async {
     QuerySnapshot qn =
@@ -46,9 +46,7 @@ class _AllState extends State<All> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Spacer(
-            flex: 1,
-          ),
+          Spacer(),
           Text(
             'Welcome',
             style: TextStyle(fontFamily: 'Cinzel', fontSize: 25),
@@ -71,7 +69,7 @@ class _AllState extends State<All> {
             options: CarouselOptions(
                 autoPlay: true,
                 autoPlayCurve: Curves.fastOutSlowIn,
-                autoPlayAnimationDuration: Duration(milliseconds: 700),
+                autoPlayAnimationDuration: Duration(milliseconds: 900),
                 enlargeCenterPage: true,
                 viewportFraction: 0.8,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -91,7 +89,7 @@ class _AllState extends State<All> {
             height: 60,
           ),
           Text(
-            'Want to watch a miracle?',
+            'Wanna make a miracle?',
             style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -103,7 +101,7 @@ class _AllState extends State<All> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Donation is not just a word it's an emotion.",
+                  "We are together",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black87,
@@ -114,7 +112,7 @@ class _AllState extends State<All> {
                   height: 10,
                 ),
                 Text(
-                  "All in one App",
+                  "Make a difference to people's life with just one App",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black87,
@@ -168,7 +166,7 @@ class _AllState extends State<All> {
                   child: Text(
                     'Login',
                     style: TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.bold,
+                      fontSize: 14, fontWeight: FontWeight.bold,
                       color: Color.fromRGBO(236, 13, 53, 1),
                       //   decoration: TextDecoration.underline,
                     ),
