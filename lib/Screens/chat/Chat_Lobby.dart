@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecyc/Screens/chat/ChatScreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ecyc/Screens/ambulence.dart';
+import 'package:ecyc/Screens/blood/blood.dart';
+import 'package:ecyc/Screens/blood/bloodreg.dart';
+import 'package:ecyc/Screens/sos.dart';
 import 'package:flutter/material.dart';
 
 class Lobby extends StatefulWidget {
@@ -11,469 +12,132 @@ class Lobby extends StatefulWidget {
 }
 
 class _LobbyState extends State<Lobby> {
+  var start = "1";
+  var Emergency = "";
+  var Request = "";
+  var Ambulence = "";
+  var Sos = "";
+  var Blood = "";
+  var BloodDonor = "";
+  var BloodRequestor = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Chats'),
-        ),
-        body: SafeArea(
-          child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection("Chats")
-                  .orderBy('Time')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                var Email = FirebaseAuth.instance.currentUser!.email;
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                }
-                return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, i) {
-                      QueryDocumentSnapshot x = snapshot.data!.docs[i];
-                      if (x['about'] == "blood") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.bloodtype,
-                                size: 40,
-                                color: Colors.red,
-                              ),
-                              title: Text(
-                                "Donnor Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.bloodtype,
-                                size: 40,
-                                color: Colors.red,
-                              ),
-                              title: Text(
-                                "Patient Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "medical") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.local_hospital_rounded,
-                                size: 40,
-                                color: Colors.red,
-                              ),
-                              title: Text(
-                                "Supporter Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.local_hospital_rounded,
-                                size: 40,
-                                color: Colors.red,
-                              ),
-                              title: Text(
-                                "Patient Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "food") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.food_bank_rounded,
-                                size: 40,
-                                color: Colors.yellow,
-                              ),
-                              title: Text(
-                                "Supporter Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.food_bank_rounded,
-                                size: 40,
-                                color: Colors.yellow,
-                              ),
-                              title: Text(
-                                "Requestor Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "cloth") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    'images/tshirt.png',
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                ],
-                              ),
-                              title: Text(
-                                "Receiver Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    'images/tshirt.png',
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                ],
-                              ),
-                              title: Text(
-                                "Cloth Donnor Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "education") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.school_rounded,
-                                size: 35,
-                                color: Colors.red,
-                              ),
-                              title: Text(
-                                "Helper Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.school_rounded,
-                                size: 35,
-                                color: Colors.red,
-                              ),
-                              title: Text(
-                                "Requestor Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "books") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.menu_book_rounded,
-                                size: 35,
-                                color: Colors.brown,
-                              ),
-                              title: Text(
-                                "Receiver Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.menu_book_rounded,
-                                size: 35,
-                                color: Colors.brown,
-                              ),
-                              title: Text(
-                                "Donor Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "scriber") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.drive_file_rename_outline_rounded,
-                                size: 35,
-                                color: Colors.green,
-                              ),
-                              title: Text(
-                                "Helper Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.drive_file_rename_outline_rounded,
-                                size: 35,
-                                color: Colors.green,
-                              ),
-                              title: Text(
-                                "Requestor Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      } else if (x['about'] == "missing") {
-                        if (x['receiptnt'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.network(
-                                    x['img'],
-                                    fit: BoxFit.cover,
-                                    height: 50,
-                                    width: 50,
-                                  ),
-                                ],
-                              ),
-                              title: Text(
-                                "Helper Name: " + x['receiptntName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        } else if (x['requestor'] == Email) {
-                          return Card(
-                            elevation: 5,
-                            child: ListTile(
-                              leading: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.network(
-                                    x['img'],
-                                    fit: BoxFit.cover,
-                                    height: 50,
-                                    width: 50,
-                                  ),
-                                ],
-                              ),
-                              title: Text(
-                                "Requestor Name: " + x['requestorName'],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              subtitle: Text("Message"),
-                              onTap: () => [
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => chatScreen(
-                                            chatroomid:
-                                                snapshot.data!.docs[i])))
-                              ],
-                            ),
-                          );
-                        }
-                      }
-                      return Container();
+      appBar: AppBar(
+        title: Text('Welcome to Ecyc Terminal '),
+        backgroundColor: Colors.orange,
+      ),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          start == "1"
+              ? ElevatedButton(
+                  child: Text("start"),
+                  onPressed: () {
+                    setState(() {
+                      start = "";
+                      Emergency = "1";
+                      Request = "1";
                     });
-              }),
-        ));
+                  },
+                )
+              : Container(),
+          Emergency == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      Sos = "1";
+                      Ambulence = "1";
+                      Request = "";
+                      Emergency = "";
+                    });
+                  },
+                  child: Text("Emergency"))
+              : Container(),
+          Request == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      Sos = "";
+                      Ambulence = "";
+                      Emergency = "";
+                      Request = "";
+                      Blood = "1";
+                    });
+                  },
+                  child: Text('Requesst'))
+              : Container(),
+          Blood == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      Blood = "";
+                      BloodDonor = "1";
+                      BloodRequestor = "1";
+                    });
+                  },
+                  child: Text("Blood"))
+              : Container(),
+          BloodDonor == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      Blood = "";
+                      BloodDonor = "";
+                      BloodRequestor = "";
+                      start = "1";
+                    });
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => blood()));
+                  },
+                  child: Text("Blood Donnor"))
+              : Container(),
+          BloodRequestor == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      Blood = "";
+                      BloodDonor = "";
+                      BloodRequestor = "";
+                      start = "1";
+                    });
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => bloodreg()));
+                  },
+                  child: Text("Blood Request"))
+              : Container(),
+          Ambulence == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AmbulenceService()));
+                    setState(() {
+                      Ambulence = "";
+                      start = "1";
+                      Sos = "";
+                    });
+                  },
+                  child: Text("Ambulence"))
+              : Container(),
+          Sos == "1"
+              ? ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => sos()));
+                    setState(() {
+                      Ambulence = "";
+                      start = "1";
+                      Sos = "";
+                    });
+                  },
+                  child: Text("Sos"))
+              : Container()
+        ],
+      )),
+    );
   }
 }
