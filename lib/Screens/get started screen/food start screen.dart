@@ -39,7 +39,7 @@ class _FoodStartScreenState extends State<FoodStartScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Donate food and make needy happy",
+                  "Donate food and make needy happy.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black87,

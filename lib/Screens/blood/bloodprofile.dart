@@ -344,33 +344,6 @@ class _bloodprofState extends State<bloodprof> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Text(
-                                      'Patient UHID : ',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontFamily: 'JosefinSans',
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.brown),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  widget.value['UHID'],
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
                                 Spacer(),
                                 Email == widget.value['email']
                                     ? ElevatedButton(
