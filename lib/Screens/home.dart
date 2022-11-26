@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:ecyc/Screens/blood/MyDonor.dart';
 import 'package:ecyc/Screens/blood/blood.dart';
 import 'package:ecyc/Screens/clothes/clothes.dart';
 import 'package:ecyc/Screens/education/education.dart';
@@ -693,6 +694,19 @@ class _HomeState extends State<Home> {
                       ),
                       onTap: () => [Navigator.of(context).pushNamed('sos')],
                     ),
+                  ),
+                  ListTile(
+                    title: Text('My Donors'),
+                    leading: Icon(
+                      Icons.shopping_bag,
+                      color: Colors.pink,
+                    ),
+                    onTap: () => [
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return BloodDonors();
+                      }))
+                    ],
                   ),
 
                   Padding(
